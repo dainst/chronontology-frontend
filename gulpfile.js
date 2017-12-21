@@ -56,6 +56,8 @@ var jsDeps = [
     paths.lib + 'idai-components/dist/idai-components.js'
 ];
 
+var widgets = ['period-info'];
+
 gulp.task('compile-css', function () {
 
     return gulp.src('scss/app.scss')
@@ -128,6 +130,40 @@ gulp.task('minify-js', ['concat-js', 'html2js'], function () {
         .pipe(gulp.dest(paths.build + 'js'));
 });
 
+// converts html partials to js files so they can be concatenated
+gulp.task('html2js-widgets', function () {
+
+    widgets.forEach(function(widget) {
+        gulp.src('js/widgets/' + widget + '/*.html', { base: 'js/widgets/'})
+            .pipe(minifyHtml())
+            .pipe(ngHtml2Js({
+                moduleName: pkg.name + '.widgets.' + widget,
+                prefix: 'widgets/',
+                extension: '.tpl.js'
+            }))
+            .pipe(gulp.dest(paths.build + 'js/widgets'));
+    });
+});
+
+// minifies and concatenates js files in build dir
+gulp.task('concat-widgets', function () {
+
+    widgets.forEach(function(widget) {
+        gulp.src([
+                'dist/js/widgets/' + widget + '/*.js',
+                'js/widgets/' + widget + '/*.js'
+            ])
+            .pipe(concat('widgets/' + widget + '.js'))
+            .pipe(gulp.dest('dist/js'));
+    });
+    return gulp.src([
+            paths.lib + 'angular/angular.min.js',
+            'dist/js/widgets/*.js'
+        ])
+        .pipe(concat(pkg.name + '-widgets.js'))
+        .pipe(gulp.dest('dist/js'))
+});
+
 gulp.task('copy-fonts', function () {
 
     var bsFontPath = paths.lib + 'bootstrap-sass/assets/fonts/';
@@ -180,11 +216,21 @@ gulp.task('copy-config', function () {
         .pipe(gulp.dest(paths.build + '/config'));
 });
 
-gulp.task('build', [
+gulp.task('build-app', [
     'minify-css',
     'concat-deps',
     'minify-js',
     'copy-resources'
+]);
+
+gulp.task('build-widgets', [
+    'html2js-widgets',
+    'concat-widgets'
+]);
+
+gulp.task('build', [
+    'build-app',
+    'build-widgets'
 ]);
 
 // clean
