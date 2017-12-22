@@ -333,9 +333,6 @@
              ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
   				<span class="input-group">
             <span class="input-group-addon">{{ $ctrl.resourceCache[value].names | prefName }}</span>
-  					<input type="text"
-                   class="form-control"
-                   ng-model="$ctrl.period.relations[relationName][valueIndex]">
             <span class="input-group-btn">
   						 <button class="btn btn-danger"
                        ng-click="$ctrl.removeRelation(relationName, value)"
@@ -388,9 +385,6 @@
              ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
           <span class="input-group">
             <span class="input-group-addon">{{ $ctrl.resourceCache[value].names | prefName }}</span>
-            <input type="text"
-                   class="form-control"
-                   ng-model="$ctrl.period.relations[relationName][valueIndex]">
             <span class="input-group-btn">
                <button class="btn btn-danger"
                        ng-click="$ctrl.removeRelation(relationName, value)"
@@ -443,9 +437,6 @@
              ng-repeat="value in $ctrl.period[relationName] track by $index">
           <span class="input-group">
             <span class="input-group-addon">{{ $ctrl.resourceCache[value].prefName.title }}</span>
-            <input type="text"
-                   class="form-control"
-                   ng-model="$ctrl.period[relationName][valueIndex]">
             <span class="input-group-btn">
                <button class="btn btn-danger"
                        ng-click="$ctrl.removeGazetteerRelation(relationName, value)"
