@@ -34,17 +34,6 @@
 
           <!-- GeoWidgets -->
           <geomap selected-period-id="document.resource.id"></geomap>
-          <!--<geosearch datasource="getty"></geosearch>-->
-          <!--<geosearchresultsmap datasource="/spi/place?bbox=50.082665;8.161050;50.082665;8.371850;49.903887;8.161050;49.903887;8.371850&type=dai"></geosearchresultsmap>-->
-          <!--<geosearchresultslist datasource="/spi/place?q=Mainz&type=getty"></geosearchresultslist>-->
-
-          <!-- Picker -->
-          <geopickerresource on-place-selected="testValue = place"></geopickerresource>
-          <pre>{{testValue | json}}</pre>
-          <geopickerquery on-place-selected="testValue2 = place"></geopickerquery>
-          <pre>{{testValue2 | json}}</pre>
-          <geopickermap on-place-selected="testValue3 = place"></geopickermap>
-          <pre>{{testValue3 | json}}</pre>
 
         </div>
 
@@ -92,7 +81,7 @@
         </div>
       </div>
     </div>
-    
+
     <div ng-if="viewMode == 'please_login'">
       <div class="page-header" align="center">
         <h1>401 <small>Please login</small></h1>
