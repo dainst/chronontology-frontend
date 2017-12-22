@@ -302,9 +302,8 @@
   <div class="row form-group">
     <h4>{{ "ui_general_relations" | transl8 }}</h4>
 
-      <div style="margin-bottom: 15px;">
-        <div class="btn-group" style="float: left; margin-right: 10px;" uib-dropdown
-             is-open="internalRelationTypePickerOpen">
+      <div class="relation-editor-section">
+        <div class="btn-group relation-type-dropdown" uib-dropdown is-open="internalRelationTypePickerOpen">
           <button type="button" class="btn btn-primary" uib-dropdown-toggle>
             {{ "relation_" + $ctrl.chosenInternalRelationType | transl8 }} <span class="caret"></span>
           </button>
@@ -360,9 +359,8 @@
     <h4>{{ "ui_temporal_relations" | transl8 }} ({{ "ui_temporal_relations_according_to" | transl8 }} <a href="https://en.wikipedia.org/wiki/Allen%27s_interval_algebra" target="_blank">Allen</a>)
     </h4>
 
-    <div style="margin-bottom: 15px;">
-      <div class="btn-group" style="float: left; margin-right: 10px;" uib-dropdown
-           is-open="allenRelationTypePickerOpen">
+    <div class="relation-editor-section">
+      <div class="btn-group relation-type-dropdown" uib-dropdown is-open="allenRelationTypePickerOpen">
         <button type="button" class="btn btn-primary" uib-dropdown-toggle>
           {{ "relation_" + $ctrl.chosenAllenRelationType | transl8 }} <span class="caret"></span>
         </button>
@@ -417,9 +415,8 @@
   <div class="row form-group">
     <h4>{{ "ui_geographic_relations" | transl8 }}</h4>
 
-    <div style="margin-bottom: 15px;">
-      <div class="btn-group" style="float: left; margin-right: 10px;" uib-dropdown
-           is-open="gazetteerRelationTypePickerOpen">
+    <div class="relation-editor-section">
+      <div class="btn-group relation-type-dropdown" uib-dropdown is-open="gazetteerRelationTypePickerOpen">
         <button type="button" class="btn btn-primary" uib-dropdown-toggle>
           {{ "relation_" + $ctrl.chosenGazetteerRelationType | transl8 }} <span class="caret"></span>
         </button>
