@@ -302,54 +302,54 @@
   <div class="row form-group">
     <h4>{{ "ui_general_relations" | transl8 }}</h4>
 
-      <div class="relation-editor-section">
-        <div class="btn-group relation-type-dropdown" uib-dropdown is-open="internalRelationTypePickerOpen">
-          <button type="button" class="btn btn-primary" uib-dropdown-toggle>
-            {{ "relation_" + $ctrl.chosenInternalRelationType | transl8 }} <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" uib-dropdown-menu>
-            <li ng-repeat="relationName in $ctrl.internalRelationTypes">
-              <a ng-click="$ctrl.chosenInternalRelationType = relationName;">
-                {{ "relation_" + relationName | transl8 }}
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div class="btn-group relation-type-dropdown" uib-dropdown is-open="internalRelationTypePickerOpen">
+        <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+          {{ "relation_" + $ctrl.chosenInternalRelationType | transl8 }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" uib-dropdown-menu>
+          <li ng-repeat="relationName in $ctrl.internalRelationTypes">
+            <a ng-click="$ctrl.chosenInternalRelationType = relationName;">
+              {{ "relation_" + relationName | transl8 }}
+            </a>
+          </li>
+        </ul>
+      </div>
 
-        <div class="input-group">
-          <span class="input-group-btn" ng-show="$ctrl.pickedRelations[$ctrl.chosenInternalRelationType]">
-            <button class="btn btn-success" ng-click="$ctrl.addPickedRelation($ctrl.chosenInternalRelationType)"        type="button">
-              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            </button>
-          </span>
-          <div>
-            <idai-picker search-uri="/data/period/"
-                       result-field="results"
-                       title-field="resource.id + ': ' + (resource.names | prefName) + ', ' + resource.types"
-                       selected-item="$ctrl.pickedRelations[$ctrl.chosenInternalRelationType]"></idai-picker>
-          </div>
+      <div class="input-group">
+        <span class="input-group-btn" ng-show="$ctrl.pickedRelations[$ctrl.chosenInternalRelationType]">
+          <button class="btn btn-success" ng-click="$ctrl.addPickedRelation($ctrl.chosenInternalRelationType)"        type="button">
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          </button>
+        </span>
+        <div>
+          <idai-picker search-uri="/data/period/"
+                     result-field="results"
+                     title-field="resource.id + ': ' + (resource.names | prefName) + ', ' + resource.types"
+                     selected-item="$ctrl.pickedRelations[$ctrl.chosenInternalRelationType]"></idai-picker>
         </div>
       </div>
 
     <div class="col-md-12" ng-init="relationIndex = $index"
          ng-repeat="relationName in $ctrl.internalRelationTypes">
-      <div ng-if="$ctrl.period.relations[relationName].length > 0">{{ "relation_" + relationName | transl8 }}</div>
-      <div class="col-md-6"
-           ng-init="valueIndex = $index"
-           ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
-				<span class="input-group">
-          <span class="input-group-addon">{{ $ctrl.resourceCache[value].names | prefName }}</span>
-					<input type="text"
-                 class="form-control"
-                 ng-model="$ctrl.period.relations[relationName][valueIndex]">
-          <span class="input-group-btn">
-						 <button class="btn btn-danger"
-                     ng-click="$ctrl.removeRelation(relationName, value)"
-                     type="button">
-							 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-						 </button>
-					</span>
-				</span>
+      <div ng-if="$ctrl.period.relations[relationName].length > 0" class="relation-list">
+        <div>{{ "relation_" + relationName | transl8 }}</div>
+        <div class="col-md-6"
+             ng-init="valueIndex = $index"
+             ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
+  				<span class="input-group">
+            <span class="input-group-addon">{{ $ctrl.resourceCache[value].names | prefName }}</span>
+  					<input type="text"
+                   class="form-control"
+                   ng-model="$ctrl.period.relations[relationName][valueIndex]">
+            <span class="input-group-btn">
+  						 <button class="btn btn-danger"
+                       ng-click="$ctrl.removeRelation(relationName, value)"
+                       type="button">
+  							 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+  						 </button>
+  					</span>
+  				</span>
+        </div>
       </div>
     </div>
 
@@ -359,54 +359,54 @@
     <h4>{{ "ui_temporal_relations" | transl8 }} ({{ "ui_temporal_relations_according_to" | transl8 }} <a href="https://en.wikipedia.org/wiki/Allen%27s_interval_algebra" target="_blank">Allen</a>)
     </h4>
 
-    <div class="relation-editor-section">
-      <div class="btn-group relation-type-dropdown" uib-dropdown is-open="allenRelationTypePickerOpen">
-        <button type="button" class="btn btn-primary" uib-dropdown-toggle>
-          {{ "relation_" + $ctrl.chosenAllenRelationType | transl8 }} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" uib-dropdown-menu>
-          <li ng-repeat="relationName in $ctrl.allenRelationTypes">
-            <a ng-click="$ctrl.chosenAllenRelationType = relationName;">
-              {{ "relation_" + relationName | transl8 }}
-            </a>
-          </li>
-        </ul>
-      </div>
+    <div class="btn-group relation-type-dropdown" uib-dropdown is-open="allenRelationTypePickerOpen">
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+        {{ "relation_" + $ctrl.chosenAllenRelationType | transl8 }} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu>
+        <li ng-repeat="relationName in $ctrl.allenRelationTypes">
+          <a ng-click="$ctrl.chosenAllenRelationType = relationName;">
+            {{ "relation_" + relationName | transl8 }}
+          </a>
+        </li>
+      </ul>
+    </div>
 
-      <div class="input-group">
-        <span class="input-group-btn" ng-show="$ctrl.pickedRelations[$ctrl.chosenAllenRelationType]">
-          <button class="btn btn-success" ng-click="$ctrl.addPickedRelation($ctrl.chosenAllenRelationType)"        type="button">
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          </button>
-        </span>
-        <div>
-          <idai-picker search-uri="/data/period/"
-                     result-field="results"
-                     title-field="resource.id + ': ' + (resource.names | prefName) + ', ' + resource.types"
-                     selected-item="$ctrl.pickedRelations[$ctrl.chosenAllenRelationType]"></idai-picker>
-        </div>
+    <div class="input-group">
+      <span class="input-group-btn" ng-show="$ctrl.pickedRelations[$ctrl.chosenAllenRelationType]">
+        <button class="btn btn-success" ng-click="$ctrl.addPickedRelation($ctrl.chosenAllenRelationType)"        type="button">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </button>
+      </span>
+      <div>
+        <idai-picker search-uri="/data/period/"
+                   result-field="results"
+                   title-field="resource.id + ': ' + (resource.names | prefName) + ', ' + resource.types"
+                   selected-item="$ctrl.pickedRelations[$ctrl.chosenAllenRelationType]"></idai-picker>
       </div>
     </div>
 
     <div class="col-md-12" ng-init="relationIndex = $index"
          ng-repeat="relationName in $ctrl.allenRelationTypes">
-      <div ng-if="$ctrl.period.relations[relationName].length > 0">{{ "relation_" + relationName | transl8 }}</div>
-      <div class="col-md-6"
-           ng-init="valueIndex = $index"
-           ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
-        <span class="input-group">
-          <span class="input-group-addon">{{ $ctrl.resourceCache[value].names | prefName }}</span>
-          <input type="text"
-                 class="form-control"
-                 ng-model="$ctrl.period.relations[relationName][valueIndex]">
-          <span class="input-group-btn">
-             <button class="btn btn-danger"
-                     ng-click="$ctrl.removeRelation(relationName, value)"
-                     type="button">
-               <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-             </button>
+      <div ng-if="$ctrl.period.relations[relationName].length > 0" class="relation-list">
+        <div>{{ "relation_" + relationName | transl8 }}</div>
+        <div class="col-md-6"
+             ng-init="valueIndex = $index"
+             ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
+          <span class="input-group">
+            <span class="input-group-addon">{{ $ctrl.resourceCache[value].names | prefName }}</span>
+            <input type="text"
+                   class="form-control"
+                   ng-model="$ctrl.period.relations[relationName][valueIndex]">
+            <span class="input-group-btn">
+               <button class="btn btn-danger"
+                       ng-click="$ctrl.removeRelation(relationName, value)"
+                       type="button">
+                 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+               </button>
+            </span>
           </span>
-        </span>
+        </div>
       </div>
     </div>
 
@@ -415,61 +415,61 @@
   <div class="row form-group">
     <h4>{{ "ui_geographic_relations" | transl8 }}</h4>
 
-    <div class="relation-editor-section">
-      <div class="btn-group relation-type-dropdown" uib-dropdown is-open="gazetteerRelationTypePickerOpen">
-        <button type="button" class="btn btn-primary" uib-dropdown-toggle>
-          {{ "relation_" + $ctrl.chosenGazetteerRelationType | transl8 }} <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" uib-dropdown-menu>
-          <li ng-repeat="relationName in $ctrl.gazetteerRelationTypes">
-            <a ng-click="$ctrl.chosenGazetteerRelationType = relationName;">
-              {{ "relation_" + relationName | transl8 }}
-            </a>
-          </li>
-        </ul>
-      </div>
+    <div class="btn-group relation-type-dropdown" uib-dropdown is-open="gazetteerRelationTypePickerOpen">
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+        {{ "relation_" + $ctrl.chosenGazetteerRelationType | transl8 }} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu>
+        <li ng-repeat="relationName in $ctrl.gazetteerRelationTypes">
+          <a ng-click="$ctrl.chosenGazetteerRelationType = relationName;">
+            {{ "relation_" + relationName | transl8 }}
+          </a>
+        </li>
+      </ul>
+    </div>
 
-      <div class="input-group">
-        <span class="input-group-btn" ng-show="$ctrl.pickedLocations[$ctrl.chosenGazetteerRelationType]">
-          <button class="btn btn-success" ng-click="$ctrl.addGazetteerRelation($ctrl.chosenGazetteerRelationType)"        type="button">
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          </button>
-        </span>
-        <div>
-          <idai-picker search-uri="https://gazetteer.dainst.org/search"
-                     result-field="result"
-                     title-field="gazId + ': ' + prefName.title"
-                     selected-item="$ctrl.pickedLocations[$ctrl.chosenGazetteerRelationType]"></idai-picker>
-        </div>
+    <div class="input-group">
+      <span class="input-group-btn" ng-show="$ctrl.pickedLocations[$ctrl.chosenGazetteerRelationType]">
+        <button class="btn btn-success" ng-click="$ctrl.addGazetteerRelation($ctrl.chosenGazetteerRelationType)"        type="button">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </button>
+      </span>
+      <div>
+        <idai-picker search-uri="https://gazetteer.dainst.org/search"
+                   result-field="result"
+                   title-field="gazId + ': ' + prefName.title"
+                   selected-item="$ctrl.pickedLocations[$ctrl.chosenGazetteerRelationType]"></idai-picker>
       </div>
     </div>
 
     <div class="col-md-12" ng-init="relationIndex = $index"
          ng-repeat="relationName in $ctrl.gazetteerRelationTypes">
-      <div ng-if="$ctrl.period[relationName].length > 0">{{ "relation_" + relationName | transl8 }}</div>
-      <div class="col-md-6"
-           ng-init="valueIndex = $index"
-           ng-repeat="value in $ctrl.period[relationName] track by $index">
-        <span class="input-group">
-          <span class="input-group-addon">{{ $ctrl.resourceCache[value].prefName.title }}</span>
-          <input type="text"
-                 class="form-control"
-                 ng-model="$ctrl.period[relationName][valueIndex]">
-          <span class="input-group-btn">
-             <button class="btn btn-danger"
-                     ng-click="$ctrl.removeGazetteerRelation(relationName, value)"
-                     type="button">
-               <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-             </button>
+      <div ng-if="$ctrl.period[relationName].length > 0" class="relation-list">
+        <div>{{ "relation_" + relationName | transl8 }}</div>
+        <div class="col-md-6"
+             ng-init="valueIndex = $index"
+             ng-repeat="value in $ctrl.period[relationName] track by $index">
+          <span class="input-group">
+            <span class="input-group-addon">{{ $ctrl.resourceCache[value].prefName.title }}</span>
+            <input type="text"
+                   class="form-control"
+                   ng-model="$ctrl.period[relationName][valueIndex]">
+            <span class="input-group-btn">
+               <button class="btn btn-danger"
+                       ng-click="$ctrl.removeGazetteerRelation(relationName, value)"
+                       type="button">
+                 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+               </button>
+            </span>
           </span>
-        </span>
+        </div>
       </div>
     </div>
 
 </div>
 
 <p>
-<div class="row">
+<div class="row relation-editor-controls">
   <button class="btn btn-primary" ng-click="$ctrl.saveChanges()">Save changes</button>
   <button class="btn btn-default" ng-click="$ctrl.reset()">Reset changes</button>
 </div>
