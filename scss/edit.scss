@@ -9,6 +9,13 @@
 
 .relation-list {
 	margin-top: 12px;
+
+	.input-group-addon {
+		cursor: default;
+		max-width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }
 
 .relation-editor-controls {
