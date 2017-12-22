@@ -9,12 +9,25 @@
 
 .relation-list {
 	margin-top: 12px;
+	cursor: default;
 
-	.input-group-addon {
-		cursor: default;
-		max-width: 200px;
-		overflow: hidden;
-		text-overflow: ellipsis;
+	.badge {
+		background-color: #3a87ad;
+		padding-left: 10px;
+		padding-right: 2px;
+		padding-bottom: 1px;
+
+		a {
+			color: white;
+		}
+
+		.glyphicon-remove {
+			color: #ffffff;
+		}
+
+		.glyphicon-remove:hover {
+			color: #d8d6d6;
+		}
 	}
 }
 

@@ -328,20 +328,17 @@
          ng-repeat="relationName in $ctrl.internalRelationTypes">
       <div ng-if="$ctrl.period.relations[relationName].length > 0" class="relation-list">
         <div>{{ "relation_" + relationName | transl8 }}</div>
-        <div class="col-md-6"
-             ng-init="valueIndex = $index"
-             ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
-  				<span class="input-group">
-            <span class="input-group-addon">{{ $ctrl.resourceCache[value].names | prefName }}</span>
-            <span class="input-group-btn">
-  						 <button class="btn btn-danger"
-                       ng-click="$ctrl.removeRelation(relationName, value)"
-                       type="button">
-  							 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-  						 </button>
-  					</span>
-  				</span>
-        </div>
+        <span ng-init="valueIndex = $index"
+              ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
+          <span class="badge">
+            <a ng-href="/period/{{$ctrl.resourceCache[value].id}}" target="_blank">
+              {{ $ctrl.resourceCache[value].names | prefName }}
+            </a>
+            <button class="btn btn-link btn-xs" ng-click="$ctrl.removeRelation(relationName, value)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </span>
       </div>
     </div>
 
@@ -383,15 +380,13 @@
         <div class="col-md-6"
              ng-init="valueIndex = $index"
              ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
-          <span class="input-group">
-            <span class="input-group-addon">{{ $ctrl.resourceCache[value].names | prefName }}</span>
-            <span class="input-group-btn">
-               <button class="btn btn-danger"
-                       ng-click="$ctrl.removeRelation(relationName, value)"
-                       type="button">
-                 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-               </button>
-            </span>
+          <span class="badge">
+            <a ng-href="/period/{{$ctrl.resourceCache[value].id}}" target="_blank">
+              {{ $ctrl.resourceCache[value].names | prefName }}
+            </a>
+            <button class="btn btn-link btn-xs" ng-click="$ctrl.removeRelation(relationName, value)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
           </span>
         </div>
       </div>
@@ -429,21 +424,18 @@
     </button>
 
     <div class="col-md-12" ng-init="relationIndex = $index"
-         ng-repeat="relationName in $ctrl.gazetteerRelationTypes">
-      <div ng-if="$ctrl.period[relationName].length > 0" class="relation-list">
+         ng-repeat="relationName in $ctrl.gazetteerRelationTypes">      <div ng-if="$ctrl.period[relationName].length > 0" class="relation-list">
         <div>{{ "relation_" + relationName | transl8 }}</div>
         <div class="col-md-6"
              ng-init="valueIndex = $index"
              ng-repeat="value in $ctrl.period[relationName] track by $index">
-          <span class="input-group">
-            <span class="input-group-addon">{{ $ctrl.resourceCache[value].prefName.title }}</span>
-            <span class="input-group-btn">
-               <button class="btn btn-danger"
-                       ng-click="$ctrl.removeGazetteerRelation(relationName, value)"
-                       type="button">
-                 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-               </button>
-            </span>
+          <span class="badge">
+            <a ng-href="{{$ctrl.period[relationName][valueIndex]}}" target="_blank">
+              {{ $ctrl.resourceCache[value].prefName.title }}
+            </a>
+            <button class="btn btn-link btn-xs" ng-click="$ctrl.removeGazetteerRelation(relationName, value)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
           </span>
         </div>
       </div>
