@@ -124,8 +124,10 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
             .append('rect')
             .attr('rx', '5')
             .attr('ry', '5');
-        if (!this.inactive) barRects.on('click', _this.showPeriod);
-        this.addTooltipBehavior(barRects);
+        if (!this.inactive) {
+            barRects.on('click', _this.showPeriod);
+            this.addTooltipBehavior(barRects);
+        }
 
         if (this.selectedPeriodId) {
             barRects.filter(function (d) {
@@ -137,8 +139,11 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
             .append('text')
             .classed('text', true)
             .on('click', _this.showPeriod);
-        if (this.inactive) barTexts.classed('inactive', true);
-        this.addTooltipBehavior(barTexts, tooltip);
+        if (this.inactive) {
+            barTexts.classed('inactive', true);
+        } else {
+            this.addTooltipBehavior(barTexts);
+        }
 
         this.updateBars();
 
