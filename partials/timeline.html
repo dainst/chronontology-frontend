@@ -1,6 +1,6 @@
 <div id="timeline"/>
 <h1 ng-show="$ctrl.inactive" class="inactiveHint">{{ 'inactive_timeline' | transl8 }}</h1>
-<div class="timeline-zoom-buttons btn-group-vertical">
+<div ng-show="!$ctrl.inactive" class="timeline-zoom-buttons btn-group-vertical">
     <button ng-click="$ctrl.zoomIn($event)" type="button" class="btn btn-default">+</button>
     <button ng-click="$ctrl.zoomOut($event)" type="button" class="btn btn-default">-</button>
 </div>
