@@ -60,6 +60,7 @@ $maxGroups: 10;
     text-anchor: middle;
     fill: white;
     font-weight: 200;
+    user-select: none;
 
     &:not(.inactive) {
       cursor: pointer;
@@ -83,6 +84,7 @@ $maxGroups: 10;
     text {
       font-family: sans-serif;
       font-size: 11px;
+      user-select: none;
     }
 
   }
@@ -107,6 +109,7 @@ $maxGroups: 10;
   padding-right: 40px;
   font-size: 20px;
   z-index: 3;
+  user-select: none;
 }
 
 .timeline-zoom-buttons {
