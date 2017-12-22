@@ -5,4 +5,8 @@
 .relation-type-dropdown {
 	float: left;
 	margin-right: 10px;
+
+	.dropdown-menu li {
+		cursor: pointer;
+	}
 }
