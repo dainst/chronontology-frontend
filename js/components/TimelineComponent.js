@@ -30,8 +30,6 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     var initialized = false;
 
-    d3.select(window).on('resize', _this.resize);
-
     this.$onChanges = function() {
         if (this.periods) this.initialize();
     };
@@ -147,6 +145,8 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         this.updateBars();
 
+        d3.select(window).on('resize', _this.resize);
+
         initialized = true;
     };
 
@@ -154,8 +154,8 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         if (!initialized) return;
 
-        var width = this.getWidth();
-        var height = this.getHeight();
+        var width = _this.getWidth();
+        var height = _this.getHeight();
 
         y.range([0, parseInt(height) - 30]);
         x.range([0, parseInt(width)]);
@@ -169,7 +169,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
         axisElement.attr('width', parseInt(width));
         axisElement.call(axis);
 
-        this.updateBars();
+        _this.updateBars();
     };
 
     this.getWidth = function() {
