@@ -37,265 +37,262 @@
     <h4>
       {{ "period_names" | transl8 }}
     </h4>
-    <p>
-      <div class="row">
-        <div ng-init="languageIndex = $index"
-             ng-repeat="(language, names) in $ctrl.period.names">
-          <div class="col-md-2">
-                    <span class="input-group">
-                        <span class="input-group-btn">
-                             <button class="btn btn-danger"
-                                     ng-click="$ctrl.removeLanguage(language)"
-                                     type="button">
-                                 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-                             </button>
-                        </span>
-                        <input type="text"
-                               class="form-control"
-                               ng-model="language">
-                    </span>
-          </div>
-          <div class="col-md-10">
-            <div ng-repeat="name in names track by $index">
-              <div class="input-group">
-                <input type="text"
-                       class="form-control"
-                       ng-model="$ctrl.period.names[language][$index]"
-                       placeholder="{{'ui_add_name' | transl8}}...">
-                <span class="input-group-btn">
-                                 <button class="btn btn-danger"
-                                         ng-click="$ctrl.removeName(language, $index)"
-                                         type="button">
-                                     <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-                                 </button>
-                            </span>
-              </div>
-
-            </div>
-
-            <div class="row">
-                        <span class="col-md-12">
-                            <button class="btn btn-success btn-block" ng-click="$ctrl.addName(language)" type="button">
-                                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                            </button>
-                        </span>
-            </div>
-    <p>
-  </div>
-
-</div>
-</div>
-
-<div class="row">
-  <div class="col-md-12 ">
-    <div class="input-group">
-                <span class="input-group-btn">
-                    <button class="btn btn-success" ng-click="$ctrl.addLanguage()" type="button">
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    </button>
-                </span>
-      <input type="text" class="form-control" id="language-input" placeholder="{{'ui_add_language' | transl8}}...">
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="row">
-  <h4>{{ "period_type" | transl8 }}</h4>
-
-  <form class="form-group">
     <div class="row">
-      <div class="col-md-12 btn-group-sm">
-        <button class="btn btn-default" ng-click="$ctrl.selectAllSubtypes()">
-          Select all
-        </button>
-        <button class="btn btn-default" ng-click="$ctrl.deselectAllSubtypes()">
-          Deselect all
-        </button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6" ng-repeat="subtype in $ctrl.validSubtypes">
-        <input type="checkbox"
-               name="selectedSubtypes"
-               value="{{subtype}}"
-               ng-checked="$ctrl.period.types.indexOf(subtype) > -1"
-               ng-click="$ctrl.toggleSubtypeSelection(subtype)">
-        {{subtype}}
-      </div>
-    </div>
-  </form>
-</div>
-
-<div class="row">
-  <h4>{{ "period_definition" | transl8 }}</h4>
-  <textarea class="form-control" rows="3" ng-model="$ctrl.period.definition"></textarea>
-</div>
-
-<div class="row">
-  <h4>{{ "period_description" | transl8 }}</h4>
-  <textarea class="form-control" rows="3" ng-model="$ctrl.period.description"></textarea>
-</div>
-
-<div class="row">
-  <h4>{{ "period_provenance" | transl8 }}</h4>
-  <form class="form-group">
-    <div class="col-md-6" ng-repeat="provenance in $ctrl.validProvenances">
-      <label>
-        <input type="radio" ng-model="$ctrl.period.provenance" value="{{provenance}}">
-        {{provenance}}
-      </label>
-    </div>
-  </form>
-</div>
-
-
-<div class="row">
-  <h4>{{ "period_tags" | transl8 }}</h4>
-  <div class="row">
-    <div ng-repeat="tag in $ctrl.period.tags track by $index" class="col-md-6">
-      <div class="input-group">
-                    <span class="input-group-btn">
-                         <button class="btn btn-danger"
-                                 ng-click="$ctrl.removeTag(tag)"
-                                 type="button">
-                             <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
-                         </button>
-                    </span>
-        <input type="text"
-               class="form-control"
-               ng-model="$ctrl.period.tags[$index]"
-               placeholder="{{'ui_add_tag' | transl8}}...">
-      </div>
-    </div>
-  </div>
-  <p/>
-  <div class="row">
-            <span class="col-md-12">
-                <button class="btn btn-success btn-block" ng-click="$ctrl.addTag()" type="button">
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </button>
+      <div ng-init="languageIndex = $index"
+           ng-repeat="(language, names) in $ctrl.period.names">
+        <div class="col-md-2">
+          <span class="input-group">
+            <span class="input-group-btn">
+             <button class="btn btn-danger"
+                     ng-click="$ctrl.removeLanguage(language)"
+                     type="button">
+                 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+             </button>
             </span>
-  </div>
-</div>
+            <input type="text"
+                   class="form-control"
+                   ng-model="language">
+          </span>
+        </div>
+        <div class="col-md-10">
+          <div ng-repeat="name in names track by $index">
+            <div class="input-group">
+              <input type="text"
+                     class="form-control"
+                     ng-model="$ctrl.period.names[language][$index]"
+                     placeholder="{{'ui_add_name' | transl8}}...">
+              <span class="input-group-btn">
+                <button class="btn btn-danger"
+                         ng-click="$ctrl.removeName(language, $index)"
+                         type="button">
+                  <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+                </button>
+              </span>
+            </div>
+          </div>
 
-<div class="row">
-  <h4>{{ "period_note" | transl8 }}</h4>
-  <textarea class="form-control" rows="3" ng-model="$ctrl.period.note"></textarea>
-</div>
+          <div class="row">
+            <span class="col-md-12">
+              <button class="btn btn-success btn-block" ng-click="$ctrl.addName(language)" type="button">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+              </button>
+            </span>
+          </div>
 
-<div class="row form-group">
-  <h4>{{ "period_temporalExtent" | transl8 }}</h4>
+        </div>
+      </div>
+    </div>
 
-  {{ "period_ongoing" | transl8 }}:
-  <input type="checkbox"
-         name="toggleOngoing"
-         value="{{$ctrl.period.ongoing}}"
-         ng-checked="$ctrl.period.ongoing"
-         ng-click="$ctrl.period.ongoing = !$ctrl.period.ongoing">
-
-  <p></p>
-
-  <div ng-init="timespanIndex = $index"
-       ng-repeat="timespan in $ctrl.period.hasTimespan track by $index">
     <div class="row">
-      <div class="col-md-12">
-        <button class="btn btn-danger btn-block"
-                ng-click="$ctrl.removeTimespan(timespan)"
-                type="button">
-          <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+      <div class="col-md-12 ">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-success" ng-click="$ctrl.addLanguage()" type="button">
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            </button>
+          </span>
+          <input type="text" class="form-control" id="language-input"
+                 placeholder="{{'ui_add_language' | transl8}}...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_type" | transl8 }}</h4>
+
+    <form class="form-group">
+      <div class="row">
+        <div class="col-md-12 btn-group-sm">
+          <button class="btn btn-default" ng-click="$ctrl.selectAllSubtypes()">
+            Select all
+          </button>
+          <button class="btn btn-default" ng-click="$ctrl.deselectAllSubtypes()">
+            Deselect all
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" ng-repeat="subtype in $ctrl.validSubtypes">
+          <input type="checkbox"
+                 name="selectedSubtypes"
+                 value="{{subtype}}"
+                 ng-checked="$ctrl.period.types.indexOf(subtype) > -1"
+                 ng-click="$ctrl.toggleSubtypeSelection(subtype)">
+          {{subtype}}
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_definition" | transl8 }}</h4>
+    <textarea class="form-control" rows="3" ng-model="$ctrl.period.definition"></textarea>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_description" | transl8 }}</h4>
+    <textarea class="form-control" rows="3" ng-model="$ctrl.period.description"></textarea>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_provenance" | transl8 }}</h4>
+    <form class="form-group">
+      <div class="col-md-6" ng-repeat="provenance in $ctrl.validProvenances">
+        <label>
+          <input type="radio" ng-model="$ctrl.period.provenance" value="{{provenance}}">
+          {{provenance}}
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_tags" | transl8 }}</h4>
+    <div class="row">
+      <div ng-repeat="tag in $ctrl.period.tags track by $index" class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-danger"
+                   ng-click="$ctrl.removeTag(tag)"
+                   type="button">
+              <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+            </button>
+          </span>
+          <input type="text"
+                 class="form-control"
+                 ng-model="$ctrl.period.tags[$index]"
+                 placeholder="{{'ui_add_tag' | transl8}}...">
+        </div>
+      </div>
+    </div>
+    <p/>
+    <div class="row">
+      <span class="col-md-12">
+        <button class="btn btn-success btn-block" ng-click="$ctrl.addTag()" type="button">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
         </button>
-      </div>
-      <div class="col-md-12">
-        <div>
-          {{ "ui_source" | transl8 }}
-          <input type="text"
-                 class="form-control col-md-4"
-                 placeholder="{{'ui_add_value' | transl8}}..."
-                 ng-model="$ctrl.period.hasTimespan[timespanIndex].sourceOriginal">
-        </div>
-        <div>
-          {{ "ui_source_url" | transl8 }}
-          <input type="text"
-                 class="form-control col-md-4"
-                 placeholder="{{'ui_add_value' | transl8}}..."
-                 ng-model="$ctrl.period.hasTimespan[timespanIndex].sourceURL">
-        </div>
-        <div>
-          {{ "period_description" | transl8 }}
-          <textarea class="form-control" rows="3"
-                    placeholder="{{'ui_add_value' | transl8}}..."
-                    ng-model="$ctrl.period.hasTimespan[timespanIndex].timeOriginal">
-                        </textarea>
-        </div>
-        <div>
-          {{ "temporal_calendar" | transl8 }}
-          <input type="text"
-                 class="form-control col-md-4"
-                 placeholder="{{'ui_add_value' | transl8}}..."
-                 ng-model="$ctrl.period.hasTimespan[timespanIndex].calendar">
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            {{ "temporal_begin" | transl8 }}:
-            <input type="text"
-                   class="form-control col-md-4"
-                   placeholder="{{'ui_add_value' | transl8}}..."
-                   ng-model="$ctrl.period.hasTimespan[timespanIndex].begin.at">
-          </div>
-
-
-          <div class="col-md-6">
-            <br/>
-            {{ "temporal_at_precision" | transl8 }}:
-            <input type="checkbox"
-                   name="toggleBeginIsImprecise"
-                   value="{{$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise}}"
-                   ng-checked="$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise"
-                   ng-click="$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise = !$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            {{ "temporal_end" | transl8 }}:
-            <input type="text"
-                   class="form-control col-md-4"
-                   placeholder="{{'ui_add_value' | transl8}}..."
-                   ng-model="$ctrl.period.hasTimespan[timespanIndex].end.at">
-          </div>
-
-          <div class="col-md-6">
-            <br/>
-            {{ "temporal_at_precision" | transl8 }}:
-            <input type="checkbox"
-                   name="toggleEndIsImprecise"
-                   value="{{$ctrl.period.hasTimespan[timespanIndex].end.isImprecise}}"
-                   ng-checked="$ctrl.period.hasTimespan[timespanIndex].end.isImprecise"
-                   ng-click="$ctrl.period.hasTimespan[timespanIndex].end.isImprecise = !$ctrl.period.hasTimespan[timespanIndex].end.isImprecise">
-          </div>
-        </div>
-      </div>
+      </span>
     </div>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_note" | transl8 }}</h4>
+    <textarea class="form-control" rows="3" ng-model="$ctrl.period.note"></textarea>
+  </div>
+
+  <div class="row form-group">
+    <h4>{{ "period_temporalExtent" | transl8 }}</h4>
+
+    {{ "period_ongoing" | transl8 }}:
+    <input type="checkbox"
+           name="toggleOngoing"
+           value="{{$ctrl.period.ongoing}}"
+           ng-checked="$ctrl.period.ongoing"
+           ng-click="$ctrl.period.ongoing = !$ctrl.period.ongoing">
+
     <p></p>
-  </div>
 
-  <div>
-    <div class="row">
-      <div class="col-md-12">
-                    <span class="input-group-btn">
-                         <button class="btn btn-success btn-block"
-                                 ng-click="$ctrl.addTimespan()"
-                                 type="button">
-                             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                         </button>
-                    </span>
+    <div ng-init="timespanIndex = $index"
+         ng-repeat="timespan in $ctrl.period.hasTimespan track by $index">
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-danger btn-block"
+                  ng-click="$ctrl.removeTimespan(timespan)"
+                  type="button">
+            <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="col-md-12">
+          <div>
+            {{ "ui_source" | transl8 }}
+            <input type="text"
+                   class="form-control col-md-4"
+                   placeholder="{{'ui_add_value' | transl8}}..."
+                   ng-model="$ctrl.period.hasTimespan[timespanIndex].sourceOriginal">
+          </div>
+          <div>
+            {{ "ui_source_url" | transl8 }}
+            <input type="text"
+                   class="form-control col-md-4"
+                   placeholder="{{'ui_add_value' | transl8}}..."
+                   ng-model="$ctrl.period.hasTimespan[timespanIndex].sourceURL">
+          </div>
+          <div>
+            {{ "period_description" | transl8 }}
+            <textarea class="form-control" rows="3"
+                      placeholder="{{'ui_add_value' | transl8}}..."
+                      ng-model="$ctrl.period.hasTimespan[timespanIndex].timeOriginal">
+                          </textarea>
+          </div>
+          <div>
+            {{ "temporal_calendar" | transl8 }}
+            <input type="text"
+                   class="form-control col-md-4"
+                   placeholder="{{'ui_add_value' | transl8}}..."
+                   ng-model="$ctrl.period.hasTimespan[timespanIndex].calendar">
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              {{ "temporal_begin" | transl8 }}:
+              <input type="text"
+                     class="form-control col-md-4"
+                     placeholder="{{'ui_add_value' | transl8}}..."
+                     ng-model="$ctrl.period.hasTimespan[timespanIndex].begin.at">
+            </div>
+
+
+            <div class="col-md-6">
+              <br/>
+              {{ "temporal_at_precision" | transl8 }}:
+              <input type="checkbox"
+                     name="toggleBeginIsImprecise"
+                     value="{{$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise}}"
+                     ng-checked="$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise"
+                     ng-click="$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise = !$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              {{ "temporal_end" | transl8 }}:
+              <input type="text"
+                     class="form-control col-md-4"
+                     placeholder="{{'ui_add_value' | transl8}}..."
+                     ng-model="$ctrl.period.hasTimespan[timespanIndex].end.at">
+            </div>
+
+            <div class="col-md-6">
+              <br/>
+              {{ "temporal_at_precision" | transl8 }}:
+              <input type="checkbox"
+                     name="toggleEndIsImprecise"
+                     value="{{$ctrl.period.hasTimespan[timespanIndex].end.isImprecise}}"
+                     ng-checked="$ctrl.period.hasTimespan[timespanIndex].end.isImprecise"
+                     ng-click="$ctrl.period.hasTimespan[timespanIndex].end.isImprecise = !$ctrl.period.hasTimespan[timespanIndex].end.isImprecise">
+            </div>
+          </div>
+        </div>
+      </div>
+      <p></p>
+    </div>
+
+    <div>
+      <div class="row">
+        <div class="col-md-12">
+          <span class="input-group-btn">
+            <button class="btn btn-success btn-block"
+                   ng-click="$ctrl.addTimespan()"
+                   type="button">
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            </button>
+          </span>
+        </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 </div>
 
 <div ng-show="$ctrl.activeEditTab == 'relations'">
@@ -469,9 +466,7 @@
   </div>
 </div>
 
-<p>
 <div class="row relation-editor-controls">
   <button class="btn btn-primary" ng-click="$ctrl.saveChanges()">Save changes</button>
   <button class="btn btn-default" ng-click="$ctrl.reset()">Reset changes</button>
 </div>
-</p>
