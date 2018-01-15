@@ -2,7 +2,7 @@
 
 angular.module('chronontology.controllers')
 
-.controller("ThesaurusController", function($scope, $routeParams, $http) {
+.controller("ProvenanceController", function($scope, $routeParams, $http) {
 
 	var relevantParts =
 		'resource.id,resource.names,resource.hasTimespan,'+

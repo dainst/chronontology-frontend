@@ -30,7 +30,7 @@ angular.module('chronontology', [
                 .when('/', {templateUrl: 'partials/homepage.html'})
                 .when('/search', {templateUrl: 'partials/search.html'})
                 .when('/period/:id', {templateUrl: 'partials/period.html'})
-                .when('/thesaurus/:provenance', {templateUrl: 'partials/thesaurus.html'})
+                .when('/provenance/:provenance', {templateUrl: 'partials/provenance.html'})
                 .when('/about', {templateUrl: 'partials/about.html'})
                 .when('/contact', {templateUrl: 'partials/contact.html'})
                 .when('/page/:page', {templateUrl: 'partials/page.html'})
