@@ -30,7 +30,17 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     var initialized = false;
 
+    var hoverPeriod;
+
+    d3.selection.prototype.moveToFront = function() {
+
+        return this.each(function() {
+            this.parentNode.appendChild(this);
+        });
+    };
+
     this.$onChanges = function() {
+
         if (this.periods) this.initialize();
     };
 
@@ -110,6 +120,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         bars = canvas.selectAll('g').data(timelineData.periods).enter();
         barRects = bars.append('g')
+            .attr('id', function(d) { return 'bar-rect-' + d.id; })
             .attr('class', function(d) {
                 var barClass = 'bar level' + (d.level + 1);
                 if (_this.inactive) {
@@ -124,7 +135,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
             .attr('ry', '5');
         if (!this.inactive) {
             barRects.on('click', _this.showPeriod);
-            this.addTooltipBehavior(barRects);
+            this.addHoverBehavior(barRects);
         }
 
         if (this.selectedPeriodId) {
@@ -136,11 +147,12 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
         barTexts = canvas.selectAll('g')
             .append('text')
             .classed('text', true)
+            .attr('id', function(d) { return 'bar-text-' + d.id; })
             .on('click', _this.showPeriod);
         if (this.inactive) {
             barTexts.classed('inactive', true);
         } else {
-            this.addTooltipBehavior(barTexts);
+            this.addHoverBehavior(barTexts);
         }
 
         this.updateBars();
@@ -217,10 +229,12 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
     };
 
     this.doesTextFitInBar = function(text, barWidth) {
+
         return !(this.getApproximatedTextLength(text) > barWidth);
     };
 
     this.getApproximatedTextLength = function(text) {
+
         return text.length * 7;
     };
 
@@ -245,9 +259,14 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
         return text;
     };
 
-    this.addTooltipBehavior = function(selection) {
+    this.addHoverBehavior = function(selection) {
 
         selection.on('mouseover', function(period) {
+            if (period !== hoverPeriod) {
+                d3.select('#bar-rect-' + period.id).moveToFront();
+                d3.select('#bar-text-' + period.id).moveToFront();
+                hoverPeriod = period;
+            }
             if (period.textVisible) return;
             tooltip.text(period.name);
             return tooltip.style('visibility', 'visible');
