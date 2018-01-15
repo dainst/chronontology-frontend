@@ -36,12 +36,12 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.initialize = function() {
 
-        width = this.getWidth();                  // Größe des zur Verfügung stehenden Fensters
+        width = this.getWidth();
         height = this.getHeight();
 
-        y = d3.scale.linear()                    // y-Skala erstellen
-            .domain([0, barHeight * 20])         // Anzahl Hierarchie-Ebenen
-            .range([0, parseInt(height) - 30]);  // auf welcher Pixel-Fläche, minus Skalenbeschriftung
+        y = d3.scale.linear()
+            .domain([0, barHeight * 20])
+            .range([0, parseInt(height) - 30]);
 
         timelineData = timelineDataService.getTimelineData(this.periods);
         totalXDomain = timelineData.xDomain;
@@ -49,8 +49,8 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
         this.setStartDomains(timelineData.periodsMap);
 
         x = d3.scale.linear()
-            .domain(startXDomain)                // z.B. -10.000 bis 2000 n.Chr.
-            .range([0, parseInt(width)]);        // auf welcher Pixel-Fläche
+            .domain(startXDomain)
+            .range([0, parseInt(width)]);
 
         y.domain(startYDomain);
 
@@ -65,10 +65,10 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
             .attr('width', parseInt(width))
             .attr('height', parseInt(height) - 30);
 
-        axis = d3.svg.axis()                    // Skalenbeschriftung
+        axis = d3.svg.axis()
             .scale(x)
             .orient('bottom')
-            .ticks(parseInt(this.axisTicks))                           // Anzahl Skalenschritte
+            .ticks(parseInt(this.axisTicks))
             .tickSize(10, 0);
 
         axisElement = timeline.append('svg')
@@ -88,13 +88,13 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
                 .scaleExtent([minZoom, maxZoom])
                 .on('zoom', function () {
                     axisElement.call(axis);
-                    _this.updateBars();              // aktualisiert die Achsen, nochmal neu gemalt
+                    _this.updateBars();
                 });
 
             drag = d3.behavior.drag()
                 .on('drag', function () {
                     var domain = y.domain();
-                    domain[0] -= d3.event.dy;     // Verschiebung unten/oben
+                    domain[0] -= d3.event.dy;
                     domain[1] -= d3.event.dy;
                     y.domain(domain);
                     axisElement.call(axis);
@@ -108,9 +108,9 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
                 .classed('timeline-tooltip', true);
         }
 
-        bars = canvas.selectAll('g').data(timelineData.periods).enter(); // bar = Rechteck von einer Period, bars = alle diese Rechtecke
+        bars = canvas.selectAll('g').data(timelineData.periods).enter();
         barRects = bars.append('g')
-            .attr('class', function(d) { // CSS class für richtige Farbe und Helligkeit
+            .attr('class', function(d) {
                 var barClass = 'bar level' + (d.level + 1);
                 if (_this.inactive) {
                     barClass += ' inactive';
@@ -129,7 +129,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         if (this.selectedPeriodId) {
             barRects.filter(function (d) {
-                return d.id == _this.selectedPeriodId;
+                return d.id === _this.selectedPeriodId;
             }).classed('selected', true);
         }
 
@@ -174,14 +174,16 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
     };
 
     this.getWidth = function() {
-        return $element[0].parentNode.clientWidth - margin; // margin: für weiße Ränder
+
+        return $element[0].parentNode.clientWidth - margin;
     };
 
     this.getHeight = function() {
+
         return $element[0].parentNode.clientHeight - margin;
     };
 
-    this.updateBars = function() {  // aus Datenwerten Pixel berechnen
+    this.updateBars = function() {
 
         barRects.attr('width', function(data) {
             return x(data.to) - x(data.from);
