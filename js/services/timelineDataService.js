@@ -4,13 +4,13 @@ var TimelineDataService = function($filter) {
 
     this.getTimelineData = function(periods) {
 
-        var periodsToDisplay = []; // zwei Weisen, auf die Daten zuzugreifen
+        var periodsToDisplay = [];
         var periodsMap = {};
 
         var xDomain = [];
 
         createPeriodObjects(periods, periodsToDisplay, periodsMap, xDomain);
-        determinePeriodRows(periodsToDisplay, periodsMap);  // jeder Period wird eine Reihe zugewiesen
+        determinePeriodRows(periodsToDisplay, periodsMap);
 
         return {
             periods: periodsToDisplay,
@@ -32,29 +32,31 @@ var TimelineDataService = function($filter) {
     function createPeriodObject(period, periodNumber, periodsToDisplay, periodsMap, xDomain) {
         
         var label = '';
-        if (period.resource.names)
-            label = $filter('prefName')(period.resource.names);
-        if (!period.resource.relations)
-            period.resource.relations = {}; // evtl. in getrennte Methode
+        if (period.resource.names) label = $filter('prefName')(period.resource.names);
+        if (!period.resource.relations) period.resource.relations = {};
 
-        var periodObject = { // wird für jede für die Timeline validierte Period angelegt
+        var periodObject = {
             id: period.resource.id,
             number: periodNumber,
             name: label,
             from: parseInt(period.resource.hasTimespan[0].begin.at),
             to: parseInt(period.resource.hasTimespan[0].end.at),
-            successor: period.resource.relations.isFollowedBy // anlegen läuft von links nach rechts
+            successor: period.resource.relations.isFollowedBy
                 ? period.resource.relations.isFollowedBy[0] : undefined,
-            parent: period.resource.relations.isPartOf,  // array
-            children: period.resource.relations.hasPart, // array
-            row: -1 // der Period wurde noch keine Reihe zugewiesen
+            parent: period.resource.relations.isPartOf,
+            children: period.resource.relations.hasPart,
+            row: -1
         };
 
-        if (!xDomain[0] || periodObject.from < xDomain[0]) xDomain[0] = periodObject.from; // am weitesten links / rechts ?
-        if (!xDomain[1] || periodObject.to > xDomain[1]) xDomain[1] = periodObject.to; // am Ende hat man die bounding box
-
-        periodsToDisplay.push(periodObject); // jeweils eintragen
+        updateXDomain(periodObject, xDomain);
+        periodsToDisplay.push(periodObject);
         periodsMap[periodObject.id] = periodObject;
+    }
+
+    function updateXDomain(periodObject, xDomain) {
+
+        if (!xDomain[0] || periodObject.from < xDomain[0]) xDomain[0] = periodObject.from;
+        if (!xDomain[1] || periodObject.to > xDomain[1]) xDomain[1] = periodObject.to;
     }
 
     function validatePeriod(period) {
@@ -88,7 +90,7 @@ var TimelineDataService = function($filter) {
 
         periodGroups.sort(function (a, b) {
             var diff = b.periodsCount - a.periodsCount;
-            if (diff == 0) {
+            if (diff === 0) {
                 return b.number - a.number;
             } else {
                 return diff;
@@ -111,12 +113,12 @@ var TimelineDataService = function($filter) {
     }
 
     function assignPeriodsToGroups(periods, periodsMap) {
-                                                            // periods werden sortiert nach Anzahl ihrer Kinder
-        periods.sort(function (a, b) {                      // (Gruppen mit vielen Kindern werden zuerst behandelt)
+
+        periods.sort(function (a, b) {
             if (a.children && a.children.indexOf(b.id) > -1) return -1;
             if (b.children && b.children.indexOf(a.id) > -1) return 1;
             var diff = a.from - b.from;
-            if (diff == 0) {
+            if (diff === 0) {
                 return b.number - a.number;
             } else {
                 return diff;
@@ -128,15 +130,10 @@ var TimelineDataService = function($filter) {
 
         for (var i in periods) {
             if (!periods[i].periodGroup) {
-                var period = periods[i];
-                while (period.parent && period.parent[0]) { // finde höchsten parent in der Hierarchie
-                    if (period.parent[0] in periodsMap)  // wenn parent valide ist
-                        period = periodsMap[period.parent[0]];
-                    else break;
-                }
-                addToGroup(period, periodsMap, createGroup(groupNumberCounter++), 0, 0, periodGroups); // null = lege neue Gruppe an, 0 = Reihennummer innerhalb der Gruppe
-                if (periodGroups.indexOf(period.periodGroup) == -1)
-                    periodGroups.push(period.periodGroup);
+                var rootPeriod = getRootPeriod(periods[i], periodsMap);
+                addToGroup(rootPeriod, periodsMap, createGroup(groupNumberCounter++), 0, 0, periodGroups);
+                if (periodGroups.indexOf(rootPeriod.periodGroup) === -1)
+                    periodGroups.push(rootPeriod.periodGroup);
             }
         }
 
@@ -146,25 +143,36 @@ var TimelineDataService = function($filter) {
         return periodGroups;
     }
 
+    function getRootPeriod(period, periodsMap) {
+
+        while (period.parent && period.parent[0]) {
+            if (period.parent[0] in periodsMap)
+                period = periodsMap[period.parent[0]];
+            else break;
+        }
+
+        return period;
+    }
+
     function createGroup(groupNumber) {
 
         return {
             number: groupNumber,
-            rows: [], // array von Reihen, Reihe ist array aller Periods in dieser Reihe
+            rows: [], // Array of rows; a row is an array containing the periods of the row
             periodsCount: 0,
-            from: NaN, // zeitliche Ausdehnung der Gruppe
+            from: NaN,
             to: NaN
         };
     }
 
     function addToGroup(period, periodsMap, group, row, hierarchyLevel, periodGroups) {
 
-        if (period.periodGroup) return; // Gruppe nicht doppelt zuweisen
+        if (period.periodGroup) return;
 
         setPeriodGroup(period, group, row, hierarchyLevel);
 
         for (var i in period.children) {
-            if (period.children[i] in periodsMap && period.id != period.children[i]) {
+            if (period.children[i] in periodsMap && period.id !== period.children[i]) {
                 var rowNumber = row + 1;
                 while (group.rows[rowNumber]
                         && !doesPeriodFitInRow(periodsMap[period.children[i]], group.rows[rowNumber])) {
@@ -178,9 +186,9 @@ var TimelineDataService = function($filter) {
 
     function addSuccessorToGroup(period, periodsMap, periodGroups) {
 
-        if (period.successor && period.successor in periodsMap && period.id != period.successor) {
+        if (period.successor && period.successor in periodsMap && period.id !== period.successor) {
             var successor = periodsMap[period.successor];
-            if (successor.periodGroup.periodsCount == 1) {
+            if (successor.periodGroup.periodsCount === 1) {
                 periodGroups.splice(periodGroups.indexOf(successor.periodGroup), 1);
                 setPeriodGroup(successor, period.periodGroup, period.groupRow, period.level);
                 addSuccessorToGroup(successor, periodsMap, periodGroups);
@@ -251,7 +259,7 @@ var TimelineDataService = function($filter) {
 
         var loops = 0;
         do {
-            colorGroupNumber = (colorGroupNumber == 10) ? 1 : colorGroupNumber + 1;
+            colorGroupNumber = (colorGroupNumber === 10) ? 1 : colorGroupNumber + 1;
         } while (doAdjacentPeriodGroupsHaveColorGroup(group, colorGroupNumber, rows) && loops++ < 10);
 
         return colorGroupNumber;
@@ -259,29 +267,29 @@ var TimelineDataService = function($filter) {
 
     function doAdjacentPeriodGroupsHaveColorGroup(group, colorGroupNumber, rows) {
 
-        var startRow = (group.startRow == 0) ? 0 : group.startRow - 1;
-        var endRow = (group.startRow == 0) ? startRow + group.rows.length : startRow + group.rows.length + 1;
+        var startRow = (group.startRow === 0) ? 0 : group.startRow - 1;
+        var endRow = (group.startRow === 0) ? startRow + group.rows.length : startRow + group.rows.length + 1;
         for (var i = startRow; i <= endRow; i++) {
             for (var j in rows[i]) {
                 var period = rows[i][j];
-                if (period.colorGroup == colorGroupNumber &&
-                    detectIntersection(period.from, period.to, group.from, group.to))
+                if (period.colorGroup === colorGroupNumber
+                        && detectIntersection(period.from, period.to, group.from, group.to))
                     return true;
             }
         }
 
-        for (var i = 0; i < group.rows.length; i++) {
-            for (var j in group.rows[i]) {
+        for (i = 0; i < group.rows.length; i++) {
+            for (j in group.rows[i]) {
                 var rowIndex = rows[group.startRow + i].indexOf(group.rows[i][j]);
                 if (rowIndex > 0) {
-                    var period = rows[group.startRow + i][rowIndex - 1];
-                    if (period.colorGroup == colorGroupNumber &&
+                    period = rows[group.startRow + i][rowIndex - 1];
+                    if (period.colorGroup === colorGroupNumber &&
                         detectIntersection(period.from, period.to, group.from, group.to))
                         return true;
                 }
                 if (rowIndex < rows[group.startRow + i].length - 1) {
-                    var period = rows[group.startRow + i][rowIndex + 1];
-                    if (period.colorGroup == colorGroupNumber &&
+                    period = rows[group.startRow + i][rowIndex + 1];
+                    if (period.colorGroup === colorGroupNumber &&
                         detectIntersection(period.from, period.to, group.from, group.to))
                         return true;
                 }
