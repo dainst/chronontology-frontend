@@ -166,6 +166,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
         canvas.attr('width', parseInt(width))
             .attr('height', parseInt(height) - 30);
 
+        axisElement.attr('y', parseInt(height) - 30);
         axisElement.attr('width', parseInt(width));
         axisElement.call(axis);
 

@@ -136,7 +136,7 @@ $maxGroups: 10;
 }
 
 .timeline-container-big {
-  height: 460px;
+  height: calc(100vh - 270px);
 
   .timeline-zoom-buttons {
     top: 65px;
