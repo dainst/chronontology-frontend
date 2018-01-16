@@ -35,12 +35,16 @@ var TimelineDataService = function($filter) {
         if (period.resource.names) label = $filter('prefName')(period.resource.names);
         if (!period.resource.relations) period.resource.relations = {};
 
+        var timespan = period.resource.hasTimespan[0];
+
         var periodObject = {
             id: period.resource.id,
             number: periodNumber,
             name: label,
-            from: parseInt(period.resource.hasTimespan[0].begin.at),
-            to: parseInt(period.resource.hasTimespan[0].end.at),
+            from: parseInt(getFrom(timespan.begin)),
+            earliestFrom: timespan.begin.notBefore ? parseInt(timespan.begin.notBefore) : undefined,
+            to: parseInt(getTo(timespan.end)),
+            latestTo: timespan.end.notAfter ? parseInt(timespan.end.notAfter) : undefined,
             successor: period.resource.relations.isFollowedBy
                 ? period.resource.relations.isFollowedBy[0] : undefined,
             parent: period.resource.relations.isPartOf,
@@ -70,19 +74,33 @@ var TimelineDataService = function($filter) {
             return false;
 
         // Check if the values of the timespan are numeric
-        if (isNaN(period.resource.hasTimespan[0].begin.at)
-            || isNaN(period.resource.hasTimespan[0].end.at))
+        if (!isValidTime(period.resource.hasTimespan[0].begin) || !isValidTime(period.resource.hasTimespan[0].end))
             return false;
 
         // Check if the values of the timespan are set properly
-        if (parseInt(period.resource.hasTimespan[0].end.at)
-            < parseInt(period.resource.hasTimespan[0].begin.at))
+        if (parseInt(getTo(period.resource.hasTimespan[0].end))
+            < parseInt(getFrom(period.resource.hasTimespan[0].begin)))
             return false;
 
         return true;
     }
 
     this.validatePeriod = validatePeriod;
+
+    function isValidTime(time) {
+
+        return (!isNaN(time.at) || (!isNaN(time.notBefore) && !isNaN(time.notAfter)));
+    }
+
+    function getFrom(time) {
+
+        return time.at || time.notAfter;
+    }
+
+    function getTo(time) {
+
+        return time.at || time.notBefore;
+    }
 
     function determinePeriodRows(periods, periodsMap) {
 

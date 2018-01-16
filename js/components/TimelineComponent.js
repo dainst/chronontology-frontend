@@ -130,16 +130,15 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
                 }
                 return barClass;
             })
-            .append('rect')
-            .attr('rx', '5')
-            .attr('ry', '5');
+            .append('polygon');
+
         if (!this.inactive) {
             barRects.on('click', _this.showPeriod);
             this.addHoverBehavior(barRects);
         }
 
         if (this.selectedPeriodId) {
-            barRects.filter(function (d) {
+            barRects.filter(function(d) {
                 return d.id === _this.selectedPeriodId;
             }).classed('selected', true);
         }
@@ -197,16 +196,12 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.updateBars = function() {
 
-        barRects.attr('width', function(data) {
-            return x(data.to) - x(data.from);
-        })
-            .attr('height', barHeight)
-            .attr('x', function(data) {
-                return x(data.from);
-            })
-            .attr('y', function(data) {
-                return y(data.row) + data.row * (barHeight + 5);
-            });
+        barRects.attr('points', function(data) {
+           return (data.earliestFrom ? x(data.earliestFrom) + 1 : x(data.from)) + ',' + (y(data.row) + data.row * (barHeight + 5) + barHeight) + ' '
+                + (data.earliestFrom ? x(data.from) + 1 : x(data.from)) + ',' + (y(data.row) + data.row * (barHeight + 5)) + ' '
+                + x(data.latestTo || data.to) + ',' + (y(data.row) + data.row * (barHeight + 5)) + ' '
+                + x(data.to) + ',' + (y(data.row) + data.row * (barHeight + 5) + barHeight);
+        });
 
         barTexts.attr('x', function(data) {
             return x(data.from) + (x(data.to) - x(data.from)) / 2;
