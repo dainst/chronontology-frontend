@@ -196,12 +196,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.updateBars = function() {
 
-        barPolygons.attr('points', function(data) {
-           return (data.earliestFrom ? x(data.earliestFrom) + 1 : x(data.from)) + ',' + (y(data.row) + data.row * (barHeight + 5) + barHeight) + ' '
-                + (data.earliestFrom ? x(data.from) + 1 : x(data.from)) + ',' + (y(data.row) + data.row * (barHeight + 5)) + ' '
-                + x(data.latestTo || data.to) + ',' + (y(data.row) + data.row * (barHeight + 5)) + ' '
-                + x(data.to) + ',' + (y(data.row) + data.row * (barHeight + 5) + barHeight);
-        });
+        barPolygons.attr('points', function(data) { return _this.getBarPolygonPoints(data); });
 
         barTexts.attr('x', function(data) {
             return x(data.from) + (x(data.to) - x(data.from)) / 2;
@@ -221,6 +216,33 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         axisElement.selectAll('.tick text')
             .text(function() { return _this.formatTickText(d3.select(this).text()); });
+    };
+
+    this.getBarPolygonPoints = function(data) {
+
+        var topY = _this.getPolygonYPosition(data);
+        var bottomY = topY + barHeight;
+
+        return _this.getLeftEndPolygonPoints(data, topY, bottomY)
+            + ' '
+            + _this.getRightEndPolygonPoints(data, topY, bottomY);
+    };
+
+    this.getLeftEndPolygonPoints = function(data, topY, bottomY) {
+
+        return (data.earliestFrom ? x(data.earliestFrom) + 1 : x(data.from)) + ',' + bottomY + ' '
+            + (data.earliestFrom ? x(data.from) + 1 : x(data.from)) + ',' + topY;
+    };
+
+    this.getRightEndPolygonPoints = function(data, topY, bottomY) {
+
+        return x(data.latestTo || data.to) + ',' + topY + ' '
+            + x(data.to) + ',' + bottomY;
+    };
+
+    this.getPolygonYPosition = function(data) {
+
+        return y(data.row) + data.row * (barHeight + 5);
     };
 
     this.doesTextFitInBar = function(text, barWidth) {
