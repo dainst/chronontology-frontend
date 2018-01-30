@@ -130,7 +130,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
                 }
                 return barClass;
             })
-            .append('polygon');
+            .append('path');
 
         if (!this.inactive) {
             barPolygons.on('click', _this.showPeriod);
@@ -196,16 +196,16 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.updateBars = function() {
 
-        barPolygons.attr('points', function(data) { return _this.getBarPolygonPoints(data); });
+        barPolygons.attr('d', function(data) { return _this.getBarPolygonPoints(data); });
 
         barTexts.attr('x', function(data) {
-            return x(data.from) + (x(data.to) - x(data.from)) / 2;
+            return x(data.from) + (_this.getBarWidth(data)) / 2;
         })
             .attr('y', function(data) {
                 return y(data.row) + data.row * (barHeight + 5) + barHeight / 2 + 5;
             })
             .text(function(data) {
-                if (_this.doesTextFitInBar(data.name, x(data.to) - x(data.from))) {
+                if (_this.doesTextFitInBar(data.name, _this.getBarWidth(data))) {
                     data.textVisible = true;
                     return data.name;
                 } else {
@@ -230,19 +230,50 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.getLeftEndPolygonPoints = function(data, topY, bottomY) {
 
-        return (data.earliestFrom ? x(data.earliestFrom) + 1 : x(data.from)) + ',' + bottomY + ' '
-            + (data.earliestFrom ? x(data.from) + 1 : x(data.from)) + ',' + topY;
+        var width = _this.getBarWidth(data);
+
+        if (data.earliestFrom) {
+            return 'M' + (x(data.earliestFrom) + 1) + ' ' + bottomY + ' '
+                + 'L' + (x(data.from) + 1) + ' ' + topY;
+        } else if (width > 2) {
+            var edgeWidth = Math.min(Math.floor(width / 2), 5);
+            return 'M' + (x(data.from) + edgeWidth) + ' ' + bottomY + ' '
+                + 'Q' + x(data.from) + ' ' + bottomY + ' ' + x(data.from) + ' ' + (bottomY - edgeWidth)
+                + 'L' + x(data.from) + ' ' + (topY + edgeWidth)
+                + 'Q' + x(data.from) + ' ' + topY + ' ' + (x(data.from) + edgeWidth) + ' ' + topY
+        } else {
+            return 'M' + x(data.from) + ' ' + bottomY + ' '
+                + 'L' + x(data.from) + ' ' + topY;
+        }
     };
 
     this.getRightEndPolygonPoints = function(data, topY, bottomY) {
 
-        return x(data.latestTo || data.to) + ',' + topY + ' '
-            + x(data.to) + ',' + bottomY;
+        var width = _this.getBarWidth(data);
+
+        if (data.latestTo) {
+            return 'L' + x(data.latestTo) + ' ' + topY + ' '
+                + 'L' + x(data.to) + ' ' + bottomY;
+        } else if (width > 2) {
+            var edgeWidth = Math.min(Math.floor(width / 2), 5);
+            return 'L' + (x(data.to) - edgeWidth) + ' ' + topY + ' '
+                + 'Q' + x(data.to) + ' ' + topY + ' ' + x(data.to) + ' ' + (topY + edgeWidth)
+                + 'L' + x(data.to) + ' ' + (bottomY - edgeWidth)
+                + 'Q' + x(data.to) + ' ' + bottomY + ' ' + (x(data.to) - edgeWidth) + ' ' + bottomY + 'Z';
+        } else {
+            return 'M' + x(data.to) + ' ' + topY + ' '
+                + 'L' + x(data.to) + ' ' + bottomY;
+        }
     };
 
     this.getPolygonYPosition = function(data) {
 
         return y(data.row) + data.row * (barHeight + 5);
+    };
+
+    this.getBarWidth = function(data) {
+
+        return x(data.to) - x(data.from);
     };
 
     this.doesTextFitInBar = function(text, barWidth) {
