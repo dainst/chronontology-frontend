@@ -14,7 +14,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
     var timeline;
     var canvas;
     var axis, axisElement;
-    var bars, barRects, barTexts;
+    var bars, barPolygons, barTexts;
     var tooltip;
     var zoom, drag;
     var x, y;
@@ -119,8 +119,8 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
         }
 
         bars = canvas.selectAll('g').data(timelineData.periods).enter();
-        barRects = bars.append('g')
-            .attr('id', function(d) { return 'bar-rect-' + d.id; })
+        barPolygons = bars.append('g')
+            .attr('id', function(d) { return 'bar-polygon-' + d.id; })
             .attr('class', function(d) {
                 var barClass = 'bar level' + (d.level + 1);
                 if (_this.inactive) {
@@ -133,12 +133,12 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
             .append('polygon');
 
         if (!this.inactive) {
-            barRects.on('click', _this.showPeriod);
-            this.addHoverBehavior(barRects);
+            barPolygons.on('click', _this.showPeriod);
+            this.addHoverBehavior(barPolygons);
         }
 
         if (this.selectedPeriodId) {
-            barRects.filter(function(d) {
+            barPolygons.filter(function(d) {
                 return d.id === _this.selectedPeriodId;
             }).classed('selected', true);
         }
@@ -196,7 +196,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.updateBars = function() {
 
-        barRects.attr('points', function(data) {
+        barPolygons.attr('points', function(data) {
            return (data.earliestFrom ? x(data.earliestFrom) + 1 : x(data.from)) + ',' + (y(data.row) + data.row * (barHeight + 5) + barHeight) + ' '
                 + (data.earliestFrom ? x(data.from) + 1 : x(data.from)) + ',' + (y(data.row) + data.row * (barHeight + 5)) + ' '
                 + x(data.latestTo || data.to) + ',' + (y(data.row) + data.row * (barHeight + 5)) + ' '
@@ -258,7 +258,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         selection.on('mouseover', function(period) {
             if (period !== hoverPeriod) {
-                d3.select('#bar-rect-' + period.id).moveToFront();
+                d3.select('#bar-polygon-' + period.id).moveToFront();
                 d3.select('#bar-text-' + period.id).moveToFront();
                 hoverPeriod = period;
             }
