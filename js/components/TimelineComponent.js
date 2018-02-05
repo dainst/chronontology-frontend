@@ -310,6 +310,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
     this.addHoverBehavior = function(selection) {
 
         selection.on('mouseover', function(period) {
+            d3.select('#bar-polygon-' + period.id).classed('hover', true);
             if (period !== hoverPeriod) {
                 d3.select('#bar-polygon-' + period.id).moveToFront();
                 d3.select('#bar-text-' + period.id).moveToFront();
@@ -323,7 +324,10 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
                 return tooltip.style('top', (d3.event.pageY - 10) + 'px')
                     .style('left', (d3.event.pageX + 10) + 'px');
             })
-            .on('mouseout', function() { return tooltip.style('visibility', 'hidden'); });
+            .on('mouseout', function(period) {
+                d3.select('#bar-polygon-' + period.id).classed('hover', false);
+                return tooltip.style('visibility', 'hidden');
+            });
     };
 
     this.setStartDomains = function(periodsMap) {

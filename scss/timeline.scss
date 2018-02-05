@@ -12,8 +12,6 @@ $maxGroups: 10;
   }
 
   g.bar {
-    transition: fill .5s ease;
-
     path.selected {
       stroke: black;
       stroke-width: 1px;
@@ -39,14 +37,14 @@ $maxGroups: 10;
         $baseColor: hsl( (360 / $maxGroups) * $i + 60, 60%, 50%);
         $defaultColor: darken($baseColor, 50%);
         fill: rgba($defaultColor, 0.7);
-        &:hover {
+        &.hover {
           fill: $defaultColor;
         }
         @for $j from 1 to ($maxLevel+1) {
           &.level#{$j} {
             $color: darken($baseColor, percentage(0.5 / $maxLevel * $j));
             fill: rgba($color, 0.7);
-            &:hover {
+            &.hover {
               fill: $color;
             }
           }
