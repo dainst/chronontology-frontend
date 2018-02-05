@@ -14,7 +14,7 @@ $maxGroups: 10;
   g.bar {
     transition: fill .5s ease;
 
-    rect.selected {
+    path.selected {
       stroke: black;
       stroke-width: 1px;
     }

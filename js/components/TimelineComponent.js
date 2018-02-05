@@ -253,7 +253,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         if (data.latestTo) {
             return 'L' + x(data.latestTo) + ' ' + topY + ' '
-                + 'L' + x(data.to) + ' ' + bottomY;
+                + 'L' + x(data.to) + ' ' + bottomY + 'Z';
         } else if (width > 2) {
             var edgeWidth = Math.min(Math.floor(width / 2), 5);
             return 'L' + (x(data.to) - edgeWidth) + ' ' + topY + ' '
@@ -262,7 +262,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
                 + 'Q' + x(data.to) + ' ' + bottomY + ' ' + (x(data.to) - edgeWidth) + ' ' + bottomY + 'Z';
         } else {
             return 'M' + x(data.to) + ' ' + topY + ' '
-                + 'L' + x(data.to) + ' ' + bottomY;
+                + 'L' + x(data.to) + ' ' + bottomY + 'Z';
         }
     };
 
