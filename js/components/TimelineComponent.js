@@ -222,47 +222,39 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         var topY = _this.getPolygonYPosition(data);
         var bottomY = topY + barHeight;
+        var edgeRadius = Math.min(Math.floor(_this.getBarWidth(data) / 2), 5);
 
-        return _this.getLeftEndPolygonPoints(data, topY, bottomY)
+        return _this.getLeftEndPolygonPoints(data, topY, bottomY, edgeRadius)
             + ' '
-            + _this.getRightEndPolygonPoints(data, topY, bottomY);
+            + _this.getRightEndPolygonPoints(data, topY, bottomY, edgeRadius);
     };
 
-    this.getLeftEndPolygonPoints = function(data, topY, bottomY) {
-
-        var width = _this.getBarWidth(data);
+    this.getLeftEndPolygonPoints = function(data, topY, bottomY, edgeRadius) {
 
         if (data.earliestFrom) {
             return 'M' + (x(data.earliestFrom) + 1) + ' ' + bottomY + ' '
                 + 'L' + (x(data.from) + 1) + ' ' + topY;
-        } else if (width > 2) {
-            var edgeWidth = Math.min(Math.floor(width / 2), 5);
-            return 'M' + (x(data.from) + edgeWidth) + ' ' + bottomY + ' '
-                + 'Q' + x(data.from) + ' ' + bottomY + ' ' + x(data.from) + ' ' + (bottomY - edgeWidth)
-                + 'L' + x(data.from) + ' ' + (topY + edgeWidth)
-                + 'Q' + x(data.from) + ' ' + topY + ' ' + (x(data.from) + edgeWidth) + ' ' + topY
+        } else if (edgeRadius > 0) {
+            return 'M' + (x(data.from) + edgeRadius) + ' ' + bottomY + ' '
+                + 'Q' + x(data.from) + ' ' + bottomY + ' ' + x(data.from) + ' ' + (bottomY - edgeRadius)
+                + 'L' + x(data.from) + ' ' + (topY + edgeRadius)
+                + 'Q' + x(data.from) + ' ' + topY + ' ' + (x(data.from) + edgeRadius) + ' ' + topY
         } else {
             return 'M' + x(data.from) + ' ' + bottomY + ' '
                 + 'L' + x(data.from) + ' ' + topY;
         }
     };
 
-    this.getRightEndPolygonPoints = function(data, topY, bottomY) {
+    this.getRightEndPolygonPoints = function(data, topY, bottomY, edgeRadius) {
 
-        var width = _this.getBarWidth(data);
-
-        if (data.latestTo) {
-            return 'L' + x(data.latestTo) + ' ' + topY + ' '
+        if (data.latestTo || edgeRadius === 0) {
+            return 'L' + x(data.latestTo || data.to) + ' ' + topY + ' '
                 + 'L' + x(data.to) + ' ' + bottomY + 'Z';
-        } else if (width > 2) {
-            var edgeWidth = Math.min(Math.floor(width / 2), 5);
-            return 'L' + (x(data.to) - edgeWidth) + ' ' + topY + ' '
-                + 'Q' + x(data.to) + ' ' + topY + ' ' + x(data.to) + ' ' + (topY + edgeWidth)
-                + 'L' + x(data.to) + ' ' + (bottomY - edgeWidth)
-                + 'Q' + x(data.to) + ' ' + bottomY + ' ' + (x(data.to) - edgeWidth) + ' ' + bottomY + 'Z';
         } else {
-            return 'M' + x(data.to) + ' ' + topY + ' '
-                + 'L' + x(data.to) + ' ' + bottomY + 'Z';
+            return 'L' + (x(data.to) - edgeRadius) + ' ' + topY + ' '
+                + 'Q' + x(data.to) + ' ' + topY + ' ' + x(data.to) + ' ' + (topY + edgeRadius)
+                + 'L' + x(data.to) + ' ' + (bottomY - edgeRadius)
+                + 'Q' + x(data.to) + ' ' + bottomY + ' ' + (x(data.to) - edgeRadius) + ' ' + bottomY + 'Z';
         }
     };
 
