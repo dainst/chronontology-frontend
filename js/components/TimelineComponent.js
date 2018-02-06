@@ -14,7 +14,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
     var timeline;
     var canvas;
     var axis, axisElement;
-    var bars, barPolygons, barTexts;
+    var bars, barPaths, barTexts;
     var tooltip;
     var zoom, drag;
     var x, y;
@@ -119,8 +119,8 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
         }
 
         bars = canvas.selectAll('g').data(timelineData.periods).enter();
-        barPolygons = bars.append('g')
-            .attr('id', function(d) { return 'bar-polygon-' + d.id; })
+        barPaths = bars.append('g')
+            .attr('id', function(d) { return 'bar-path-' + d.id; })
             .attr('class', function(d) {
                 var barClass = 'bar level' + (d.level + 1);
                 if (_this.inactive) {
@@ -133,12 +133,12 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
             .append('path');
 
         if (!this.inactive) {
-            barPolygons.on('click', _this.showPeriod);
-            this.addHoverBehavior(barPolygons);
+            barPaths.on('click', _this.showPeriod);
+            this.addHoverBehavior(barPaths);
         }
 
         if (this.selectedPeriodId) {
-            barPolygons.filter(function(d) {
+            barPaths.filter(function(d) {
                 return d.id === _this.selectedPeriodId;
             }).classed('selected', true);
         }
@@ -196,7 +196,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.updateBars = function() {
 
-        barPolygons.attr('d', function(data) { return _this.getBarPolygonPoints(data); });
+        barPaths.attr('d', function(data) { return _this.computeBarPaths(data); });
 
         barTexts.attr('x', function(data) {
             return x(data.from) + (_this.getBarWidth(data)) / 2;
@@ -218,18 +218,17 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
             .text(function() { return _this.formatTickText(d3.select(this).text()); });
     };
 
-    this.getBarPolygonPoints = function(data) {
+    this.computeBarPaths = function(data) {
 
-        var topY = _this.getPolygonYPosition(data);
+        var topY = _this.getPathYPosition(data);
         var bottomY = topY + barHeight;
         var edgeRadius = Math.min(Math.floor(_this.getBarWidth(data) / 2), 5);
 
-        return _this.getLeftEndPolygonPoints(data, topY, bottomY, edgeRadius)
-            + ' '
-            + _this.getRightEndPolygonPoints(data, topY, bottomY, edgeRadius);
+        return _this.computeLeftEndPathDefinition(data, topY, bottomY, edgeRadius) + ' '
+            + _this.computeRightEndPathDefinition(data, topY, bottomY, edgeRadius) + 'Z';
     };
 
-    this.getLeftEndPolygonPoints = function(data, topY, bottomY, edgeRadius) {
+    this.computeLeftEndPathDefinition = function(data, topY, bottomY, edgeRadius) {
 
         if (data.earliestFrom) {
             return 'M' + (x(data.earliestFrom) + 1) + ' ' + bottomY + ' '
@@ -245,20 +244,20 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
         }
     };
 
-    this.getRightEndPolygonPoints = function(data, topY, bottomY, edgeRadius) {
+    this.computeRightEndPathDefinition = function(data, topY, bottomY, edgeRadius) {
 
         if (data.latestTo || edgeRadius === 0) {
             return 'L' + x(data.latestTo || data.to) + ' ' + topY + ' '
-                + 'L' + x(data.to) + ' ' + bottomY + 'Z';
+                + 'L' + x(data.to) + ' ' + bottomY;
         } else {
             return 'L' + (x(data.to) - edgeRadius) + ' ' + topY + ' '
                 + 'Q' + x(data.to) + ' ' + topY + ' ' + x(data.to) + ' ' + (topY + edgeRadius)
                 + 'L' + x(data.to) + ' ' + (bottomY - edgeRadius)
-                + 'Q' + x(data.to) + ' ' + bottomY + ' ' + (x(data.to) - edgeRadius) + ' ' + bottomY + 'Z';
+                + 'Q' + x(data.to) + ' ' + bottomY + ' ' + (x(data.to) - edgeRadius) + ' ' + bottomY;
         }
     };
 
-    this.getPolygonYPosition = function(data) {
+    this.getPathYPosition = function(data) {
 
         return y(data.row) + data.row * (barHeight + 5);
     };
@@ -302,9 +301,9 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
     this.addHoverBehavior = function(selection) {
 
         selection.on('mouseover', function(period) {
-            d3.select('#bar-polygon-' + period.id).classed('hover', true);
+            d3.select('#bar-path-' + period.id).classed('hover', true);
             if (period !== hoverPeriod) {
-                d3.select('#bar-polygon-' + period.id).moveToFront();
+                d3.select('#bar-path-' + period.id).moveToFront();
                 d3.select('#bar-text-' + period.id).moveToFront();
                 hoverPeriod = period;
             }
@@ -317,7 +316,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
                     .style('left', (d3.event.pageX + 10) + 'px');
             })
             .on('mouseout', function(period) {
-                d3.select('#bar-polygon-' + period.id).classed('hover', false);
+                d3.select('#bar-path-' + period.id).classed('hover', false);
                 return tooltip.style('visibility', 'hidden');
             });
     };
