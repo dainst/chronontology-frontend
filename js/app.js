@@ -76,6 +76,9 @@ angular.module('chronontology', [
     ],
     facetList: [
         'provenance', 'types'
+    ],
+    existsList: [
+        'hasTimespan', 'isNamedAfter', 'hasCoreArea', 'spatiallyPartOfRegion'
     ]
 }).constant('componentsSettings', {
     transl8Uri: 'https://arachne.dainst.org/transl8/translation/jsonp?application=chronontology_frontend&application=shared&lang={LANG}',

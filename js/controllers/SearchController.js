@@ -15,8 +15,8 @@ angular.module('chronontology.controllers')
         $scope.facets = result.facets;
     });
 
+    $scope.existsList = chronontologySettings.existsList;
     $scope.facetList = chronontologySettings.facetList;
-
 
     $scope.getPrevious = function(){
         return $scope.query.from - $scope.query.size;
