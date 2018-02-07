@@ -231,8 +231,8 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
     this.computeLeftEndPathDefinition = function(data, topY, bottomY, edgeRadius) {
 
         if (data.earliestFrom) {
-            return 'M' + (x(data.earliestFrom) + 1) + ' ' + bottomY + ' '
-                + 'L' + (x(data.from) + 1) + ' ' + topY;
+            return 'M' + (x(data.earliestFrom) + ((x(data.from) - x(data.earliestFrom)) / 10)) + ' ' + bottomY + ' '
+                + 'L' + (x(data.from) + + ((x(data.from) - x(data.earliestFrom)) / 10)) + ' ' + topY;
         } else if (edgeRadius > 0) {
             return 'M' + (x(data.from) + edgeRadius) + ' ' + bottomY + ' '
                 + 'Q' + x(data.from) + ' ' + bottomY + ' ' + x(data.from) + ' ' + (bottomY - edgeRadius)
