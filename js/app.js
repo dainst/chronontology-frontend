@@ -83,7 +83,8 @@ angular.module('chronontology', [
 }).constant('componentsSettings', {
     transl8Uri: 'https://arachne.dainst.org/transl8/translation/jsonp?application=chronontology_frontend&application=shared&lang={LANG}',
     // searchUri: 'https://arachne.dainst.org/data/suggest?q=',
-    mailTo: 'idai.chronontology@dainst.org'
+    mailTo: 'idai.chronontology@dainst.org',
+    dataProtectionPolicyUri: 'http://www.dainst.org/datenschutz'
 }).run(['$rootScope', function($rootScope) {
 
 }]);
