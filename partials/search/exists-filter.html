@@ -1,7 +1,8 @@
 <div class="list-group">
 	<a class="list-group-item"
-	ng-href="/search?q={{query.q}}{{$ctrl.addOrRemoveExistsField($ctrl.field)}}">
+			ng-class="{'active': $ctrl.isExistsFieldSelected($ctrl.field)}"
+			ng-href="/search?q={{query.q}}{{$ctrl.addOrRemoveExistsField($ctrl.field)}}">
 		{{$ctrl.field}}
-		<span ng-if="isSelected" style="float:right;" class="badge">remove</span>
+		<span ng-if="$ctrl.isExistsFieldSelected($ctrl.field)" style="float:right;" class="badge">remove</span>
 	</a>
 </div>
