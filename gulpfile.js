@@ -53,7 +53,8 @@ var jsDeps = [
     paths.lib + 'angular-cookies/angular-cookies.min.js',
     paths.lib + 'angular-ui-tree/dist/angular-ui-tree.min.js',
     paths.lib + 'angular-md5/angular-md5.js',
-    paths.lib + 'idai-components/dist/idai-components.js'
+    paths.lib + 'idai-components/dist/idai-components.js',
+    paths.lib + 'idai-cookie-notice/idai-cookie-notice.js'
 ];
 
 var widgets = ['period-info'];
