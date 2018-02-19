@@ -6,7 +6,7 @@ angular.module('chronontology.controllers')
 
     $scope.query = $location.search();
     if (!$scope.query.from) $scope.query.from = 0;
-    if (!$scope.query.size) $scope.query.size = 10;
+    if (!$scope.query.size) $scope.query.size = 25;
 
     searchService.search($scope.query).then(function(result){
         $scope.periods = result.results;
