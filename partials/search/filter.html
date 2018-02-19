@@ -1,4 +1,4 @@
-<h4>{{$ctrl.facette}}</h4>
+<h4>{{"period_" + $ctrl.facette | transl8}}</h4>
 <div class="list-group">
 	<a class="list-group-item"
 	ng-repeat="facet in $ctrl.facets[$ctrl.addResource($ctrl.facette)].buckets"

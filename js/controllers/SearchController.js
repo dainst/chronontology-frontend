@@ -4,7 +4,6 @@ angular.module('chronontology.controllers')
 
 .controller("SearchController", function($scope, $location, searchService, chronontologySettings) {
 
-
     $scope.query = $location.search();
     if (!$scope.query.from) $scope.query.from = 0;
     if (!$scope.query.size) $scope.query.size = 10;
