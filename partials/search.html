@@ -3,12 +3,19 @@
 
         <div class="col-md-3">
             <h3>{{"ui_filter_plural" | transl8}}</h3>
-            <span ng-repeat="field in existsList">
-                <search-exists-filter
-                    field="field"
-                    query="query">
-                </search-exists-filter>
-            </span>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    {{"ui_filter_exists" | transl8}}
+                </div>
+                <ul class="list-group">
+                    <span ng-repeat="field in existsList">
+                        <search-exists-filter
+                            field="field"
+                            query="query">
+                        </search-exists-filter>
+                    </span>
+                </ul>
+            </div>
             <span ng-repeat="facette in facetList">
                 <search-filter
                     facette="facette"
