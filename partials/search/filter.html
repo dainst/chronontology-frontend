@@ -1,12 +1,16 @@
-<h4>{{"period_" + $ctrl.facette | transl8}}</h4>
-<div class="list-group">
-	<a class="list-group-item"
-	ng-repeat="facet in $ctrl.facets[$ctrl.addResource($ctrl.facette)].buckets"
-	ng-init="isSelected = $ctrl.isFacetValueSelected($ctrl.facette, facet.key)"
-	ng-class="{active:isSelected}"
-	ng-href="/search?q={{query.q}}{{$ctrl.addOrRemoveFacetValue($ctrl.facette, facet.key)}}">
-		{{facet.key}}
-		<span ng-if="!isSelected" style="float:right;" class="badge">{{facet.doc_count}}</span>
-		<span ng-if="isSelected" style="float:right;" class="badge">remove</span>
-	</a>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<b>{{"period_" + $ctrl.facette | transl8}}</b>
+	</div>
+	<div class="list-group">
+		<a class="list-group-item"
+		ng-repeat="facet in $ctrl.facets[$ctrl.addResource($ctrl.facette)].buckets"
+		ng-init="isSelected = $ctrl.isFacetValueSelected($ctrl.facette, facet.key)"
+		ng-class="{active:isSelected}"
+		ng-href="/search?q={{query.q}}{{$ctrl.addOrRemoveFacetValue($ctrl.facette, facet.key)}}">
+			{{facet.key}}
+			<span ng-if="!isSelected" style="float:right;" class="badge">{{facet.doc_count}}</span>
+			<span ng-if="isSelected" style="float:right;" class="badge">remove</span>
+		</a>
+	</div>
 </div>
