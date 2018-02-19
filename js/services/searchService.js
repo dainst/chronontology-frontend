@@ -20,7 +20,16 @@ var SearchService = function($http, $q) {
 			fq = "&fq=resource." + fq.join("&fq=resource.");
 		}
 
-		var uri = '/data/period/?q=' + query.q + from + size + facetlist + fq;
+		var exists = query.exists;
+        if (exists == null) {
+			exists = "";
+		} else if (typeof exists === 'string') {
+			exists = "&exists=resource."+exists;
+		} else {
+			exists = "&exists=resource." + exists.join("&exists=resource.");
+		}
+
+		var uri = '/data/period/?q=' + query.q + from + size + facetlist + fq + exists;
 		$http.get(uri).then(
 			function success(result) {
 				deferred.resolve(result.data);
