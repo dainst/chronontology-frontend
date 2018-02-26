@@ -7,7 +7,7 @@
 		ng-repeat="facet in $ctrl.facets[$ctrl.addResource($ctrl.facette)].buckets"
 		ng-init="isSelected = $ctrl.isFacetValueSelected($ctrl.facette, facet.key)"
 		ng-class="{active:isSelected}"
-		ng-href="/search?q={{query.q}}{{$ctrl.addOrRemoveFacetValue($ctrl.facette, facet.key)}}">
+		ng-href="/search{{$ctrl.addOrRemoveFacetValue($ctrl.facette, facet.key)}}">
 			{{facet.key}}
 			<span ng-if="!isSelected" style="float:right;" class="badge">{{facet.doc_count}}</span>
 			<span ng-if="isSelected" style="float:right;" class="badge">remove</span>

@@ -18,14 +18,15 @@ var Query = function(chronontologySettings) {
 
     Query.prototype.addParam = function(key, name, value) {
         var newQuery = angular.copy(this);
+        if (!newQuery[key]) newQuery[key] = [];
         newQuery[key].push({key:name, value:value});
         return newQuery;
     }
 
-    Query.prototype.removeParam = function(key, name) {
+    Query.prototype.removeParam = function(key, name, value) {
         var newQuery = angular.copy(this);
         newQuery[key] = newQuery[key].filter(function(entry) {
-            return entry.key !== name;
+            return !(entry.key == name && entry.value == value);
         });
         return newQuery;
     }
@@ -35,8 +36,8 @@ var Query = function(chronontologySettings) {
         var params = [];
 
         params = params.concat(buildFacetParams());
-        params = params.concat(buildFqParams(this.fq));
-        params = params.concat(buildExistsParams(this.exists));
+        params = params.concat(buildFqParams(this.fq, "resource."));
+        params = params.concat(buildExistsParams(this.exists, "resource."));
 
         params.push("q=" + encodeURIComponent(this.q));
         params.push("from=" + this.from);
@@ -54,8 +55,8 @@ var Query = function(chronontologySettings) {
 
         var params = [];
 
-        params = params.concat(buildFqParams());
-        params = params.concat(buildExistsParams());
+        params = params.concat(buildFqParams(this.fq));
+        params = params.concat(buildExistsParams(this.exists));
 
         params.push("q=" + encodeURIComponent(this.q));
         params.push("from=" + this.from);
@@ -76,35 +77,48 @@ var Query = function(chronontologySettings) {
         return params;
     }
 
-    function buildFqParams(fq) {
+    function buildFqParams(fq, prefix) {
+        if (!prefix) prefix = "";
         var params = [];
         for(var i in fq) {
-            var value = "resource" + fq[i].key + ":\"" + fq[i].value + "\"";
+            var value = prefix + fq[i].key + ":\"" + fq[i].value + "\"";
             params.push("fq=" + encodeURIComponent(value));
         }
         return params;
     }
 
-    function buildExistsParams(exists) {
+    function buildExistsParams(exists, prefix) {
+        if (!prefix) prefix = "";
         var params = [];
         for(var i in exists) {
-            var value = "resource" + exists[i].key + ":\"" + exists[i].value + "\"";
+            var value = prefix + exists[i];
             params.push("exists=" + encodeURIComponent(value));
         }
         return params;
     }
 
-    function initArray(search, key) {
-        var a = [];
-        if (search[key]) a = angular.copy(search[key]);
-        if (typeof a === 'string') a = [a];
-        return a;
+    function initFq(search) {
+        var fq = [];
+        if (typeof search.fq === 'string') fq = [search.fq];
+        else fq = search.fq;
+        if (fq) for (var i in fq) {
+            var split = fq[i].split(':');
+            fq[i] = { key: split[0], value: split[1].substr(1, split[1].length - 2) }
+        }
+        return fq;
+    }
+
+    function initExists(search) {
+        var exists = [];
+        if (typeof search.exists === 'string') exists = [exists];
+        else exists = search.exists;
+        return exists;
     }
 
     Query.fromSearch = function(search) {
         var newQuery = new Query();
-        newQuery.fq = initArray(search, 'fq');
-        newQuery.exists = initArray(search, 'exists');
+        newQuery.fq = initFq(search);
+        newQuery.exists = initExists(search);
         if (search.q) newQuery.q = search.q;
         if (search.from) newQuery.from = search.from;
         return newQuery;
