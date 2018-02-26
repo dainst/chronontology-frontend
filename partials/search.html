@@ -15,12 +15,11 @@
                     <b>{{"ui_filter_exists" | transl8}}</b>
                 </div>
                 <ul class="list-group">
-                    <span ng-repeat="field in existsList">
-                        <search-exists-filter
-                            field="field"
-                            query="query">
-                        </search-exists-filter>
-                    </span>
+                    <search-exists-filter
+                        ng-repeat="field in existsList"
+                        field="field"
+                        query="query">
+                    </search-exists-filter>
                 </ul>
             </div>
         </div>
