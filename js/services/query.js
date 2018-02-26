@@ -3,6 +3,7 @@
 var Query = function(chronontologySettings) {
 
     function Query() {
+        this.q = "";
         this.fq = [];
         this.exists = [];
         this.from = 0;
@@ -29,14 +30,15 @@ var Query = function(chronontologySettings) {
         return newQuery;
     }
 
-    Query.prototype.toString = function() {
+    Query.prototype.toBackendUri = function() {
 
         var params = [];
 
         params = params.concat(buildFacetParams());
-        params = params.concat(buildFqParams());
-        params = params.concat(buildExistsParams());
+        params = params.concat(buildFqParams(this.fq));
+        params = params.concat(buildExistsParams(this.exists));
 
+        params.push("q=" + encodeURIComponent(this.q));
         params.push("from=" + this.from);
         params.push("size=" + this.size);
 
@@ -48,44 +50,63 @@ var Query = function(chronontologySettings) {
 
     }
 
+    Query.prototype.toFrontendUri = function() {
+
+        var params = [];
+
+        params = params.concat(buildFqParams());
+        params = params.concat(buildExistsParams());
+
+        params.push("q=" + encodeURIComponent(this.q));
+        params.push("from=" + this.from);
+
+        if (params.length > 0) {
+            return "?" + params.join("&");
+        } else {
+            return "";
+        }
+
+    }
+
     function buildFacetParams() {
         var params = [];
-        for(var i in this.chronontologySettings.facetList) {
-            params.push(encodeURIComponent(this.chronontologySettings.facetList[i]));
+        for(var i in chronontologySettings.facetList) {
+            params.push("facet=resource." + encodeURIComponent(chronontologySettings.facetList[i]));
         }
         return params;
     }
 
-    function buildFqParams() {
+    function buildFqParams(fq) {
         var params = [];
-        for(var i in this.fq) {
-            var value = "resource" + this.fq[i].key + ":\"" + this.fq[i].value + "\"";
+        for(var i in fq) {
+            var value = "resource" + fq[i].key + ":\"" + fq[i].value + "\"";
             params.push("fq=" + encodeURIComponent(value));
         }
         return params;
     }
 
-    function buildExistsParams() {
+    function buildExistsParams(exists) {
         var params = [];
-        for(var i in this.exists) {
-            var value = "resource" + this.exists[i].key + ":\"" + this.exists[i].value + "\"";
+        for(var i in exists) {
+            var value = "resource" + exists[i].key + ":\"" + exists[i].value + "\"";
             params.push("exists=" + encodeURIComponent(value));
         }
         return params;
     }
 
     function initArray(search, key) {
-        var a = angular.copy(search.query[key]);
+        var a = [];
+        if (search[key]) a = angular.copy(search[key]);
         if (typeof a === 'string') a = [a];
-        if (Array.isArray(a)) return a;
-        return [];
+        return a;
     }
 
-    Query.fromSearch(search) = {
+    Query.fromSearch = function(search) {
         var newQuery = new Query();
         newQuery.fq = initArray(search, 'fq');
         newQuery.exists = initArray(search, 'exists');
-        if (search.query.from) newQuery.from = search.query.from;
+        if (search.q) newQuery.q = search.q;
+        if (search.from) newQuery.from = search.from;
         return newQuery;
     }
 

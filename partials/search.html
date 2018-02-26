@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li ng-if="getPrevious() >= 0" class="previous">
-                    <a ng-href="/search?q={{query.q}}{{getFacetValues()}}&amp;from={{getPrevious()}}">
+                    <a ng-href="/search{{query.setFrom(getPrevious()).toFrontendUri()}}">
                         <span aria-hidden="true">&larr;</span> {{"ui_previous"|transl8}}
                     </a>
                 </li>
@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li  ng-if="getNext() < total" class="next">
-                    <a ng-href="/search?q={{query.q}}{{getFacetValues()}}&amp;from={{getNext()}}">
+                    <a ng-href="/search{{query.setFrom(getNext()).toFrontendUri()}}">
                         {{"ui_next"|transl8}} <span aria-hidden="true">&rarr;</span>
                     </a>
                 </li>
