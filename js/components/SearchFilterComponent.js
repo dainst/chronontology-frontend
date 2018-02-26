@@ -21,9 +21,9 @@ angular.module('chronontology.components')
 
             this.addOrRemoveFacetValue = function(facette, facetvalue){
                 if (this.isFacetValueSelected(facette, facetvalue)) {
-                    return this.query.removeParam('fq', facette, facetvalue).toFrontendUri();
+                    return this.query.removeFq(facette, facetvalue).toFrontendUri();
                 } else {
-                    return this.query.addParam('fq', facette, facetvalue).toFrontendUri();
+                    return this.query.addFq(facette, facetvalue).toFrontendUri();
                 }
             }
 

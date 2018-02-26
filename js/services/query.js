@@ -16,17 +16,32 @@ var Query = function(chronontologySettings) {
         return newQuery;
     }
 
-    Query.prototype.addParam = function(key, name, value) {
+    Query.prototype.addFq = function(name, value) {
         var newQuery = angular.copy(this);
-        if (!newQuery[key]) newQuery[key] = [];
-        newQuery[key].push({key:name, value:value});
+        if (!newQuery.fq) newQuery.fq = [];
+        newQuery.fq.push({key:name, value:value});
         return newQuery;
     }
 
-    Query.prototype.removeParam = function(key, name, value) {
+    Query.prototype.removeFq = function(name, value) {
         var newQuery = angular.copy(this);
-        newQuery[key] = newQuery[key].filter(function(entry) {
+        newQuery.fq = newQuery.fq.filter(function(entry) {
             return !(entry.key == name && entry.value == value);
+        });
+        return newQuery;
+    }
+
+    Query.prototype.addExists= function(name) {
+        var newQuery = angular.copy(this);
+        if (!newQuery.exists) newQuery.exists = [];
+        newQuery.exists.push(name);
+        return newQuery;
+    }
+
+    Query.prototype.removeExists = function(name) {
+        var newQuery = angular.copy(this);
+        newQuery.exists = newQuery.exists.filter(function(entry) {
+            return entry !== name;
         });
         return newQuery;
     }
@@ -110,7 +125,7 @@ var Query = function(chronontologySettings) {
 
     function initExists(search) {
         var exists = [];
-        if (typeof search.exists === 'string') exists = [exists];
+        if (typeof search.exists === 'string') exists = [search.exists];
         else exists = search.exists;
         return exists;
     }
