@@ -5,7 +5,14 @@
     ]
   }, {
     "id": "footer",
-    "children": [{
-    }]
+    "children": [
+        {
+          "id": "impressum",
+          "title": {
+            "de": "Impressum",
+            "en": "Legal Notice"
+          }
+        }
+    ]
   }]
 }
