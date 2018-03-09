@@ -3,6 +3,10 @@ angular.module('chronontology.components')
         templateUrl: '../../partials/period/type-tag-cloud.html',
         controller: function ($http, chronontologySettings) {
 
+            this.normalizeWeight = function(count) {
+                return Math.log10(count);
+            }
+
             this.tags = [];
             var ctrl = this;
 
@@ -12,10 +16,11 @@ angular.module('chronontology.components')
     				result.data.facets['resource.types'].buckets.forEach(function(bucket) {
                         ctrl.tags.push({
                             text: bucket.key,
-                            weight: bucket.doc_count,
+                            weight: ctrl.normalizeWeight(bucket.doc_count),
                             link: "/search?q=&fq=types:\"" + bucket.key + "\""
                         });
                     });
+                    console.log(ctrl.tags);
     			},
     			function error(err) {
     				console.warn(err);
