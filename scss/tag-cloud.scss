@@ -3,7 +3,7 @@
     @for $i from 0 to (10) {
 
       .w#{$i+1} {
-        $baseColor: hsl( (360 / 10) * $i + 60, 100%, 50%);
+        $baseColor: hsl( (360 / 10) * $i + 45, 100%, 50%);
         $defaultColor: darken($baseColor, 20%);
         color: rgba($defaultColor, 0.7);
         a:hover {
