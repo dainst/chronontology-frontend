@@ -10,7 +10,11 @@ angular.module('chronontology.components')
             $http.get(uri).then(
     			function success(result) {
     				result.data.facets['resource.types'].buckets.forEach(function(bucket) {
-                        ctrl.tags.push({text: bucket.key, weight: bucket.doc_count});
+                        ctrl.tags.push({
+                            text: bucket.key,
+                            weight: bucket.doc_count,
+                            link: "/search?q=&fq=types:\"" + bucket.key + "\""
+                        });
                     });
     			},
     			function error(err) {
