@@ -8,6 +8,7 @@ angular.module('chronontology', [
     'ngResource',
     'ngCookies',
     'ngMd5',
+    'ngTagCloud',
     'ui.scroll.jqlite',
     'ui.scroll',
     'idai.templates',

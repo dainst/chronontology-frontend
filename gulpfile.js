@@ -26,6 +26,7 @@ var paths = cfg.paths;
 
 var cssDeps = [
     //paths.lib + 'bootstrap-css-only/css/bootstrap.min.css'
+    paths.lib + 'angular-tag-cloud/src/css/ng-tag-cloud.css'
 ];
 
 var jsDeps = [
@@ -54,7 +55,8 @@ var jsDeps = [
     paths.lib + 'angular-ui-tree/dist/angular-ui-tree.min.js',
     paths.lib + 'angular-md5/angular-md5.js',
     paths.lib + 'idai-components/dist/idai-components.js',
-    paths.lib + 'idai-cookie-notice/idai-cookie-notice.js'
+    paths.lib + 'idai-cookie-notice/idai-cookie-notice.js',
+    paths.lib + 'angular-tag-cloud/src/ng-tag-cloud.js'
 ];
 
 var widgets = ['period-info'];

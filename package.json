@@ -20,6 +20,7 @@
     "angular-md5": "0.1.10",
     "angular-resource": "1.6.5",
     "angular-route": "1.5.6",
+    "angular-tag-cloud": "^0.3.4",
     "angular-ui-bootstrap": "2.5.0",
     "angular-ui-scroll": "1.5.0",
     "angulartics-piwik": "^1.0.6",
