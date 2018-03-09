@@ -20,7 +20,6 @@ angular.module('chronontology.components')
                             link: "/search?q=&fq=types:\"" + bucket.key + "\""
                         });
                     });
-                    console.log(ctrl.tags);
     			},
     			function error(err) {
     				console.warn(err);
