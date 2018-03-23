@@ -27,7 +27,16 @@ body {
 }
 
 .home-boxes {
+
+	width: 1200px;
+
 	.col-xs-4 {
-		padding: 10px;
+		width: 380px;
+		height: 290px;
+		margin: 10px;
+
+		h4 {
+			margin-top: 0;
+		}
 	}
 }
