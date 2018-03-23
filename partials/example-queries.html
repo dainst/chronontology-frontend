@@ -1,5 +1,5 @@
-<ul>
-    <li ng-repeat="query in $ctrl.queries">
+<ul class="list-group">
+    <li ng-repeat="query in $ctrl.queries" class="list-group-item">
         <a ng-href="search?q={{query.q}}">{{query.key | transl8}}</a>
     </li>
 </ul>
