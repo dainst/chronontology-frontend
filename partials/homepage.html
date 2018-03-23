@@ -56,7 +56,14 @@
 
 <div class="container home-boxes">
     <div class="row">
-        <div class="col-xs-4 well">
+        <div class="col-xs-6 well">
+            <h4>{{ "example_queries" | transl8 }}</h4>
+        </div>
+        <div class="col-xs-6 well">
+            <h4>{{ "period_types" | transl8 }}</h4>
+            <period-type-tag-cloud></period-type-tag-cloud>
+        </div>
+        <div class="col-xs-6 well">
             <h4>{{"welcome" | transl8}}</h4>
             <p>
                 iDAI.chronontology ist ein Webservice, der Zeitbegriffe mit
@@ -75,13 +82,9 @@
                 dainst.de</a>.
             </p>
         </div>
-        <div class="col-xs-4 well">
-            <h4>{{ "period_types" | transl8 }}</h4>
-            <period-type-tag-cloud></period-type-tag-cloud>
-        </div>
-        <div class="col-xs-4 well">
+        <div class="col-xs-6 well">
             <h4>Screencast</h4>
-            <iframe width="340" height="220" src="https://www.youtube.com/embed/HFhonVAwcbU" frameborder="0" allowfullscreen></iframe>
+            <iframe width="540" height="280" src="https://www.youtube.com/embed/HFhonVAwcbU" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 </div>
