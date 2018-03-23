@@ -1,0 +1,5 @@
+<ul>
+    <li ng-repeat="query in $ctrl.queries">
+        <a ng-href="search?q={{query.q}}">{{query.key | transl8}}</a>
+    </li>
+</ul>
