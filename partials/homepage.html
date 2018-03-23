@@ -31,7 +31,7 @@
     <main>
 
         <div class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center"
-             style="margin-top: -25px; height:262px; min-width:358px; margin-bottom: 0px;">
+             style="margin-top: -25px; height:162px; min-width:358px; margin-bottom: 0px;">
 
             <h1>iDAI.chronontology <span style="vertical-align: super; font-size: smaller; color: blue">beta</span></h1>
 
@@ -53,25 +53,34 @@
     </main>
 </div>
 
-<div style="float:right; margin:5px 5px 5px 15px;">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/HFhonVAwcbU" frameborder="0" allowfullscreen></iframe>
+<div class="container home-boxes">
+    <div class="row">
+        <div class="col-xs-4">
+            <h4>Screencast</h4>
+            <iframe width="370" height="220" src="https://www.youtube.com/embed/HFhonVAwcbU" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-xs-4">
+            <h4>{{"welcome" | transl8}}</h4>
+            <p>
+            	iDAI.chronontology ist ein Webservice, der Zeitbegriffe mit
+            	Datierungen verbindet.
+            	Das chronOntology-Projekt wird von 2015 bis 2017 von der
+            	Deutschen Forschungsgemeinschaft (DFG) gefördert. Die
+            	Langzeitverfügbarkeit der Daten wird durch das DAI im Rahmen der
+            	<a
+            	href="http://www.dainst.org/forschung/forschung-digital/idai.welt
+            	">iDAI.welt</a> garantiert.
+            	Weitere Informationen finden Sie <a ng-href="/about">hier</a>.
+            </p>
+            <p>
+            	Fragen, Anregungen und Kooperationsanfragen richten Sie bitte an:
+            	<a href="mailto:idai.chronontology@dainst.de">idai.chronontology@
+            	dainst.de</a>.
+            </p>
+        </div>
+        <div class="col-xs-4">
+            <h4>{{ "period_types" | transl8 }}</h4>
+            <period-type-tag-cloud></period-type-tag-cloud>
+        </div>
+    </div>
 </div>
-
-<period-type-tag-cloud></period-type-tag-cloud>
-
-<p>
-	iDAI.chronontology ist ein Webservice, der Zeitbegriffe mit
-	Datierungen verbindet.
-	Das chronOntology-Projekt wird von 2015 bis 2017 von der
-	Deutschen Forschungsgemeinschaft (DFG) gefördert. Die
-	Langzeitverfügbarkeit der Daten wird durch das DAI im Rahmen der
-	<a
-	href="http://www.dainst.org/forschung/forschung-digital/idai.welt
-	">iDAI.welt</a> garantiert.
-	Weitere Informationen finden Sie <a ng-href="/about">hier</a>.
-</p>
-<p>
-	Fragen, Anregungen und Kooperationsanfragen richten Sie bitte an:
-	<a href="mailto:idai.chronontology@dainst.de">idai.chronontology@
-	dainst.de</a>.
-</p>
