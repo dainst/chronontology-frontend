@@ -33,6 +33,32 @@ body {
 	border-radius: 6px;
 }
 
+
+#teaser {
+    height: 35vh;
+	background-image: url('/img/frontpage-bgr.png');
+	margin-top: -20px;
+}
+
+#frontpage-logo {
+    margin-bottom: 25px;
+}
+
+main h1 {
+    margin-top: -35px;
+    background-color: rgba(255,255,255,0.7);
+    font-size: 2.7em;
+    font-weight: 300;
+    color: #555;
+    padding: 25px;
+    border-radius: 6px;
+}
+
+main h1 img {
+    width: 60px;
+    margin-right: 10px;
+}
+
 .home-boxes {
 
 	width: 1200px;
