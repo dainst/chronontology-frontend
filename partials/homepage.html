@@ -2,31 +2,28 @@
     <div class="description"></div>
 </header>
 
-<div class="container">
-    <main>
+<main>
 
-        <div class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center"
-             style="margin-top: -25px; height:162px; min-width:358px; margin-bottom: 0px;">
+    <div class="text-center logo-box">
 
-            <h1><span style="color: #666; font-size: 0.8em;">iDAI.</span>chronontology</h1>
+        <h1><span style="color: #666; font-size: 0.8em;">iDAI.</span>chronontology</h1>
 
-            <form ng-controller="SearchFormController" ng-submit="search()" class="input-group form-inline"
-                  role="search" method="GET" id="search-form">
-                <input type="text" ng-model="q" name="q" class="form-control" autofocus placeholder="{{ 'ui_placeholder_search' | transl8 }}"/>
-					<span class="input-group-btn">
-						<button type="submit" class="btn btn-primary">
-							&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;
-						</button>
-					</span>
-            </form>
-            <div style="text-align: right;">
-            	<a ng-href="/search?q=*">{{ "ui_showall" | transl8 }}</a>
-            </div>
+        <form ng-controller="SearchFormController" ng-submit="search()" class="input-group form-inline"
+              role="search" method="GET" id="search-form">
+            <input type="text" ng-model="q" name="q" class="form-control" autofocus placeholder="{{ 'ui_placeholder_search' | transl8 }}"/>
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-primary">
+						&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;
+					</button>
+				</span>
+        </form>
+        <div style="text-align: right;">
+        	<a ng-href="/search?q=*">{{ "ui_showall" | transl8 }}</a>
         </div>
+    </div>
 
 
-    </main>
-</div>
+</main>
 
 <div class="container home-boxes">
     <div class="row">
