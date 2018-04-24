@@ -8,7 +8,7 @@
 
         <h1>
             <img src="/img/chronontology-symbol.jpg">
-            <span style="color: #333; font-size: 0.8em;">iDAI.</span>chronontology
+            <span style="color: #ccc; font-size: 0.8em;">iDAI.</span>chronontology
         </h1>
 
         <form ng-controller="SearchFormController" ng-submit="search()" class="input-group form-inline"
@@ -20,8 +20,11 @@
 					</button>
 				</span>
         </form>
-        <div style="text-align: right;">
-        	<a ng-href="/search?q=*">{{ "ui_showall" | transl8 }}</a>
+        <div class="links">
+        	<a ng-href="/search?q=*">
+                <span class="glyphicon glyphicon-search"></span>
+                {{ "ui_showall" | transl8 }}
+            </a>
         </div>
     </div>
 
