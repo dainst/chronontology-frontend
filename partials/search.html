@@ -73,7 +73,12 @@
                 <tr ng-repeat="period in periods" style="border-bottom: 1px solid #ddd;">
                     <td><a ng-href="/period/{{ period.resource.id }}">{{ period.resource.names | prefName }}</a></td>
                     <td>{{ period | getRegion }}</td>
-                    <td>{{period.resource.types.join(", ")}}</td>
+                    <td>
+                        <span ng-repeat="type in period.resource.types">
+                            <span ng-if="$index > 0">,</span>
+                            {{ "facet_types_" + type | transl8 }}
+                        </span>
+                    </td>
                     <td><a ng-href="/provenance/{{ period.resource.provenance }}">{{ period.resource.provenance }}</a></td>
                 </tr>
 
