@@ -1,7 +1,7 @@
 angular.module('chronontology.components')
     .component('periodTypeTagCloud',{
         templateUrl: '../../partials/period/type-tag-cloud.html',
-        controller: function ($http) {
+        controller: function ($http, $filter) {
 
             this.normalizeWeight = function(count) {
                 return Math.log10(count);
@@ -15,7 +15,7 @@ angular.module('chronontology.components')
     			function success(result) {
     				result.data.facets['resource.types'].buckets.forEach(function(bucket) {
                         ctrl.tags.push({
-                            text: bucket.key,
+                            text: $filter('transl8')(bucket.key),
                             weight: ctrl.normalizeWeight(bucket.doc_count),
                             link: "/search?q=&fq=types:\"" + bucket.key + "\""
                         });
