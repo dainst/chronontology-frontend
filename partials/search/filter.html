@@ -8,7 +8,7 @@
 		ng-init="isSelected = $ctrl.isFacetValueSelected($ctrl.facette, facet.key)"
 		ng-class="{active:isSelected}"
 		ng-href="/search{{$ctrl.addOrRemoveFacetValue($ctrl.facette, facet.key)}}">
-			{{facet.key}}
+			{{"facet_" + $ctrl.facette + "_" + facet.key | transl8}}
 			<span ng-if="!isSelected" style="float:right;" class="badge">{{facet.doc_count}}</span>
 			<span ng-if="isSelected" style="float:right;" class="badge">remove</span>
 		</a>
