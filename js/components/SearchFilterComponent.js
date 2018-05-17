@@ -5,9 +5,12 @@ angular.module('chronontology.components')
         {
             facette: '<',
             facets: '<',
-            query: '<'
+            query: '<',
+            route: '@'
         },
         controller: function() {
+
+            if(!this.route) this.route = "search";
 
             this.isFacetValueSelected = function(facette, facetvalue){
                 if (!this.query.fq) return false;

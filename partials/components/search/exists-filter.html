@@ -1,6 +1,6 @@
 <a class="list-group-item"
 		ng-class="{'active': $ctrl.isExistsFieldSelected($ctrl.field)}"
-		ng-href="/search{{$ctrl.addOrRemoveExistsField($ctrl.field)}}">
+		ng-href="{{$ctrl.route}}{{$ctrl.addOrRemoveExistsField($ctrl.field)}}">
 	{{"relation_" + $ctrl.field | transl8}}
 	<span ng-if="$ctrl.isExistsFieldSelected($ctrl.field)" style="float:right;" class="badge">remove</span>
 </a>

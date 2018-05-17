@@ -4,9 +4,12 @@ angular.module('chronontology.components')
         bindings:
         {
             field: '<',
-            query: '<'
+            query: '<',
+            route: '@'
         },
         controller: function() {
+
+            if(!this.route) this.route = "search";
 
             this.isExistsFieldSelected = function(field) {
                 if (!this.query.exists) return false;

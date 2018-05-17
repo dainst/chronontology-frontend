@@ -4,7 +4,8 @@
             <search-filter
                 facette="facette"
                 facets="facets"
-                query="query">
+                query="query"
+                route="timeline">
             </search-filter>
         </span>
         <div class="panel panel-default">
@@ -15,7 +16,8 @@
                 <search-exists-filter
                     ng-repeat="field in existsList"
                     field="field"
-                    query="query">
+                    query="query"
+                    route="timeline">
                 </search-exists-filter>
             </ul>
         </div>
