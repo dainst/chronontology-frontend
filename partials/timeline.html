@@ -1,4 +1,25 @@
 <div ng-controller="TimelineController">
+    <div class="timeline-facets">
+        <span ng-repeat="facette in facetList">
+            <search-filter
+                facette="facette"
+                facets="facets"
+                query="query">
+            </search-filter>
+        </span>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b>{{"ui_filter_exists" | transl8}}</b>
+            </div>
+            <ul class="list-group">
+                <search-exists-filter
+                    ng-repeat="field in existsList"
+                    field="field"
+                    query="query">
+                </search-exists-filter>
+            </ul>
+        </div>
+    </div>
     <div class="timeline-container-big">
         <timeline periods="periods" axis-ticks="7"></timeline>
     </div>

@@ -1,6 +1,16 @@
 $maxLevel: 6;
 $maxGroups: 10;
 
+.timeline-facets .panel {
+    width: 300px;
+    display: inline-block;
+
+    .list-group {
+        height: 250px;
+        overflow-y: auto;
+    }
+}
+
 .timeline {
 
   &:not(.inactive) {
@@ -134,10 +144,10 @@ $maxGroups: 10;
 }
 
 .timeline-container-big {
-  height: calc(100vh - 270px);
+  height: calc(100vh - 500px);
 
   .timeline-zoom-buttons {
-    top: 65px;
-    left: 14px;
+    top: 390px;
+    left: 24px;
   }
 }
