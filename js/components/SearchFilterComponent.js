@@ -1,6 +1,6 @@
 angular.module('chronontology.components')
     .component('searchFilter',{
-        templateUrl: '../../partials/search/filter.html',
+        templateUrl: '../../partials/components/search/filter.html',
         bindings:
         {
             facette: '<',

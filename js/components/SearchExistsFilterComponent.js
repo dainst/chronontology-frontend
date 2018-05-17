@@ -1,6 +1,6 @@
 angular.module('chronontology.components')
     .component('searchExistsFilter',{
-        templateUrl: '../../partials/search/exists-filter.html',
+        templateUrl: '../../partials/components/search/exists-filter.html',
         bindings:
         {
             field: '<',
