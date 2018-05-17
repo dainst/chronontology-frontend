@@ -47,7 +47,7 @@ function GeoSearchResultsListController($scope, $location, $routeParams, $http, 
 
 angular.module('chronontology.components')
     .component('geosearchresultslist',{
-        templateUrl: '../../partials/geo/searchResultsList.html',
+        templateUrl: '../../partials/components/geo/searchResultsList.html',
         bindings: {
             datasource: '@datasource',
             onPlaceSelected: '&'

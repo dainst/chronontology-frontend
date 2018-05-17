@@ -48,7 +48,7 @@ function GeoPickerQueryController($http, $uibModal) {
 
 angular.module('chronontology.components')
     .component('geopickerquery',{
-        templateUrl: '../../partials/geo/pickerQuery.html',
+        templateUrl: '../../partials/components/geo/pickerQuery.html',
         bindings: {
             onPlaceSelected: '&'
         },

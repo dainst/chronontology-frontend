@@ -120,7 +120,7 @@ function GeoSearchResultsMapController($scope, $location, $routeParams, $http, $
 
 angular.module('chronontology.components')
     .component('geosearchresultsmap',{
-        templateUrl: '../../partials/geo/searchResultsMap.html',
+        templateUrl: '../../partials/components/geo/searchResultsMap.html',
         bindings: {
             datasource: '@datasource',
             onPlaceSelected: '&'

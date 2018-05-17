@@ -209,7 +209,7 @@ function GeoMapController($scope, $location, $routeParams, $http, $sce, chronont
 
 angular.module('chronontology.components')
     .component('geomap',{
-        templateUrl: '../../partials/geo/map.html',
+        templateUrl: '../../partials/components/geo/map.html',
         bindings: {
             selectedPeriodId: '<'
         },

@@ -53,7 +53,7 @@ function GeoPickerMapController($http, $uibModal) {
 
 angular.module('chronontology.components')
     .component('geopickermap',{
-        templateUrl: '../../partials/geo/pickerMap.html',
+        templateUrl: '../../partials/components/geo/pickerMap.html',
         bindings: {
             onPlaceSelected: '&',
             latlng: '&'

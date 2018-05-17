@@ -48,7 +48,7 @@ function GeoPickerResourceController($http, $uibModal) {
 
 angular.module('chronontology.components')
     .component('geopickerresource',{
-        templateUrl: '../../partials/geo/pickerResource.html',
+        templateUrl: '../../partials/components/geo/pickerResource.html',
         bindings: {
             onPlaceSelected: '&'
         },

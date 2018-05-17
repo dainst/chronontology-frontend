@@ -165,7 +165,7 @@ function GeoSearchController($scope, $location, $routeParams, $http, $sce, chron
 
 angular.module('chronontology.components')
     .component('geosearch',{
-        templateUrl: '../../partials/geo/search.html',
+        templateUrl: '../../partials/components/geo/search.html',
         bindings: {
             datasource: '@datasource',
             onPlaceSelected: '&',
