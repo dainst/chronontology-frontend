@@ -30,6 +30,7 @@ angular.module('chronontology', [
             $routeProvider
                 .when('/', {templateUrl: 'partials/homepage.html'})
                 .when('/search', {templateUrl: 'partials/search.html'})
+                .when('/timeline', {templateUrl: 'partials/timeline.html'})
                 .when('/period/:id', {templateUrl: 'partials/period.html'})
                 .when('/provenance/:provenance', {templateUrl: 'partials/provenance.html'})
                 .when('/about', {templateUrl: 'partials/about.html'})

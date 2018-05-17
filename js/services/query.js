@@ -16,6 +16,18 @@ var Query = function(chronontologySettings) {
         return newQuery;
     }
 
+    Query.prototype.setSize = function(size) {
+        var newQuery = angular.copy(this);
+        newQuery.size = size;
+        return newQuery;
+    }
+
+    Query.prototype.setParts = function(parts) {
+        var newQuery = angular.copy(this);
+        newQuery.parts = parts;
+        return newQuery;
+    }
+
     Query.prototype.addFq = function(name, value) {
         var newQuery = angular.copy(this);
         if (!newQuery.fq) newQuery.fq = [];
@@ -57,6 +69,7 @@ var Query = function(chronontologySettings) {
         params.push("q=" + encodeURIComponent(this.q));
         params.push("from=" + this.from);
         params.push("size=" + this.size);
+        if (this.parts) params.push("parts=" + this.parts);
 
         if (params.length > 0) {
             return "?" + params.join("&");
