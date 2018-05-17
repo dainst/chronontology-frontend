@@ -4,7 +4,7 @@
 
 angular.module('chronontology.components')
     .component('periodEdit',{
-        templateUrl: '../../partials/period/edit.html',
+        templateUrl: '../../partials/components/period/edit.html',
         bindings:
         {
             createPeriod: '<',

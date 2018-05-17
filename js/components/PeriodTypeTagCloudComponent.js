@@ -1,6 +1,6 @@
 angular.module('chronontology.components')
     .component('periodTypeTagCloud',{
-        templateUrl: '../../partials/period/type-tag-cloud.html',
+        templateUrl: '../../partials/components/period/type-tag-cloud.html',
         controller: function ($http, $filter) {
 
             this.normalizeWeight = function(count) {

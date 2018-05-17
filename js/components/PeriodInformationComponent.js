@@ -1,6 +1,6 @@
 angular.module('chronontology.components')
     .component('periodInformation',{
-        templateUrl: '../../partials/period/information.html',
+        templateUrl: '../../partials/components/period/information.html',
         bindings:
         {
             period: '<',
