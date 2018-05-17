@@ -2,6 +2,20 @@
     <div class="row">
 
         <div class="col-md-3">
+
+            <h3>{{"ui_search_view" | transl8}}</h3>
+            <div class="btn-group btn-group-justified" role="group">
+                <a class="btn btn-default active">
+                    <span class="glyphicon glyphicon-list"></span>
+                    {{"ui_list" | transl8}}
+                </a>
+                <a ng-href="/timeline{{query.setFrom(0).toFrontendUri()}}"
+                        class="btn btn-default">
+                    <span class="glyphicon glyphicon-align-right"></span>
+                    {{"ui_timeline" | transl8}}
+                </a>
+            </div>
+
             <h3>{{"ui_filter_plural" | transl8}}</h3>
             <span ng-repeat="facette in facetList">
                 <search-filter

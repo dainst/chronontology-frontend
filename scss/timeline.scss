@@ -5,7 +5,7 @@ $maxGroups: 10;
     width: 300px;
     display: inline-block;
 
-    .list-group {
+    .list-group, .panel-body {
         height: 250px;
         overflow-y: auto;
     }

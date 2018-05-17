@@ -1,5 +1,23 @@
 <div ng-controller="TimelineController">
     <div class="timeline-facets">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b>{{"ui_search_view" | transl8}}</b>
+            </div>
+            <div class="panel-body">
+                <div class="btn-group btn-group-justified" role="group">
+                    <a ng-href="/search{{query.setFrom(0).toFrontendUri()}}"
+                            class="btn btn-default">
+                        <span class="glyphicon glyphicon-list"></span>
+                        {{"ui_list" | transl8}}
+                    </a>
+                    <a class="btn btn-default active">
+                        <span class="glyphicon glyphicon-align-right"></span>
+                        {{"ui_timeline" | transl8}}
+                    </a>
+                </div>
+            </div>
+        </div>
         <span ng-repeat="facette in facetList">
             <search-filter
                 facette="facette"
