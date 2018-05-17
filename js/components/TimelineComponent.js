@@ -403,7 +403,7 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 }
 
 angular.module('chronontology.components').component('timeline', {
-    templateUrl: '../../partials/timeline.html',
+    templateUrl: '../../partials/components/timeline.html',
     bindings: {
         periods: '<',
         selectedPeriodId: '@',
