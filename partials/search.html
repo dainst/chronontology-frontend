@@ -7,7 +7,8 @@
                 <search-filter
                     facette="facette"
                     facets="facets"
-                    query="query">
+                    query="query"
+                    route="search">
                 </search-filter>
             </span>
             <div class="panel panel-default">
@@ -18,7 +19,8 @@
                     <search-exists-filter
                         ng-repeat="field in existsList"
                         field="field"
-                        query="query">
+                        query="query"
+                        route="search">
                     </search-exists-filter>
                 </ul>
             </div>
@@ -79,7 +81,7 @@
                             {{ "facet_types_" + type | transl8 }}
                         </span>
                     </td>
-                    <td><a ng-href="/provenance/{{ period.resource.provenance }}">{{ period.resource.provenance }}</a></td>
+                    <td><a ng-href="/search?q=*&fq=provenance:'{{ period.resource.provenance }}'">{{ period.resource.provenance }}</a></td>
                 </tr>
 
                 </tbody>
