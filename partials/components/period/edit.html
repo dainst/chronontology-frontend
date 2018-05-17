@@ -1,0 +1,450 @@
+<h3 ng-show="$ctrl.createPeriod">{{ 'create_period' | transl8 }}</h3>
+
+<h3 ng-show="!$ctrl.createPeriod">{{ 'ui_editTab' | transl8 }}</h3>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination pagination-lg">
+    <li ng-class="{ 'active': ($ctrl.activeEditTab == 'core') }">
+      <a ng-click="$ctrl.activeEditTab = 'core'">{{'core_fields' | transl8}}</a>
+    </li>
+    <li ng-class="{ 'active': ($ctrl.activeEditTab == 'relations') }">
+      <a ng-click="$ctrl.activeEditTab = 'relations'">{{'relation_fields' | transl8}}</a>
+    </li>
+  </ul>
+</nav>
+
+<div ng-show="$ctrl.activeEditTab == 'core'">
+  <div ng-show="!$ctrl.createPeriod" class="row">
+    <h4>ID</h4>
+    <form class="form-group">
+      <input type="text" class="form-control" ng-model="$ctrl.period.id" readonly>
+    </form>
+  </div>
+
+  <div class="row">
+    <h4>Type</h4>
+    <form class="form-group">
+      <div class="col-md-6" ng-repeat="type in $ctrl.validTypes">
+        <label>
+          <input type="radio" ng-model="$ctrl.period.type" value="{{type}}">
+          {{type}}
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <h4>
+      {{ "period_names" | transl8 }}
+    </h4>
+    <div class="row">
+      <div ng-init="languageIndex = $index"
+           ng-repeat="(language, names) in $ctrl.period.names">
+        <div class="col-md-2">
+          <span class="input-group">
+            <span class="input-group-btn">
+             <button class="btn btn-danger"
+                     ng-click="$ctrl.removeLanguage(language)"
+                     type="button">
+                 <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+             </button>
+            </span>
+            <input type="text"
+                   class="form-control"
+                   ng-model="language">
+          </span>
+        </div>
+        <div class="col-md-10">
+          <div ng-repeat="name in names track by $index">
+            <div class="input-group">
+              <input type="text"
+                     class="form-control"
+                     ng-model="$ctrl.period.names[language][$index]"
+                     placeholder="{{'ui_add_name' | transl8}}...">
+              <span class="input-group-btn">
+                <button class="btn btn-danger"
+                         ng-click="$ctrl.removeName(language, $index)"
+                         type="button">
+                  <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+                </button>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <span class="col-md-12">
+              <button class="btn btn-success btn-block" ng-click="$ctrl.addName(language)" type="button">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+              </button>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-success" ng-click="$ctrl.addLanguage()" type="button">
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            </button>
+          </span>
+          <input type="text" class="form-control" id="language-input"
+                 placeholder="{{'ui_add_language' | transl8}}...">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_type" | transl8 }}</h4>
+
+    <form class="form-group">
+      <div class="row">
+        <div class="col-md-12 btn-group-sm">
+          <button class="btn btn-default" ng-click="$ctrl.selectAllSubtypes()">
+            Select all
+          </button>
+          <button class="btn btn-default" ng-click="$ctrl.deselectAllSubtypes()">
+            Deselect all
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" ng-repeat="subtype in $ctrl.validSubtypes">
+          <input type="checkbox"
+                 name="selectedSubtypes"
+                 value="{{subtype}}"
+                 ng-checked="$ctrl.period.types.indexOf(subtype) > -1"
+                 ng-click="$ctrl.toggleSubtypeSelection(subtype)">
+          {{subtype}}
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_definition" | transl8 }}</h4>
+    <textarea class="form-control" rows="3" ng-model="$ctrl.period.definition"></textarea>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_description" | transl8 }}</h4>
+    <textarea class="form-control" rows="3" ng-model="$ctrl.period.description"></textarea>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_provenance" | transl8 }}</h4>
+    <form class="form-group">
+      <div class="col-md-6" ng-repeat="provenance in $ctrl.validProvenances">
+        <label>
+          <input type="radio" ng-model="$ctrl.period.provenance" value="{{provenance}}">
+          {{provenance}}
+        </label>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_tags" | transl8 }}</h4>
+    <div class="row">
+      <div ng-repeat="tag in $ctrl.period.tags track by $index" class="col-md-6">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-danger"
+                   ng-click="$ctrl.removeTag(tag)"
+                   type="button">
+              <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+            </button>
+          </span>
+          <input type="text"
+                 class="form-control"
+                 ng-model="$ctrl.period.tags[$index]"
+                 placeholder="{{'ui_add_tag' | transl8}}...">
+        </div>
+      </div>
+    </div>
+    <p/>
+    <div class="row">
+      <span class="col-md-12">
+        <button class="btn btn-success btn-block" ng-click="$ctrl.addTag()" type="button">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <h4>{{ "period_note" | transl8 }}</h4>
+    <textarea class="form-control" rows="3" ng-model="$ctrl.period.note"></textarea>
+  </div>
+
+  <div class="row form-group">
+    <h4>{{ "period_temporalExtent" | transl8 }}</h4>
+
+    {{ "period_ongoing" | transl8 }}:
+    <input type="checkbox"
+           name="toggleOngoing"
+           value="{{$ctrl.period.ongoing}}"
+           ng-checked="$ctrl.period.ongoing"
+           ng-click="$ctrl.period.ongoing = !$ctrl.period.ongoing">
+
+    <p></p>
+
+    <div ng-init="timespanIndex = $index"
+         ng-repeat="timespan in $ctrl.period.hasTimespan track by $index">
+      <div class="row">
+        <div class="col-md-12">
+          <button class="btn btn-danger btn-block"
+                  ng-click="$ctrl.removeTimespan(timespan)"
+                  type="button">
+            <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="col-md-12">
+          <div>
+            {{ "ui_source" | transl8 }}
+            <input type="text"
+                   class="form-control col-md-4"
+                   placeholder="{{'ui_add_value' | transl8}}..."
+                   ng-model="$ctrl.period.hasTimespan[timespanIndex].sourceOriginal">
+          </div>
+          <div>
+            {{ "ui_source_url" | transl8 }}
+            <input type="text"
+                   class="form-control col-md-4"
+                   placeholder="{{'ui_add_value' | transl8}}..."
+                   ng-model="$ctrl.period.hasTimespan[timespanIndex].sourceURL">
+          </div>
+          <div>
+            {{ "period_description" | transl8 }}
+            <textarea class="form-control" rows="3"
+                      placeholder="{{'ui_add_value' | transl8}}..."
+                      ng-model="$ctrl.period.hasTimespan[timespanIndex].timeOriginal">
+                          </textarea>
+          </div>
+          <div>
+            {{ "temporal_calendar" | transl8 }}
+            <input type="text"
+                   class="form-control col-md-4"
+                   placeholder="{{'ui_add_value' | transl8}}..."
+                   ng-model="$ctrl.period.hasTimespan[timespanIndex].calendar">
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              {{ "temporal_begin" | transl8 }}:
+              <input type="text"
+                     class="form-control col-md-4"
+                     placeholder="{{'ui_add_value' | transl8}}..."
+                     ng-model="$ctrl.period.hasTimespan[timespanIndex].begin.at">
+            </div>
+
+
+            <div class="col-md-6">
+              <br/>
+              {{ "temporal_at_precision" | transl8 }}:
+              <input type="checkbox"
+                     name="toggleBeginIsImprecise"
+                     value="{{$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise}}"
+                     ng-checked="$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise"
+                     ng-click="$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise = !$ctrl.period.hasTimespan[timespanIndex].begin.isImprecise">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              {{ "temporal_end" | transl8 }}:
+              <input type="text"
+                     class="form-control col-md-4"
+                     placeholder="{{'ui_add_value' | transl8}}..."
+                     ng-model="$ctrl.period.hasTimespan[timespanIndex].end.at">
+            </div>
+
+            <div class="col-md-6">
+              <br/>
+              {{ "temporal_at_precision" | transl8 }}:
+              <input type="checkbox"
+                     name="toggleEndIsImprecise"
+                     value="{{$ctrl.period.hasTimespan[timespanIndex].end.isImprecise}}"
+                     ng-checked="$ctrl.period.hasTimespan[timespanIndex].end.isImprecise"
+                     ng-click="$ctrl.period.hasTimespan[timespanIndex].end.isImprecise = !$ctrl.period.hasTimespan[timespanIndex].end.isImprecise">
+            </div>
+          </div>
+        </div>
+      </div>
+      <p></p>
+    </div>
+
+    <div>
+      <div class="row">
+        <div class="col-md-12">
+          <span class="input-group-btn">
+            <button class="btn btn-success btn-block"
+                   ng-click="$ctrl.addTimespan()"
+                   type="button">
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div ng-show="$ctrl.activeEditTab == 'relations'">
+  <div class="row form-group">
+    <h4>{{ "ui_general_relations" | transl8 }}</h4>
+
+    <div class="btn-group relation-type-dropdown" uib-dropdown is-open="internalRelationTypePickerOpen">
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+        {{ "relation_" + $ctrl.chosenInternalRelationType | transl8 }} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu>
+        <li ng-repeat="relationName in $ctrl.internalRelationTypes">
+          <a ng-click="$ctrl.chosenInternalRelationType = relationName;">
+            {{ "relation_" + relationName | transl8 }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="input-group idai-picker-wrapper">
+      <idai-picker search-uri="/data/period/"
+                 result-field="results"
+                 title-field="resource.id + ': ' + (resource.names | prefName) + ', ' + resource.types"
+                 selected-item="$ctrl.pickedRelations[$ctrl.chosenInternalRelationType]"></idai-picker>
+    </div>
+
+    <button class="btn btn-success" ng-click="$ctrl.addPickedRelation($ctrl.chosenInternalRelationType)"
+            ng-disabled="!$ctrl.pickedRelations[$ctrl.chosenInternalRelationType]" type="button">
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    </button>
+
+    <div class="col-md-12" ng-init="relationIndex = $index"
+         ng-repeat="relationName in $ctrl.internalRelationTypes">
+      <div ng-if="$ctrl.period.relations[relationName].length > 0" class="relation-list">
+        <div>{{ "relation_" + relationName | transl8 }}</div>
+        <span ng-init="valueIndex = $index"
+              ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
+          <span class="badge">
+            <a ng-href="/period/{{$ctrl.resourceCache[value].id}}" target="_blank">
+              {{ $ctrl.resourceCache[value].names | prefName }}
+            </a>
+            <button class="btn btn-link btn-xs" ng-click="$ctrl.removeRelation(relationName, value)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row form-group">
+    <h4>{{ "ui_temporal_relations" | transl8 }} ({{ "ui_temporal_relations_according_to" | transl8 }} <a href="https://en.wikipedia.org/wiki/Allen%27s_interval_algebra" target="_blank">Allen</a>)
+    </h4>
+
+    <div class="btn-group relation-type-dropdown" uib-dropdown is-open="allenRelationTypePickerOpen">
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+        {{ "relation_" + $ctrl.chosenAllenRelationType | transl8 }} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu>
+        <li ng-repeat="relationName in $ctrl.allenRelationTypes">
+          <a ng-click="$ctrl.chosenAllenRelationType = relationName;">
+            {{ "relation_" + relationName | transl8 }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="input-group idai-picker-wrapper">
+      <idai-picker search-uri="/data/period/"
+                 result-field="results"
+                 title-field="resource.id + ': ' + (resource.names | prefName) + ', ' + resource.types"
+                 selected-item="$ctrl.pickedRelations[$ctrl.chosenAllenRelationType]"></idai-picker>
+    </div>
+
+    <button class="btn btn-success" ng-click="$ctrl.addPickedRelation($ctrl.chosenAllenRelationType)"
+            ng-disabled="!$ctrl.pickedRelations[$ctrl.chosenAllenRelationType]" type="button">
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    </button>
+
+    <div class="col-md-12" ng-init="relationIndex = $index"
+         ng-repeat="relationName in $ctrl.allenRelationTypes">
+      <div ng-if="$ctrl.period.relations[relationName].length > 0" class="relation-list">
+        <div>{{ "relation_" + relationName | transl8 }}</div>
+        <div class="col-md-6"
+             ng-init="valueIndex = $index"
+             ng-repeat="value in $ctrl.period.relations[relationName] track by $index">
+          <span class="badge">
+            <a ng-href="/period/{{$ctrl.resourceCache[value].id}}" target="_blank">
+              {{ $ctrl.resourceCache[value].names | prefName }}
+            </a>
+            <button class="btn btn-link btn-xs" ng-click="$ctrl.removeRelation(relationName, value)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row form-group">
+    <h4>{{ "ui_geographic_relations" | transl8 }}</h4>
+
+    <div class="btn-group relation-type-dropdown" uib-dropdown is-open="gazetteerRelationTypePickerOpen">
+      <button type="button" class="btn btn-primary" uib-dropdown-toggle>
+        {{ "relation_" + $ctrl.chosenGazetteerRelationType | transl8 }} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" uib-dropdown-menu>
+        <li ng-repeat="relationName in $ctrl.gazetteerRelationTypes">
+          <a ng-click="$ctrl.chosenGazetteerRelationType = relationName;">
+            {{ "relation_" + relationName | transl8 }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="input-group idai-picker-wrapper">
+      <idai-picker search-uri="https://gazetteer.dainst.org/search"
+                 result-field="result"
+                 title-field="gazId + ': ' + prefName.title"
+                 selected-item="$ctrl.pickedLocations[$ctrl.chosenGazetteerRelationType]"></idai-picker>
+    </div>
+
+    <button class="btn btn-success" type="button"
+            ng-click="$ctrl.addGazetteerRelation($ctrl.chosenGazetteerRelationType)"
+            ng-disabled="!$ctrl.pickedLocations[$ctrl.chosenGazetteerRelationType]">
+      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+    </button>
+
+    <div class="col-md-12" ng-init="relationIndex = $index"
+         ng-repeat="relationName in $ctrl.gazetteerRelationTypes">      <div ng-if="$ctrl.period[relationName].length > 0" class="relation-list">
+        <div>{{ "relation_" + relationName | transl8 }}</div>
+        <div class="col-md-6"
+             ng-init="valueIndex = $index"
+             ng-repeat="value in $ctrl.period[relationName] track by $index">
+          <span class="badge">
+            <a ng-href="{{$ctrl.period[relationName][valueIndex]}}" target="_blank">
+              {{ $ctrl.resourceCache[value].prefName.title }}
+            </a>
+            <button class="btn btn-link btn-xs" ng-click="$ctrl.removeGazetteerRelation(relationName, value)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="row relation-editor-controls">
+  <button class="btn btn-primary" ng-click="$ctrl.saveChanges()">Save changes</button>
+  <button class="btn btn-default" ng-click="$ctrl.reset()">Reset changes</button>
+</div>

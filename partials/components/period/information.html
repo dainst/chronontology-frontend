@@ -1,0 +1,212 @@
+<div>
+<script type="text/ng-template" id="/explicitRelations">
+	<span ng-if="$ctrl.period.relations[relation]">
+		<dt>{{ "relation_"+relation | transl8 }}</dt>
+		<dd ng-repeat="periodId in $ctrl.period.relations[relation]" ng-include src="'/periodLink'"></dd>
+		<br>
+	</span>
+</script>
+
+<script type="text/ng-template" id="/derivedRelations">
+	<span ng-if="$ctrl.document.derived.relations[relation]">
+		<dt>{{ "relation_"+relation | transl8 }}</dt>
+		<dd ng-repeat="periodId in $ctrl.document.derived.relations[relation]" ng-include src="'/periodLink'"></dd>
+		<br>
+	</span>
+</script>
+
+<script type="text/ng-template" id="/periodLink">
+	<a ng-href="/period/{{periodId}}">{{ $ctrl.resourceCache[periodId].names | prefName }}</a>
+	<span ng-if="$ctrl.resourceCache[periodId].types.join(', ') != $ctrl.period.types.join(', ') ">
+		({{ $ctrl.resourceCache[periodId].types.join(", ") }})
+	</span>
+	<span ng-if="$ctrl.resourceCache[periodId].provenance != $ctrl.period.provenance ">
+		{{ $ctrl.resourceCache[periodId].provenance }}
+	</span>
+</script>
+
+<script type="text/ng-template" id="/intervalBoundary">
+	<span ng-if="timespan[boundary]">
+		{{ "temporal_"+boundary | transl8 }}
+		<span ng-if="timespan[boundary].at">
+			{{ timespan[boundary].at | transl8Year }}
+			<span ng-if="timespan[boundary].isImprecise">
+				(ca.)
+			</span>
+		</span>
+		<span ng-if="timespan[boundary].notBefore">
+			({{ "temporal_notBefore" | transl8 }} {{ timespan[boundary].notBefore }})
+		</span>
+		<span ng-if="timespan[boundary].notAfter">
+			({{ "temporal_notAfter" | transl8 }} {{ timespan[boundary].notAfter }})
+		</span>
+		<br>
+	</span>
+</script>
+
+<script type="text/ng-template" id="/hasTimespan">
+	<dt>{{ "period_temporalExtent" | transl8 }}</dt>
+	<span ng-if="hasTimespan.ongoing">
+		<dd>{{ "period_ongoing" | transl8 }}</dd>
+		<br>
+	</span>
+	<dd ng-repeat="timespan in hasTimespan">
+		<span ng-if="timespan.timeOriginal">
+			Original text: {{ timespan.timeOriginal }}
+			<br>
+		</span>
+		<span ng-repeat="boundary in ['begin', 'end']" ng-include src="'/intervalBoundary'"></span>
+		<span ng-if="timespan.calendar">{{ "temporal_calendar" | transl8 }} {{ timespan.calendar }}<br></span>
+		<span ng-if="timespan.sourceOriginal">{{ "ui_source" | transl8 }} {{ timespan.sourceOriginal }}<br></span>
+		<span ng-if="timespan.sourceURL"><a ng-href="{{timespan.sourceURL}}">{{timespan.sourceURL}}</a><br></span>
+		<span ng-if="timespan.derivedFrom">
+			derived from:
+			<ul>
+				<li ng-repeat="periodId in timespan.derivedFrom" ng-include src="'/periodLink'"/>
+			</ul>
+		</span>
+	</dd>
+	<br>
+</script>
+
+
+<dl class="dl-horizontal">
+
+	<h4>{{ "ui_periodInfo" | transl8 }}</h4>
+
+    <dt>{{ "period_names" | transl8 }}</dt>
+    <span ng-repeat="(language, names) in $ctrl.period.names">
+        <dd ng-repeat="name in names">
+            {{ name }} <i>({{language}})</i>
+        </dd>
+    </span>
+    <br>
+
+    <dt>{{ "period_type" | transl8 }}</dt>
+    <dd ng-repeat="type in $ctrl.period.types">{{ type }}</dd>
+    <br>
+
+    <dt>{{ "period_provenance" | transl8 }}</dt>
+    <dd>
+        <a ng-href="/provenance/{{ $ctrl.period.provenance }}">{{ $ctrl.period.provenance }}</a>
+        <span ng-if="$ctrl.period.externalId">(originale ID: {{ $ctrl.period.externalId }})</span>
+    </dd>
+    <br>
+
+    <span ng-if="$ctrl.period.definition">
+        <dt>{{ "period_definition" | transl8 }}</dt>
+        <dd class="preserve-linebreaks">{{ $ctrl.period.definition }}</dd>
+        <br>
+    </span>
+
+    <span ng-if="$ctrl.period.description">
+        <dt>{{ "period_description" | transl8 }}</dt>
+        <dd class="preserve-linebreaks">{{ $ctrl.period.description }}</dd>
+        <br>
+    </span>
+
+    <span ng-if="$ctrl.period.tags">
+        <dt>{{ "period_tags" | transl8 }}</dt>
+        <dd>{{ $ctrl.period.tags.join(", ") }}</dd>
+        <br>
+    </span>
+
+    <span ng-if="$ctrl.period.note">
+        <dt>{{ "period_note" | transl8 }}</dt>
+        <dd class="preserve-linebreaks">{{ $ctrl.period.note }}</dd>
+        <br>
+    </span>
+
+	<span ng-if="$ctrl.period.hasTimespan"
+		ng-init="hasTimespan = $ctrl.period.hasTimespan"
+		ng-include src="'/hasTimespan'">
+    </span>
+
+    <span ng-repeat="gazetteerRelation in $ctrl.gazetteerRelationTypes">
+        <span ng-if="$ctrl.period[gazetteerRelation]">
+            <dt>{{ "relation_"+gazetteerRelation | transl8 }}</dt>
+            <dd ng-repeat="regionUri in $ctrl.period[gazetteerRelation]">
+				<span ng-if="$ctrl.resourceCache[regionUri]">
+					<a ng-href="{{regionUri}}" target="_blank">
+						{{$ctrl.resourceCache[regionUri].prefName.title}} <span class="glyphicon glyphicon-new-window"></span>
+					</a>
+				</span>
+				<span ng-if="!$ctrl.resourceCache[regionUri]">
+					<a ng-href="{{regionUri}}" target="_blank">
+						{{regionUri}} <span class="glyphicon glyphicon-new-window"></span>
+					</a>
+				</span>
+            </dd>
+            <br>
+        </span>
+    </span>
+</dl>
+
+<dl class="dl-horizontal">
+
+	<span ng-if="$ctrl.hasRelationsInResource($ctrl.period)">
+    	<h5>{{ "ui_relations" | transl8 }}</h5>
+		<span ng-repeat="relation in $ctrl.internalRelationTypes" ng-include src="'/explicitRelations'"></span>
+		<span ng-repeat="relation in $ctrl.allenRelationTypes" ng-include src="'/explicitRelations'"></span>
+	</span>
+
+	<span ng-if="$ctrl.hasDerivedInformation($ctrl.document)">
+    	<h4>{{ "ui_derivedInfo" | transl8 }}</h4>
+		<span ng-if="$ctrl.hasGazetteerRelationsInDerived($ctrl.document)">
+    		<span ng-repeat="gazetteerRelation in $ctrl.gazetteerRelationTypes">
+        		<span ng-if="$ctrl.document.derived[gazetteerRelation]">
+            		<dt>{{ "relation_"+gazetteerRelation | transl8 }}</dt>
+            		<dd ng-repeat="regionUri in $ctrl.document.derived[gazetteerRelation]">
+						<span ng-if="$ctrl.resourceCache[regionUri]">
+							<a ng-href="{{regionUri}}" target="_blank">
+								{{$ctrl.resourceCache[regionUri].prefName.title}} <span class="glyphicon glyphicon-new-window"></span>
+							</a>
+						</span>
+						<span ng-if="!$ctrl.resourceCache[regionUri]">
+							<a ng-href="{{regionUri}}" target="_blank">
+								{{regionUri}} <span class="glyphicon glyphicon-new-window"></span>
+							</a>
+						</span>
+            		</dd>
+            		<br>
+        		</span>
+    		</span>
+		</span>
+		<span ng-if="$ctrl.hasTimespanInDerived($ctrl.document)"
+			ng-init="hasTimespan = $ctrl.document.derived.hasTimespan"
+			ng-include src="'/hasTimespan'">
+    	</span>
+		<span ng-if="$ctrl.hasRelationsInDerived($ctrl.document)">
+    		<h5>{{ "ui_relations" | transl8 }}</h5>
+			<span ng-repeat="relation in $ctrl.internalRelationTypes" ng-include src="'/derivedRelations'"></span>
+			<span ng-repeat="relation in $ctrl.allenRelationTypes" ng-include src="'/derivedRelations'"></span>
+		</span>
+	</span>
+
+</dl>
+
+<span ng-if="$ctrl.authService.getUser() != undefined">
+
+	<h4>{{ "ui_metadata" | transl8 }}</h4>
+
+	<dl class="dl-horizontal">
+
+		<dt>{{ "ui_created" | transl8 }}</dt>
+		<dd>
+			{{$ctrl.document.created.date | date:'medium' }}
+			({{$ctrl.document.created.user}})
+		</dd>
+		<br>
+
+		<dt>{{ "ui_modified" | transl8 }}</dt>
+		<dd ng-repeat="m in $ctrl.document.modified">
+			{{ m.date | date:'medium' }}
+			({{ m.user }})
+		</dd>
+		<br>
+
+	</dl>
+
+</span>
+
+</div>
