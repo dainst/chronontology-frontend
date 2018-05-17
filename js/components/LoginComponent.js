@@ -6,7 +6,7 @@
 
 angular.module('chronontology.components')
     .component('login',{
-        templateUrl: '../../partials/login-form.html',
+        templateUrl: '../../partials/components/login.html',
         bindings: {
             modalInstance: "<",
             resolve: "<"
