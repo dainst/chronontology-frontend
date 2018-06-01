@@ -27,7 +27,7 @@
 
 <script type="text/ng-template" id="/intervalBoundary">
 	<span ng-if="timespan[boundary]">
-		{{ "temporal_"+boundary | transl8 }}
+		<i>{{ "temporal_"+boundary | transl8 }}:</i>
 		<span ng-if="timespan[boundary].at">
 			{{ timespan[boundary].at | transl8Year }}
 			<span ng-if="timespan[boundary].isImprecise">
@@ -52,15 +52,15 @@
 	</span>
 	<dd ng-repeat="timespan in hasTimespan">
 		<span ng-if="timespan.timeOriginal">
-			Original text: {{ timespan.timeOriginal }}
+			<i>Original text</i>: {{ timespan.timeOriginal }}
 			<br>
 		</span>
 		<span ng-repeat="boundary in ['begin', 'end']" ng-include src="'/intervalBoundary'"></span>
-		<span ng-if="timespan.calendar">{{ "temporal_calendar" | transl8 }} {{ timespan.calendar }}<br></span>
-		<span ng-if="timespan.sourceOriginal">{{ "ui_source" | transl8 }} {{ timespan.sourceOriginal }}<br></span>
+		<span ng-if="timespan.calendar"><i>{{ "temporal_calendar" | transl8 }}</i>: {{ timespan.calendar }}<br></span>
+		<span ng-if="timespan.sourceOriginal"><i>{{ "ui_source" | transl8 }}</i>: {{ timespan.sourceOriginal }}<br></span>
 		<span ng-if="timespan.sourceURL"><a ng-href="{{timespan.sourceURL}}">{{timespan.sourceURL}}</a><br></span>
 		<span ng-if="timespan.derivedFrom">
-			derived from:
+			<i>derived from:</i>
 			<ul>
 				<li ng-repeat="periodId in timespan.derivedFrom" ng-include src="'/periodLink'"/>
 			</ul>
