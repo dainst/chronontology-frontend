@@ -14,6 +14,7 @@ angular.module('chronontology.controllers')
 
     $scope.existsList = chronontologySettings.existsList;
     $scope.facetList = chronontologySettings.facetList;
+    $scope.regionFacetList = chronontologySettings.regionFacetList;
 
     $scope.getPrevious = function(){
         return $scope.query.from - $scope.query.size;

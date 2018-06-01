@@ -102,6 +102,9 @@ var Query = function(chronontologySettings) {
         for(var i in chronontologySettings.facetList) {
             params.push("facet=resource." + encodeURIComponent(chronontologySettings.facetList[i]));
         }
+        for(var i in chronontologySettings.regionFacetList) {
+            params.push("facet=resource." + encodeURIComponent(chronontologySettings.regionFacetList[i]));
+        }
         return params;
     }
 
