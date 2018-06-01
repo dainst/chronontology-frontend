@@ -1,6 +1,6 @@
 'use strict';
 
-var Query = function(chronontologySettings) {
+var Query = function(chronontologySettings, language) {
 
     function Query() {
         this.q = "";
@@ -99,12 +99,16 @@ var Query = function(chronontologySettings) {
 
     function buildFacetParams() {
         var params = [];
+
         for(var i in chronontologySettings.facetList) {
             params.push("facet=resource." + encodeURIComponent(chronontologySettings.facetList[i]));
         }
-        for(var i in chronontologySettings.regionFacetList) {
-            params.push("facet=resource." + encodeURIComponent(chronontologySettings.regionFacetList[i]));
-        }
+
+        var regionFacet = "regions.en";
+        if (language.currentLanguage()==COMPONENTS_GERMAN_LANG)
+            regionFacet = "regions.de"
+        params.push("facet=" + encodeURIComponent(regionFacet));
+
         return params;
     }
 
@@ -113,6 +117,9 @@ var Query = function(chronontologySettings) {
         var params = [];
         for(var i in fq) {
             var value = prefix + fq[i].key + ":\"" + fq[i].value + "\"";
+            // TODO loswerden
+            if (fq[i].key.startsWith("region"))
+                value = fq[i].key + ":\"" + fq[i].value + "\"";
             params.push("fq=" + encodeURIComponent(value));
         }
         return params;
@@ -160,5 +167,5 @@ var Query = function(chronontologySettings) {
 }
 
 angular.module('chronontology.services').factory(
-    'Query', ['chronontologySettings', Query]
+    'Query', ['chronontologySettings', 'language', Query]
 );

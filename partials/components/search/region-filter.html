@@ -1,14 +1,14 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<b>{{"period_" + $ctrl.facet | transl8}}</b>
+		<b>{{"period_region" | transl8}}</b>
 	</div>
 	<div class="list-group">
 		<a class="list-group-item"
-		ng-repeat="facet in $ctrl.facets[$ctrl.addResource($ctrl.facet)].buckets"
-		ng-init="isSelected = $ctrl.isFacetValueSelected($ctrl.facet, facet.key)"
+		ng-repeat="facet in $ctrl.facets[$ctrl.facet].buckets"
+		ng-init="isSelected = $ctrl.isFacetValueSelected(facet.key)"
 		ng-class="{active:isSelected}"
-		ng-href="/{{$ctrl.route}}{{$ctrl.addOrRemoveFacetValue($ctrl.facet, facet.key)}}">
-			{{$ctrl.getPlaceName(facet.key)}}
+		ng-href="/{{$ctrl.route}}{{$ctrl.addOrRemoveFacetValue(facet.key)}}">
+			{{facet.key}}
 			<span ng-if="!isSelected" style="float:right;" class="badge">{{facet.doc_count}}</span>
 			<span ng-if="isSelected" style="float:right;" class="badge">remove</span>
 		</a>

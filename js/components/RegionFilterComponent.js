@@ -3,38 +3,32 @@ angular.module('chronontology.components')
         templateUrl: '../../partials/components/search/region-filter.html',
         bindings:
         {
-            facet: '<',
             facets: '<',
             query: '<',
             route: '@'
         },
-        controller: function($http) {
-
-            this.placeNames = {};
+        controller: function($http, language) {
 
             if(!this.route) this.route = "search";
 
-            this.isFacetValueSelected = function(facet, facetvalue){
+            this.facet = "regions.en";
+            if (language.currentLanguage()==COMPONENTS_GERMAN_LANG)
+                this.facet = "regions.de"
+
+            this.isFacetValueSelected = function(facetvalue){
+                var facet = this.facet;
                 if (!this.query.fq) return false;
                 return this.query.fq.filter(function(param) {
                     return param.key == facet && param.value == facetvalue;
                 }).length > 0;
             }
-            this.addResource = function(text){
-                return "resource." + text;
-            }
 
-            this.addOrRemoveFacetValue = function(facet, facetvalue){
-                if (this.isFacetValueSelected(facet, facetvalue)) {
-                    return this.query.removeFq(facet, facetvalue).toFrontendUri();
+            this.addOrRemoveFacetValue = function(facetvalue){
+                if (this.isFacetValueSelected(facetvalue)) {
+                    return this.query.removeFq(this.facet, facetvalue).toFrontendUri();
                 } else {
-                    return this.query.addFq(facet, facetvalue).toFrontendUri();
+                    return this.query.addFq(this.facet, facetvalue).toFrontendUri();
                 }
-            }
-
-            this.getPlaceName = function(uri) {
-                var split = uri.split('/');
-                return split[split.length-1];
             }
 
         }

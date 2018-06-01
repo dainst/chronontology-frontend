@@ -78,9 +78,6 @@ angular.module('chronontology', [
     facetList: [
         'provenance', 'types'
     ],
-    regionFacetList: [
-        'hasCoreArea'
-    ],
     existsList: [
         'hasTimespan', 'isNamedAfter', 'hasCoreArea', 'spatiallyPartOfRegion'
     ],
