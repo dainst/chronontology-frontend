@@ -2,6 +2,30 @@
   "children": [{
     "id": "navbar",
     "children": [
+        {
+            "id": "about",
+            "path": "info/",
+            "title": {
+                "de": "Über Chronontology",
+                "en": "About chronontology"
+            }
+        },
+        {
+            "id": "faq",
+            "path": "info/",
+            "title": {
+                "de": "FAQ",
+                "en": "FAQ"
+            }
+        },
+        {
+            "id": "api",
+            "path": "info/",
+            "title": {
+                "de": "API",
+                "en": "API"
+            }
+        }
     ]
   }, {
     "id": "footer",
