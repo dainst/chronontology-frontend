@@ -269,10 +269,10 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.doesTextFitInBar = function(text, barWidth) {
 
-        return !(this.getApproximatedTextLength(text) > barWidth);
+        return !(this.getApproximatedTextLabelWidth(text) > barWidth);
     };
 
-    this.getApproximatedTextLength = function(text) {
+    this.getApproximatedTextLabelWidth = function(text) {
 
         return text.length * 7;
     };
@@ -281,7 +281,6 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
         tooltip.style('visibility', 'hidden');
         $location.path('/period/' + period.id);
-        console.log('show period!');
         $scope.$apply();
     };
 
@@ -312,8 +311,11 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
             return tooltip.style('visibility', 'visible');
         })
             .on('mousemove', function() {
-                return tooltip.style('top', (d3.event.pageY - 10) + 'px')
-                    .style('left', (d3.event.pageX + 10) + 'px');
+                tooltip.style('top', (d3.event.pageY - 10) + 'px');
+                var tooltipWidth = tooltip.node().getBoundingClientRect().width;
+                return tooltipWidth < width - d3.event.pageX
+                    ? tooltip.style('left', (d3.event.pageX + 10) + 'px')
+                    : tooltip.style('left', (d3.event.pageX - tooltipWidth - 10) + 'px');
             })
             .on('mouseout', function(period) {
                 d3.select('#bar-path-' + period.id).classed('hover', false);
