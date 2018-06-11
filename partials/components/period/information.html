@@ -89,10 +89,10 @@
     <dt>{{ "period_provenance" | transl8 }}</dt>
     <dd>
         <a ng-href="/search?q=*&fq=provenance:'{{ $ctrl.period.provenance }}'">{{ $ctrl.period.provenance }}</a>
-        <span ng-if="$ctrl.period.externalId && !$ctrl.period.externalUrl">
+        <span ng-if="$ctrl.period.externalId && !$ctrl.period.externalURI">
 			({{ $ctrl.period.externalId }})
 		</span>
-		<a ng-if="$ctrl.period.externalId && $ctrl.period.externalURI" ng-href="{{externalURI}}">
+		<a ng-if="$ctrl.period.externalId && $ctrl.period.externalURI" ng-href="{{$ctrl.period.externalURI}}">
 			({{ $ctrl.period.externalId }}
 			<span class="glyphicon glyphicon-new-window"></span>)
 		</a>
