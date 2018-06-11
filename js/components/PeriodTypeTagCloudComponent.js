@@ -15,7 +15,7 @@ angular.module('chronontology.components')
     			function success(result) {
     				result.data.facets['resource.types'].buckets.forEach(function(bucket) {
                         ctrl.tags.push({
-                            text: $filter('transl8')("facet_types_" + bucket.key),
+                            text: $filter('transl8')("value_types_" + bucket.key),
                             weight: ctrl.normalizeWeight(bucket.doc_count),
                             link: "/search?q=&fq=types:\"" + bucket.key + "\""
                         });
