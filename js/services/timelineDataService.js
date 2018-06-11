@@ -78,8 +78,8 @@ var TimelineDataService = function($filter) {
             return false;
 
         // Check if the values of the timespan are set properly
-        if (parseInt(getTo(period.resource.hasTimespan[0].end))
-            < parseInt(getFrom(period.resource.hasTimespan[0].begin)))
+        if (parseInt(period.resource.hasTimespan[0].end.at || period.resource.hasTimespan[0].end.notBefore)
+            < parseInt(period.resource.hasTimespan[0].begin.at || period.resource.hasTimespan[0].begin.notAfter))
             return false;
 
         return true;
