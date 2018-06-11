@@ -333,10 +333,10 @@ function TimelineController(timelineDataService, $location, $element, $scope) {
 
     this.setStartDomainsToSelection = function(selectedPeriod) {
 
-        var span = selectedPeriod.to - selectedPeriod.from;
+        var span = (selectedPeriod.latestTo || selectedPeriod.to) - (selectedPeriod.earliestFrom || selectedPeriod.from);
         var offset = (span < maxZoomYears) ? (maxZoomYears - span) / 2 : span / 2;
-        var from = selectedPeriod.from - offset;
-        var to = selectedPeriod.to + offset;
+        var from = (selectedPeriod.earliestFrom || selectedPeriod.from) - offset;
+        var to = (selectedPeriod.latestTo || selectedPeriod.to) + offset;
         if (from < totalXDomain[0]) from = totalXDomain[0];
         if (to > totalXDomain[1]) to = totalXDomain[1];
         startXDomain = [from, to];
