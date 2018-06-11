@@ -92,3 +92,10 @@ main {
 		}
 	}
 }
+
+.messages {
+	position: absolute;
+	width: 100%;
+	z-index: 1050;
+	top: 5px;
+}
