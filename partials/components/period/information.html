@@ -21,7 +21,7 @@
 		({{ $ctrl.resourceCache[periodId].types.join(", ") }})
 	</span>
 	<span ng-if="$ctrl.resourceCache[periodId].provenance != $ctrl.period.provenance ">
-		{{ $ctrl.resourceCache[periodId].provenance }}
+		{{ "value_types_" + $ctrl.resourceCache[periodId].provenance | transl8 }}
 	</span>
 </script>
 
@@ -88,7 +88,7 @@
 
     <dt>{{ "period_provenance" | transl8 }}</dt>
     <dd>
-        <a ng-href="/search?q=*&fq=provenance:'{{ $ctrl.period.provenance }}'">{{ $ctrl.period.provenance }}</a>
+        <a ng-href="/search?q=*&fq=provenance:'{{ $ctrl.period.provenance }}'">{{ "value_provenance_" + $ctrl.period.provenance | transl8 }}</a>
         <span ng-if="$ctrl.period.externalId && !$ctrl.period.externalURI">
 			({{ $ctrl.period.externalId }})
 		</span>
