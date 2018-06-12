@@ -96,8 +96,7 @@
                     <td>{{ period | getRegion }}</td>
                     <td>
                         <span ng-repeat="type in period.resource.types">
-                            <span ng-if="$index > 0">,</span>
-                            {{ "value_types_" + type | transl8 }}
+                            {{ "value_types_" + type | transl8 }}{{$last ? '' : ', '}}
                         </span>
                     </td>
                     <td><a ng-href="/search?q=*&fq=provenance:'{{ period.resource.provenance }}'">{{ "value_provenance_" + period.resource.provenance | transl8 }}</a></td>
