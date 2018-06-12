@@ -60,7 +60,7 @@
 		<span ng-if="timespan.sourceOriginal"><i>{{ "ui_source" | transl8 }}</i>: {{ timespan.sourceOriginal }}<br></span>
 		<span ng-if="timespan.sourceURL"><a ng-href="{{timespan.sourceURL}}">{{timespan.sourceURL}}</a><br></span>
 		<span ng-if="timespan.derivedFrom">
-			<i>{{ "derived_from" | transl8}}:</i>
+			<i>{{ "ui_derived_from" | transl8}}:</i>
 			<ul>
 				<li ng-repeat="periodId in timespan.derivedFrom" ng-include src="'/periodLink'"/>
 			</ul>
