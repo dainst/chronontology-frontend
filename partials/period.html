@@ -10,7 +10,10 @@
     <div ng-if="viewMode == 'display_and_edit'">
 
       <h2>{{ period.names | prefName }}
-        <small>{{ period.types.join(", ") }}
+        <small>
+          <span ng-repeat="type in period.types">
+            {{ "value_types_" + type | transl8 }}{{$last ? '' : ', '}}
+          </span>
           <span ng-if="(document|getRegion) != '-'">
                         ({{document|getRegion}})
                     </span>

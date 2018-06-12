@@ -18,7 +18,7 @@
 <script type="text/ng-template" id="/periodLink">
 	<a ng-href="/period/{{periodId}}">{{ $ctrl.resourceCache[periodId].names | prefName }}</a>
 	<span ng-if="$ctrl.resourceCache[periodId].types.join(', ') != $ctrl.period.types.join(', ') ">
-		({{ $ctrl.resourceCache[periodId].types.join(", ") }})
+		(<span ng-repeat="type in $ctrl.resourceCache[periodId].types">{{ "value_types_" + type | transl8 }}{{$last ? '' : ', '}}</span>)
 	</span>
 	<span ng-if="$ctrl.resourceCache[periodId].provenance != $ctrl.period.provenance ">
 		{{ "value_provenance_" + $ctrl.resourceCache[periodId].provenance | transl8 }}
@@ -83,7 +83,7 @@
     <br>
 
     <dt>{{ "period_type" | transl8 }}</dt>
-    <dd ng-repeat="type in $ctrl.period.types">{{ type }}</dd>
+    <dd ng-repeat="type in $ctrl.period.types">{{ "value_types_" + type | transl8 }}</dd>
     <br>
 
     <dt>{{ "period_provenance" | transl8 }}</dt>
