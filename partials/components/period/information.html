@@ -21,7 +21,7 @@
 		({{ $ctrl.resourceCache[periodId].types.join(", ") }})
 	</span>
 	<span ng-if="$ctrl.resourceCache[periodId].provenance != $ctrl.period.provenance ">
-		{{ "value_types_" + $ctrl.resourceCache[periodId].provenance | transl8 }}
+		{{ "value_provenance_" + $ctrl.resourceCache[periodId].provenance | transl8 }}
 	</span>
 </script>
 
