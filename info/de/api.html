@@ -1,0 +1,78 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+
+            <h1>API</h1>
+            <p>
+                iDAI.chronontology bietet eine <a href="https://de.wikipedia.org/wiki/Representational_State_Transfer" target="_blank">
+                REST-Schnittstelle</a> zur Abfrage und Manipulation der verwalteten Daten. Die Basis-URL des Webservice
+                ist <a href="http://chronontology.dainst.org/data">http://chronontology.dainst.org/data</a>.
+            </p>
+            <p>
+                Die Authentifizierung erfolgt grundsätzlich über <a href="https://de.wikipedia.org/wiki/HTTP-Authentifizierung#Basic_Authentication" target="_blank">HTTP-Basic</a>.
+            </p>
+            <p>
+                Als Austauschformat dient <a href="https://de.wikipedia.org/wiki/JavaScript_Object_Notation" target="_blank">JSON</a>.
+            </p>
+            <p>
+                Die folgenden Operationen werden unterstützt:
+            </p>
+            <br>
+
+            <h4><b>GET</b> /period/</h4>
+            <p>
+                Führt eine Suche nach Epochenbegriffen aus.
+            </p>
+            <p>
+                Die folgenden GET-Parameter werden unterstützt:
+            </p>
+            <ul>
+                <li><b>q</b>: Suchbegriff</li>
+                <li><b>fq</b>: Filter <i>(kann mehrfach verwendet werden)</i></li>
+                <li><b>from</b>: Offset</li>
+                <li><b>size</b>: Maximale Anzahl der Ergebnisse</li>
+                <li><b>facet</b>: Eigenschaft für die eine Facette generiert werden soll <i>(kann mehrfach verwendet werden)</i></li>
+                <li><b>exists</b>: Nur Epochenbegriffe, die diese Eigenschaft besitzen werden zurückgegeben <i>(kann mehrfach verwendet werden)</i></li>
+                <li><b>parts</b>: Nur die aufgelisteten Eigenschaften werden zurückgegeben <i>(kommagetrennt)</i></li>
+            </ul>
+            <br>
+
+            <h4><b>GET</b> /period/<i>:id</i></h4>
+            <p>
+                Gibt die Metadaten zum Epochenbegriff zurück, der über <b>:id</b> identifiziert wird.
+            </p>
+            <p>
+                Die folgenden GET-Parameter werden unterstützt:
+            </p>
+            <ul>
+                <li><b>version</b>: Erlaubt den Zugriff auf ältere Versionen des Datensatzes</li>
+            </ul>
+            <br>
+
+            <h4><b>PUT</b> /period/<i>:id</i></h4>
+            <p>
+                Aktualisiert den Datensatz unter <b>:id</b> oder legt einen neuen Datensatz unter
+                <b>:id</b> an.
+            </p>
+            <p>
+                Erwartet die JSON-Repräsentation eines Datensatzes im Body-Teil der Anfrage.
+            </p>
+            <br>
+
+            <h4><b>POST</b> /period//h4>
+            <p>
+                Legt einen neuen Datensatz unter einer zufällig generierten ID an.
+            </p>
+            <p>
+                Erwartet die JSON-Repräsentation eines Datensatzes im Body-Teil der Anfrage.
+            </p>
+            <br>
+
+            <h4><b>DELETE</b> /period/<i>:deletedId</i>/<i>:replacementId</i></h4>
+            <p>
+                Markiert den Epochenbegriff mit der ID <b>:deletedId</b> als gelöscht und ersetzt
+                durch den unter <b>:replacementId</b> angegebenen Epochenbegriff.
+            </p>
+        </div>
+    </div>
+</div>
