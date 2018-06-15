@@ -83,7 +83,11 @@ angular.module('chronontology', [
     ],
     exampleQueries: [
         { key: "example_query_augustan", q: "augustan" },
-        { key: "example_query_arachne", q: "provenance:arachne" }
+        { key: "example_query_arachne", q: "*&fq=provenance:'Arachne'" },
+        { key: "example_query_ancient_egypt", q: "*&fq=tags:'ancient_egypt'" },
+        { key: "example_query_bronze_age_europe", q: "*&fq=tags:'bronze_age_europe'" },
+        { key: "example_query_geological_time_scale", q: "*&fq=tags:'geological_time_scale'" },
+        { key: "example_query_roman_chronology", q: "*&fq=tags:'roman_chronology'" }
     ]
 }).constant('componentsSettings', {
     transl8Uri: 'https://arachne.dainst.org/transl8/translation/jsonp?application=chronontology_frontend&application=shared&lang={LANG}',
