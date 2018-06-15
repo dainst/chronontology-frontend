@@ -1,0 +1,180 @@
+<div class="container">
+    <div class="row con10t-page">
+        <div class="col-md-8 col-md-offset-2" style="margin-top:20px">
+            <h1>FAQ
+                <small>Häufig gestellte Fragen</small>
+            </h1>
+            <hr>
+        </div>
+        <div class="col-md-8 col-md-offset-2" style="margin-top:20px">
+
+            <h2 id="Suche" style="margin-top: 0;">Suche</h2>
+            <uib-accordion>
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Wie kann ich mehrere Suchbegriffe miteinander kombinieren?
+                    </uib-accordion-heading>
+                    <p>Wenn Sie mehrere Begriffe eingeben, werden alle Epochenbegriffe gefunden, in deren Inhalt alle
+                        Suchbegriffe vorkommen. Standardmäßig werden Suchbegriffe folglich anhand eines logischen UND verknüpft.</p>
+
+                    <p class="query-example">Beispiel: <a href="period?q=Bronzezeit Levante">Bronzezeit Levante</a></p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Wie kann ich Suchbegriffe ausschließen?
+                    </uib-accordion-heading>
+                    <p>Durch Voranstellen eines Bindestrichs können Sie alle Epochenbegriffe aus dem Suchergebnis ausschließen,
+                        die
+                        den unmittelbar darauf folgenden Suchbegriff beinhalten.</p>
+
+                    <p class="query-example">Beispiel: <a href="search?q=Bronzezeit -Levante">Bronzezeit -Levante</a></p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Wie kann ich komplexere logische Verknüpfungen in der Suchanfrage formulieren?
+                    </uib-accordion-heading>
+                    <p>iDAI.chronontology unterstützt die logischen Operatoren AND, OR und NOT. Beachten Sie dabei die übliche
+                        Rangfolge der Operatoren: NOT hat Vorrang vor AND hat Vorrang vor OR. Sie können Klammern nutzen, um
+                        die
+                        Rangfolge der Verkettung festzulegen.</p>
+
+                    <p class="query-example">Beispiel: <a href="search?q=Herakles AND (Dionysos OR Bacchus)">Herakles
+                        AND
+                        (Dionysos OR Bacchus)</a></p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Wie kann ich nach einer festen Phrase statt nach mehreren unverbundenen Wörtern suchen?
+                    </uib-accordion-heading>
+                    <p>Setzen Sie die Phrase in Anführungszeichen. Dadurch werden nur Epochenbegriffe gefunden, die
+                        genau diese Phrase enthalten.</p>
+
+                    <p class="query-example">Beispiel: <a href="search?q=&quot;Akropolis von Athen&quot;">"Akropolis von
+                        Athen"</a></p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Gibt es die Möglichkeit, statt im gesamten Inhalt eines Epochenbegriffs gezielt in einzelnen Feldern zu
+                        suchen?
+                    </uib-accordion-heading>
+                    <p>Ja, die durchsuchten Felder können dem Suchbegriff, getrennt von einem Doppelpunkt, vorangestellt
+                        werden. Die folgenden Felder sind momentan für Objekte aller Kategorien verfügbar:</p>
+
+                    <ul>
+                        <li><code>resource.id</code>: Die eindeutige ID</li>
+                        <li><code>resource.provenance</code>: Die Provenienz</li>
+                        <li><code>resource.types</code>: Der Epochentyp</li>
+                        <li><code>resource.description</code>: Der Beschreibungstext</li>
+                        <li><code>regions</code>: Die verknüpften geographischen Regionen</li>
+                    </ul>
+
+                    <p class="query-example">Beispiele: <a href="search?q=title:&quot;Akropolis von Athen&quot;">title:"Akropolis
+                        von Athen"</a>, <a href="search?q=entityId:1">entityId:1</a>, <a
+                            href="search?q=internalId:500000">internalId:500000</a>,
+                        <a href="search?q=type:Topographien">type:Topographien</a>, <a
+                                href="search?q=subtitle:&quot;Attika&quot;">subtitle:"Attika"</a>, <a
+                                href="search?q=datasetGroup:Arachne">datasetGroup:Arachne</a></p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Welche Wildcards werden unterstützt?
+                    </uib-accordion-heading>
+                    <p>Die Suchanfrage kann folgende Platzhalter beinhalten:</p>
+
+                    <ul>
+                        <li><code>?</code> steht für ein beliebiges Zeichen</li>
+                        <li><code>*</code> steht für kein oder mehrere aufeinanderfolgende beliebige Zeichen</li>
+                    </ul>
+
+                    <p class="query-example">Beispiel: <a href="search?q=Akropolis*">Akropolis*</a><br/>
+                        <small>(findet neben "Akropolis" auch Begriffe wie "Akropolismuseum" oder "Akropolisberg")
+                        </small>
+                    </p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Werden reguläre Ausdrücke unterstützt?
+                    </uib-accordion-heading>
+                    <p>Ja, die Suche unterstützt die gängigen Operatoren zur Formulierung regulärer Ausdrücke. Diese
+                        müssen zwischen zwei Slashes gesetzt werden.</p>
+
+                    <p class="query-example">Beispiel: <a href="search?q=/Pompe[ij]/">/Pompe[ij]/</a><br/>
+                        <small>(findet sowohl Ergebnisse zu “Pompeii” als auch zu “Pompeji”)</small>
+                    </p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        <span id="syntax_error"></span>
+                        Meine Suchanfrage verursacht einen Syntaxfehler, was kann ich tun?
+                    </uib-accordion-heading>
+                    <p>Syntaxfehler können auftreten, wenn die Anfrage reservierte Suchoperatoren (bspw. `/` oder `~`)
+                        enthält.
+                        Sollen diese Operatoren innerhalb eines Suchbegriffs verwendet werden, so können diese mit `\`
+                        maskiert
+                        werden oder als Teil einer Phrasensuche innerhalb von `"` verwendet werden.</p>
+                    <p class="query-example">Beispiel: <a href="search?q=87\/243">87\/243</a>
+                    </p>
+                </div>
+
+            </uib-accordion>
+
+            <h2 id="Suchergebnis">Suchergebnisansicht</h2>
+
+            <uib-accordion>
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Wonach richtet sich die Sortierung der Suchergebnisse?
+                    </uib-accordion-heading>
+                    <p>Standardmäßig werden Suchergebnisse nach ihrer Relevanz sortiert. Diese richtet sich
+                        zum
+                        einen nach der Relevanz eines Objekts in Bezug auf die Suchbegriffe. So werden bspw. Epochenbegriffe
+                        weiter
+                        vorne angezeigt, wenn diese den Suchbegriff mehrfach oder im Titel enthalten. Außerdem fließt
+                        die
+                        Qualität eines Datensatzes in das Relevanzmaß mit ein. Dadurch erhalten stark kontextualisierte und ausführlich beschriebene Datensätze eine bessere Position im
+                        Suchergebnis.</p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Zeigen die Filter alle verfügbaren Werte?
+                    </uib-accordion-heading>
+                    <p>Nein. Es werden nur die für das konkrete Suchergebnis häufigsten Werte angezeigt.</p>
+                </div>
+
+                <div uib-accordion-group>
+                    <uib-accordion-heading>
+                        Wie kann ich einen Datensatz zitieren?
+                    </uib-accordion-heading>
+                    <p>Jeder Datensatz hat unter seinem Titel einen Permalink stehen, der zu Zitationszwecken verwendet werden sollte</p>
+                    <p class="query-example">Der Link sieht folgendermaßen aus: <a href="period/Gx4uxaeTCbbg">chronontology.dainst.org/period/Gx4uxaeTCbbg</a></p>
+                </div>
+
+            </uib-accordion>
+
+        </div>
+        <div class="col-md-2">
+
+            <nav style="position: fixed;">
+
+                <ul class="nav nav-stacked faq-nav hidden-xs hidden-sm">
+                    <li><a href="#Suche">Suche</a></li>
+                    <li><a href="#Suchergebnis">Suchergebnisansicht</a></li>
+                </ul>
+
+            </nav>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <br/><br/>
+            <p>Falls Sie eine Frage haben, die Sie hier nicht finden können, schicken Sie diese bitte an <a
+                    href="mailto:idai.chronontology@dainst.org">idai.chronontology@dainst.org</a>.</p>
+        </div>
+    </div>
+</div>
