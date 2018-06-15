@@ -1,0 +1,78 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+
+            <h1>API</h1>
+            <p>
+                iDAI.chronontology provides a <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">
+                REST interface</a> for querying and manipulating the data managed by our service. The base URL of the web service
+                is <a href="http://chronontology.dainst.org/data">http://chronontology.dainst.org/data</a>.
+            </p>
+            <p>
+                <a href="https://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">HTTP Basic Authentication</a>
+                is used for all requests that require special priviliges.
+            </p>
+            <p>
+                All data is encoded in <a href="https://en.wikipedia.org/wiki/JSON" target="_blank">JSON</a>.
+            </p>
+            <p>
+                The following operations are supported:
+            </p>
+            <br>
+
+            <h4><b>GET</b> /period/</h4>
+            <p>
+                Performs a search for period data.
+            </p>
+            <p>
+                The following GET-parameters are supported:
+            </p>
+            <ul>
+                <li><b>q</b>: Query term</li>
+                <li><b>fq</b>: Filter query<i>(repeatable)</i></li>
+                <li><b>from</b>: Offset</li>
+                <li><b>size</b>: Maximum number of results</li>
+                <li><b>facet</b>: Attribute that will be used to generate a facet <i>(repeatable)</i></li>
+                <li><b>exists</b>: Only period terms that have this attribute will be returned <i>(repeatable)</i></li>
+                <li><b>parts</b>: Only the listed attributes will be returned <i>(comma separated)</i></li>
+            </ul>
+            <br>
+
+            <h4><b>GET</b> /period/<i>:id</i></h4>
+            <p>
+                Return the metadata for the period term identified by <b>:id</b>.
+            </p>
+            <p>
+                The following GET-parameters are supported:
+            </p>
+            <ul>
+                <li><b>version</b>: Allows accessing older versions of the record</li>
+            </ul>
+            <br>
+
+            <h4><b>PUT</b> /period/<i>:id</i></h4>
+            <p>
+                Updates or creates the record with the <b>:id</b>.
+            </p>
+            <p>
+                Expects a JSON representation of a period term in the body part of the request.
+            </p>
+            <br>
+
+            <h4><b>POST</b> /period/</h4>
+            <p>
+                Creates a new period term with a random id.
+            </p>
+            <p>
+                Expects a JSON representation of a period term in the body part of the request.
+            </p>
+            <br>
+
+            <h4><b>DELETE</b> /period/<i>:deletedId</i>/<i>:replacementId</i></h4>
+            <p>
+                Marks the document specified by <b>:deletedId</b> as deleted and sets the document
+                specified by <b>:replacementId</b> as its replacement.
+            </p>
+        </div>
+    </div>
+</div>
