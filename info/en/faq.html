@@ -18,7 +18,7 @@
                         If you enter multiple keywords, every period term that reflects the content of all keywords, will be
                         found. By default, keywords are linked with a logical AND.
                     </p>
-                    <p class="query-example">Example: <a href="search?q=Bronzezeit Levante">Bronzezeit Levante</a></p>
+                    <p class="query-example">Example: <a href="search?q=Bronze Age">Bronze Age</a></p>
                 </div>
 
                 <div uib-accordion-group>
@@ -31,7 +31,7 @@
                         include the latter.
                     </p>
 
-                    <p class="query-example">Example: <a href="search?q=Bronzezeit -Levante">Bronzezeit -Levante</a></p>
+                    <p class="query-example">Example: <a href="search?q=Bronze Age -Levant">Bronze Age -Levant</a></p>
                 </div>
 
                 <div uib-accordion-group>
@@ -41,12 +41,11 @@
                     <p>
                         iDAI.chronontology supports the logical operators AND, OR and NOT. Pay attention to the usual operator
                         precedence:
-                        NOT has priority to AND has priority to OR. You can use brackets to alter the precedence of the
+                        NOT has priority to AND, and AND has priority to OR. You can use brackets to alter the precedence of the
                         concatenation.
                     </p>
 
-                    <p class="query-example">Example: <a href="search?q=Herakles AND (Dionysos OR Bacchus)">Herakles AND
-                        (Dionysos OR Bacchus)</a></p>
+                    <p class="query-example">Example: <a href="search?q=Neolithic AND (Britain OR Europe)">Neolithic AND (Britain OR Europe)</a></p>
                 </div>
 
                 <div uib-accordion-group>
@@ -58,36 +57,7 @@
                         phrase can be found.
                     </p>
 
-                    <p class="query-example">Example: <a href="search?q=&quot;Akropolis von Athen&quot;">"Akropolis von
-                        Athen"</a></p>
-                </div>
-
-                <div uib-accordion-group>
-                    <uib-accordion-heading>
-                        How to specifically search in single fields rather than searching the entire content of an
-                        object?
-                    </uib-accordion-heading>
-                    <p>
-                        This can be achieved by prefixing the searched fields, separated by a colon. Following fields
-                        for
-                        object of all categories are currently available:
-                    </p>
-
-                    <ul>
-                        <li><code>resource.id</code>: The unique ID</li>
-                        <li><code>resource.provenance</code>: The provenance</li>
-                        <li><code>resource.types</code>: The period type</li>
-                        <li><code>resource.description</code>: The description</li>
-                        <li><code>regions</code>: The connected regions</li>
-                    </ul>
-
-                    <p class="query-example">Example: <a href="search?q=title:&quot;Akropolis von Athen&quot;">title:"Akropolis
-                        von Athen"</a>,
-                        <a href="search?q=entityId:1">entityId:1</a>, <a
-                                href="search?q=internalId:500000">internalId:500000</a>,
-                        <a href="search?q=type:Topographien">type:Topographien</a>,
-                        <a href="search?q=subtitle:&quot;Attika&quot;">subtitle:"Attika"</a>,
-                        <a href="search?q=datasetGroup:Arachne">datasetGroup:Arachne</a></p>
+                    <p class="query-example">Example: <a href="search?q=&quot;Reign of Romulus Augustulus&quot;">"Reign of Romulus Augustulus"</a></p>
                 </div>
 
                 <div uib-accordion-group>
@@ -103,8 +73,8 @@
                         <li><code>*</code> as none or multiple successive random symbols</li>
                     </ul>
 
-                    <p class="query-example">Example: <a href="search?q=Akropolis*">Akropolis*</a><br/>
-                        <small>(finds next to "Akropolis" terms like "Akropolismuseum" or "Akropolisberg")</small>
+                    <p class="query-example">Example: <a href="search?q=Roman*">Roman*</a><br/>
+                        <small>(finds next to "Roman" terms like "Romano-German" or "Roman Tetrarchy")</small>
                     </p>
                 </div>
 
@@ -113,7 +83,7 @@
                         Are regular expressions supported?
                     </uib-accordion-heading>
                     <p>
-                        Yes, the search engine supports all common operators to formulate regular expressions. Latter
+                        Yes, the search engine supports all common operators to formulate regular expressions. The latter
                         must
                         be
                         placed between two slashes.
@@ -172,7 +142,7 @@
                     <uib-accordion-heading>
                         How to cite a record?
                     </uib-accordion-heading>
-                    <p>Every record has a permalink underneath its title, which should be used for citing the latter</p>
+                    <p>Every record has a permalink underneath its title, which should be used for citing it.</p>
                     <p class="query-example">The link looks like this: <a href="period/Gx4uxaeTCbbg">chronontology.dainst.org/period/Gx4uxaeTCbbg</a></p>
                 </div>
 
