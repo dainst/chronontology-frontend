@@ -40,9 +40,7 @@
                         die
                         Rangfolge der Verkettung festzulegen.</p>
 
-                    <p class="query-example">Beispiel: <a href="search?q=Herakles AND (Dionysos OR Bacchus)">Herakles
-                        AND
-                        (Dionysos OR Bacchus)</a></p>
+                    <p class="query-example">Beispiel: <a href="search?q=Neolithikum AND (Griechenland OR Italien)">Neolithikum AND (Griechenland OR Italien)</a></p>
                 </div>
 
                 <div uib-accordion-group>
@@ -52,32 +50,8 @@
                     <p>Setzen Sie die Phrase in Anführungszeichen. Dadurch werden nur Epochenbegriffe gefunden, die
                         genau diese Phrase enthalten.</p>
 
-                    <p class="query-example">Beispiel: <a href="search?q=&quot;Akropolis von Athen&quot;">"Akropolis von
+                    <p class="query-example">Beispiel: <a href="search?q=&quot;Herrschaft von Augustulus&quot;">"Akropolis von
                         Athen"</a></p>
-                </div>
-
-                <div uib-accordion-group>
-                    <uib-accordion-heading>
-                        Gibt es die Möglichkeit, statt im gesamten Inhalt eines Epochenbegriffs gezielt in einzelnen Feldern zu
-                        suchen?
-                    </uib-accordion-heading>
-                    <p>Ja, die durchsuchten Felder können dem Suchbegriff, getrennt von einem Doppelpunkt, vorangestellt
-                        werden. Die folgenden Felder sind momentan für Objekte aller Kategorien verfügbar:</p>
-
-                    <ul>
-                        <li><code>resource.id</code>: Die eindeutige ID</li>
-                        <li><code>resource.provenance</code>: Die Provenienz</li>
-                        <li><code>resource.types</code>: Der Epochentyp</li>
-                        <li><code>resource.description</code>: Der Beschreibungstext</li>
-                        <li><code>regions</code>: Die verknüpften geographischen Regionen</li>
-                    </ul>
-
-                    <p class="query-example">Beispiele: <a href="search?q=title:&quot;Akropolis von Athen&quot;">title:"Akropolis
-                        von Athen"</a>, <a href="search?q=entityId:1">entityId:1</a>, <a
-                            href="search?q=internalId:500000">internalId:500000</a>,
-                        <a href="search?q=type:Topographien">type:Topographien</a>, <a
-                                href="search?q=subtitle:&quot;Attika&quot;">subtitle:"Attika"</a>, <a
-                                href="search?q=datasetGroup:Arachne">datasetGroup:Arachne</a></p>
                 </div>
 
                 <div uib-accordion-group>
@@ -91,8 +65,8 @@
                         <li><code>*</code> steht für kein oder mehrere aufeinanderfolgende beliebige Zeichen</li>
                     </ul>
 
-                    <p class="query-example">Beispiel: <a href="search?q=Akropolis*">Akropolis*</a><br/>
-                        <small>(findet neben "Akropolis" auch Begriffe wie "Akropolismuseum" oder "Akropolisberg")
+                    <p class="query-example">Beispiel: <a href="search?q=Römisch*">Römisch*</a><br/>
+                        <small>(findet neben "Römisch" auch Begriffe wie "Römische Tetrarchie" oder "Römisches Reich")
                         </small>
                     </p>
                 </div>
