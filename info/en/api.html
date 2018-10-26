@@ -5,8 +5,7 @@
             <h1>API</h1>
             <p>
                 iDAI.chronontology provides a <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">
-                REST interface</a> for querying and manipulating the data managed by our service. The base URL of the web service
-                is <a href="http://chronontology.dainst.org/data">http://chronontology.dainst.org/data</a>.
+                REST interface</a> for querying and manipulating the data managed by our service.
             </p>
             <p>
                 <a href="https://en.wikipedia.org/wiki/Basic_access_authentication" target="_blank">HTTP Basic Authentication</a>
@@ -17,6 +16,13 @@
             </p>
             <p>
                 The following operations are supported:
+            </p>
+            <br>
+
+            <h3>Period terms (Core API)</h3>
+            <p>
+                The base URL of the web service
+                is <a href="http://chronontology.dainst.org/data">http://chronontology.dainst.org/data</a>.
             </p>
             <br>
 
@@ -73,6 +79,44 @@
                 Marks the document specified by <b>:deletedId</b> as deleted and sets the document
                 specified by <b>:replacementId</b> as its replacement.
             </p>
+            <br>
+
+            <h3>Places (Spatial API)</h3>
+            <p>
+                The base URL of the web service
+                is <a href="http://chronontology.dainst.org/spi">http://chronontology.dainst.org/spi</a>.
+                All responses are encoded in GeoJSON format.
+            </p>
+            <br>
+
+            <h4><b>GET</b> /place</h4>
+            <p>
+                Performs a search for place data.
+            </p>
+            <p>
+                The following GET-parameters are supported:
+            </p>
+            <ul>
+                <li><b>periodid</b>: Chronontology ID</li>
+                <li><b>bbox</b>: Bounding box</i></li>
+                <li><b>q</b>: Query string</li>
+                <li><b>type</b>: Gazetteer type [dai, getty, geonames, pleiades] <i>(mandatory for "q" and "bbox")</i></li>
+                <li><b>format</b>:  Linked Data Output Format [json, jsonld, rdf, ttl, n3]</li>
+            </ul>
+            <br>
+
+            <h4><b>GET</b> /place/<i>:type</i>/<i>:id</i></h4>
+            <p>
+                Return the metadata for the place identified by <b>:type</b> [dai, getty, geonames, pleiades] and <b>:id</b>.
+            </p>
+            <p>
+                The following GET-parameters are supported:
+            </p>
+            <ul>
+                <li><b>format</b>:  Linked Data Output Format [json, jsonld, rdf, ttl, n3]</li>
+            </ul>
+            <br>
+
         </div>
     </div>
 </div>
