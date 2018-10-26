@@ -73,6 +73,34 @@
                 Markiert den Epochenbegriff mit der ID <b>:deletedId</b> als gelöscht und ersetzt
                 durch den unter <b>:replacementId</b> angegebenen Epochenbegriff.
             </p>
+
+            <h4><b>GET</b> /place</h4>
+            <p>
+                Führt eine Suche nach Ortsdaten aus.
+            </p>
+            <p>
+                Die folgenden GET-Parameter werden unterstützt:
+            </p>
+            <ul>
+                <li><b>periodid</b>: Chronontology ID</li>
+                <li><b>bbox</b>: Bounding box</i></li>
+                <li><b>q</b>: Suchbegriff</li>
+                <li><b>type</b>: Gazetteer type [dai, getty, geonames, pleiades] <i>(verpflichtend für "q" und "bbox")</i></li>
+                <li><b>format</b>: Linked Data Ausgabeformat [json, jsonld, rdf, ttl, n3]</li>
+            </ul>
+            <br>
+
+            <h4><b>GET</b> /place/<i>:type</i>/<i>:id</i></h4>
+            <p>
+                Gibt die Metadaten zum Ortsdatensatz zurück, der über <b>:type</b> [dai, getty, geonames, pleiades] und <b>:id</b> identifiziert wird.
+            </p>
+            <p>
+                Die folgenden GET-Parameter werden unterstützt:
+            </p>
+            <ul>
+                <li><b>format</b>: Linked Data Ausgabeformat [json, jsonld, rdf, ttl, n3]</li>
+            </ul>
+            <br>
         </div>
     </div>
 </div>
