@@ -49,7 +49,8 @@ angular.module('chronontology', [
 		"fallsWithin", "contains",
 		"follows", "isFollowedBy",
 		"sameAs",
-		"isSimilarTo"
+		"isSimilarTo",
+		"differsInDefinitionFrom"
 	],
     gazetteerRelationTypes: [
 		"isNamedAfter",
