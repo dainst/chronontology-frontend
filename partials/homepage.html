@@ -34,16 +34,8 @@
 <div class="container home-boxes">
     <div class="row">
         <div class="col-xs-6 well">
-            <h4>{{ "example_queries" | transl8 }}</h4>
-            <example-queries></example-queries>
-        </div>
-        <div class="col-xs-6 well">
-            <h4>{{ "period_types" | transl8 }}</h4>
-            <period-type-tag-cloud></period-type-tag-cloud>
-        </div>
-        <div class="col-xs-6 well">
-            <h4>{{"welcome" | transl8}}</h4>
-            <p>
+            <h2>{{"welcome" | transl8}}</h2>
+            <p class="lead">
                 iDAI.chronontology ist ein Webservice, der Zeitbegriffe mit
                 Datierungen verbindet.
                 Das chronOntology-Projekt wird von 2015 bis 2017 von der
@@ -54,15 +46,15 @@
                 ">iDAI.welt</a> garantiert.
                 Weitere Informationen finden Sie <a ng-href="/about">hier</a>.
             </p>
-            <p>
-                Fragen, Anregungen und Kooperationsanfragen richten Sie bitte an:
-                <a href="mailto:idai.chronontology@dainst.de">idai.chronontology@
-                dainst.de</a>.
-            </p>
         </div>
         <div class="col-xs-6 well">
-            <h4>Screencast</h4>
+            <period-type-tag-cloud></period-type-tag-cloud>
+        </div>
+        <div class="col-xs-6 well">
             <iframe width="540" height="280" src="https://www.youtube.com/embed/HFhonVAwcbU" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-xs-6 well">
+            <example-queries></example-queries>
         </div>
     </div>
 </div>
