@@ -1,12 +1,16 @@
 $maxLevel: 6;
 $maxGroups: 10;
 
+.timeline-view-btns {
+    position: absolute;
+    top: 340px;
+    left: 24px;
+}
+
 .timeline-facets .panel {
-    width: 300px;
-    display: inline-block;
 
     .list-group, .panel-body {
-        height: 250px;
+        height: 200px;
         overflow-y: auto;
     }
 }
@@ -144,8 +148,8 @@ $maxGroups: 10;
 }
 
 .timeline-container-big {
-  height: calc(100vh - 490px);
-  margin-bottom: -210px;
+  height: calc(100vh - 340px);
+  margin-bottom: -110px;
 
   .timeline-zoom-buttons {
     top: 390px;

@@ -1,48 +1,47 @@
 <div ng-controller="TimelineController">
-    <div class="timeline-facets">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <b>{{"ui_search_view" | transl8}}</b>
-            </div>
-            <div class="panel-body">
-                <div class="btn-group btn-group-justified" role="group">
-                    <a ng-href="/search{{query.setFrom(0).toFrontendUri()}}"
-                            class="btn btn-default">
-                        <span class="glyphicon glyphicon-list"></span>
-                        {{"ui_list" | transl8}}
-                    </a>
-                    <a class="btn btn-default active">
-                        <span class="glyphicon glyphicon-align-right"></span>
-                        {{"ui_timeline" | transl8}}
-                    </a>
-                </div>
-            </div>
-        </div>
-        <span ng-repeat="facette in facetList">
+
+    <div class="btn-group timeline-view-btns" role="group">
+        <a ng-href="/search{{query.setFrom(0).toFrontendUri()}}"
+                class="btn btn-default">
+            <span class="glyphicon glyphicon-list"></span>
+            {{"ui_list" | transl8}}
+        </a>
+        <a class="btn btn-default active">
+            <span class="glyphicon glyphicon-align-right"></span>
+            {{"ui_timeline" | transl8}}
+        </a>
+    </div>
+
+    <div class="timeline-facets row">
+        <div ng-repeat="facette in facetList" class="col-sm-3">
             <search-filter
                 facette="facette"
                 facets="facets"
                 query="query"
                 route="timeline">
             </search-filter>
-        </span>
-        <region-filter
-            facets="facets"
-            query="query"
-            route="timeline">
-        </region-filter>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <b>{{"ui_filter_exists" | transl8}}</b>
+        </div>
+        <div class="col-sm-3">
+            <region-filter
+                facets="facets"
+                query="query"
+                route="timeline">
+            </region-filter>
+        </div>
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <b>{{"ui_filter_exists" | transl8}}</b>
+                </div>
+                <ul class="list-group">
+                    <search-exists-filter
+                        ng-repeat="field in existsList"
+                        field="field"
+                        query="query"
+                        route="timeline">
+                    </search-exists-filter>
+                </ul>
             </div>
-            <ul class="list-group">
-                <search-exists-filter
-                    ng-repeat="field in existsList"
-                    field="field"
-                    query="query"
-                    route="timeline">
-                </search-exists-filter>
-            </ul>
         </div>
     </div>
     <div class="timeline-container-big">
