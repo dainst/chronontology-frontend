@@ -75,6 +75,8 @@ angular.module('chronontology.controllers')
       };
 
       $scope.updateCachedPeriods = function () {
+        if (!$scope.period.relations) return;
+
         for (var i in $scope.combinedRelationTypes) {
           var currentType = $scope.combinedRelationTypes[i];
 
@@ -96,12 +98,11 @@ angular.module('chronontology.controllers')
                   })(periodId)
                 }
               }
-
-            })
+            });
           }
 
           // Check cache for derived periods.
-          if ($scope.document.derived && currentType in $scope.document.derived.relations) {
+          if ($scope.document.derived && $scope.document.derived.relations && currentType in $scope.document.derived.relations) {
             $scope.document.derived.relations[currentType].forEach(function (periodId) {
               if (!(periodId in $scope.resourceCache)) {
                 if ($scope.document.related && periodId in $scope.document.related) {
