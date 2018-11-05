@@ -89,7 +89,12 @@ var TimelineDataService = function($filter) {
 
     function isValidTime(time) {
 
-        return (!isNaN(time.at) || (!isNaN(time.notBefore) && !isNaN(time.notAfter)));
+        return (isNumber(time.at) || (isNumber(time.notBefore) && isNumber(time.notAfter)));
+    }
+
+    function isNumber(value) {
+
+        return value !== null && value !== '' && !isNaN(value);
     }
 
     function getFrom(time) {
