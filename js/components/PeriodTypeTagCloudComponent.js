@@ -13,13 +13,15 @@ angular.module('chronontology.components')
             var uri = "/data/period/?size=0&facet=resource.types";
             $http.get(uri).then(
     			function success(result) {
+                    var tags = [];
     				result.data.facets['resource.types'].buckets.forEach(function(bucket) {
-                        ctrl.tags.push({
+                        tags.push({
                             text: $filter('transl8')("value_types_" + bucket.key),
                             weight: ctrl.normalizeWeight(bucket.doc_count),
                             link: "/search?q=&fq=types:\"" + bucket.key + "\""
                         });
                     });
+                    ctrl.tags = tags;
     			},
     			function error(err) {
     				console.warn(err);
