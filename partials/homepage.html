@@ -1,60 +1,75 @@
-<header id="teaser">
-    <div class="description"></div>
-</header>
+<div ng-controller="HomepageController">
 
-<main>
+    <header id="teaser">
+        <div class="description"></div>
+    </header>
 
-    <div class="text-center logo-box">
+    <main>
 
-        <h1>
-            <img src="/img/chronontology-symbol.jpg">
-            <span style="color: #ccc; font-size: 0.8em;">iDAI.</span>chronontology
-        </h1>
+        <div class="text-center logo-box">
 
-        <form ng-controller="SearchFormController" ng-submit="search()" class="input-group form-inline"
-              role="search" method="GET" id="search-form">
-            <input type="text" ng-model="q" name="q" class="form-control" autofocus placeholder="{{ 'ui_placeholder_search' | transl8 }}"/>
-				<span class="input-group-btn">
-					<button type="submit" class="btn btn-primary">
-						&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;
-					</button>
-				</span>
-        </form>
-        <div class="links">
-        	<a ng-href="/search?q=*">
-                <span class="glyphicon glyphicon-search"></span>
-                {{ "ui_showall" | transl8 }}
-            </a>
+            <h1>
+                <img src="/img/chronontology-symbol.jpg">
+                <span style="color: #ccc; font-size: 0.8em;">iDAI.</span>chronontology
+            </h1>
+
+            <form ng-controller="SearchFormController" ng-submit="search()" class="input-group form-inline"
+                  role="search" method="GET" id="search-form">
+                <input type="text" ng-model="q" name="q" class="form-control" autofocus placeholder="{{ 'ui_placeholder_search' | transl8 }}"/>
+    				<span class="input-group-btn">
+    					<button type="submit" class="btn btn-primary">
+    						&nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;
+    					</button>
+    				</span>
+            </form>
+            <div class="links">
+            	<a ng-href="/search?q=*">
+                    <span class="glyphicon glyphicon-search"></span>
+                    {{ "ui_showall" | transl8 }}
+                </a>
+            </div>
+        </div>
+
+
+    </main>
+
+    <div class="container home-boxes">
+        <div class="row">
+            <div class="col-xs-6 well">
+                <h2>{{"welcome" | transl8}}</h2>
+                <p class="lead" ng-if="language == 'de'">
+                    iDAI.chronOntology ist ein Webservice, der Zeitbegriffe mit
+                    Datierungen verbindet.
+                    Das chronOntology-Projekt wurde von 2015 bis 2018 von der
+                    Deutschen Forschungsgemeinschaft (DFG) gefördert. Die
+                    Langzeitverfügbarkeit der Daten wird durch das DAI im Rahmen der
+                    <a
+                    href="http://www.dainst.org/forschung/forschung-digital/idai.welt
+                    ">iDAI.welt</a> garantiert.
+                    Weitere Informationen finden Sie <a ng-href="/about">hier</a>.
+                </p>
+                <p class="lead" ng-if="language != 'de'">
+                    iDAI.chronOntology is a webservice that connects period terms
+                    to datings.
+                    The chronOntology project was funded by the German Research
+                    Foundation (DFG) gefördert from 2015 to 2017. The long-term
+                    availability will be guaranteed by the DAI as part of the
+                    <a
+                    href="http://www.dainst.org/forschung/forschung-digital/idai.welt
+                    ">iDAI.world</a>.
+                    Futher information is available <a ng-href="/about">here</a>.
+                </p>
+            </div>
+            <div class="col-xs-6 well">
+                <period-type-tag-cloud></period-type-tag-cloud>
+            </div>
+            <div class="col-xs-6 well">
+                <iframe width="540" height="280" src="https://www.youtube.com/embed/HFhonVAwcbU" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="col-xs-6 well">
+                <example-queries></example-queries>
+            </div>
         </div>
     </div>
 
-
-</main>
-
-<div class="container home-boxes">
-    <div class="row">
-        <div class="col-xs-6 well">
-            <h2>{{"welcome" | transl8}}</h2>
-            <p class="lead">
-                iDAI.chronontology ist ein Webservice, der Zeitbegriffe mit
-                Datierungen verbindet.
-                Das chronOntology-Projekt wurde von 2015 bis 2018 von der
-                Deutschen Forschungsgemeinschaft (DFG) gefördert. Die
-                Langzeitverfügbarkeit der Daten wird durch das DAI im Rahmen der
-                <a
-                href="http://www.dainst.org/forschung/forschung-digital/idai.welt
-                ">iDAI.welt</a> garantiert.
-                Weitere Informationen finden Sie <a ng-href="/about">hier</a>.
-            </p>
-        </div>
-        <div class="col-xs-6 well">
-            <period-type-tag-cloud></period-type-tag-cloud>
-        </div>
-        <div class="col-xs-6 well">
-            <iframe width="540" height="280" src="https://www.youtube.com/embed/HFhonVAwcbU" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <div class="col-xs-6 well">
-            <example-queries></example-queries>
-        </div>
-    </div>
 </div>
