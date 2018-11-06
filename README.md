@@ -1,4 +1,4 @@
-# Chronontology (Frontend)
+# chronOntology (Frontend)
 
 ## Prerequisites
 
@@ -7,7 +7,7 @@ The following components need to be installed:
 
 ## Installation of Dependencies
 
-Install development and production dependencies with the following commands within your chronontology-frontend directory
+Install development and production dependencies with the following commands within your chronOntology-frontend directory
 
 ```
 npm install
@@ -26,7 +26,7 @@ In order to run the frontend in the development server use the following command
 npm start
 ```
 
-Chronontology frontend will access the production backend and is accessible at [localhost:8085/](http://localhost:8085/). You can use a different backend instance by setting `dataUri` and `spiUri` in `dev-config.json` (for example to http://localhost:4567 in order to use a local development backend).
+ChronOntology frontend will access the production backend and is accessible at [localhost:8085/](http://localhost:8085/). You can use a different backend instance by setting `dataUri` and `spiUri` in `dev-config.json` (for example to http://localhost:4567 in order to use a local development backend).
 
 Any changes made to HTML, SCSS or JS files should automatically trigger a browser reload.
 
@@ -47,4 +47,4 @@ Build the application by running
 npm run build
 ```
 
-After building, chronontology-frontend lies inside the dist directory.
+After building, chronOntology-frontend lies inside the dist directory.
