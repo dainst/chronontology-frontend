@@ -141,7 +141,7 @@ var Query = function(chronontologySettings, language) {
         else fq = search.fq;
         if (fq) for (var i in fq) {
             var split = fq[i].split(':');
-            if (split[1].startsWith('""') || split[1].startsWith("'"))
+            if (split[1].startsWith('"') || split[1].startsWith("'"))
                 split[1] = split[1].substr(1, split[1].length - 2);
             fq[i] = { key: split[0], value: split[1] };
         }
