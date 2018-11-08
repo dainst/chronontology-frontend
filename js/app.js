@@ -95,5 +95,5 @@ angular.module('chronontology', [
     mailTo: 'idai.chronontology@dainst.org',
     dataProtectionPolicyUri: 'http://www.dainst.org/datenschutz'
 }).run(['$rootScope', function($rootScope) {
-
+    
 }]);
