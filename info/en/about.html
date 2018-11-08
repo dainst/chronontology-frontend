@@ -5,21 +5,163 @@
             <h1>About iDAI.chronontology</h1>
 
             <p>
-iDAI.chronontology (short form: chronOntology) is a web service 
-that connects chronological terms with dating information. 
-An internet research tool mainly for the Archaeology and Altertumswissenschaft, 
+iDAI.chronontology (short form: chronOntology) is a web service
+that connects chronological terms with dating information.
+An internet research tool mainly for the Archaeology and Altertumswissenschaft,
 ChronOntology is part of the iDAI.welt and the period terms gazetteer of the German Archaeological Institute (DAI).
-Similarly to the 
-<a href="https://gazetteer.dainst.org">iDAI.gazetteer</a>, 
-it serves as a standard data vocabulary for other information systems of the DAI 
-and links them with other global time gazetteer systems. 
+Similarly to the
+<a href="https://gazetteer.dainst.org">iDAI.gazetteer</a>,
+it serves as a standard data vocabulary for other information systems of the DAI
+and links them with other global time gazetteer systems.
 In addition, anyone can refer to the data in chronOntology
-and on request add additional project-specific or research-specific data. 
+and on request add additional project-specific or research-specific data.
             </p>
             <p>
-The chronOntology project was funded from 2015 to 2018 by the German Research Foundation (DFG). 
+The chronOntology project was funded from 2015 to 2018 by the German Research Foundation (DFG).
 The long-term availability of the data is guaranteed by the DAI within the scope of the iDAI.welt.
             </p>
+
+            <h2>The data model</h2>
+
+            <h3><a class="anchor" id="period_types"></a>Period types</h3>
+
+            <p>
+                Each period represents a specific span of time marked by specific characteristics,
+                events or changes on earth which led to the definition of this period as a unit.
+                Type is the field where in simple terms the defining characteristic of the period
+                is specified. This should be deduced from the decription of the period in the source
+                where it was taken. When applicable one or more types can be selected.
+            </p>
+
+            <p>
+                The chronontology period type hierarchy encompasses the following types:
+            </p>
+            <dl class="dl-horizontal">
+
+                <dt><a href="/search?q=&fq=types:'not_specified'">Not specified</a></dt>
+                <dd>
+                    <p>
+                        A period type to be used when in the source, from where the period was taken,
+                        the defining charachteristics of the period are not clear.
+                    </p>
+                </dd>
+
+                <dt><a href="/search?q=&fq=types:'geological'">Geological</a></dt>
+                <dd>
+                    <p>
+                        Periods related to the system of chronological measurement that relates stratigraphy
+                        to time. These periods form elements of a hierarchy of divisions into which
+                        geologists have split the Earth's history.
+                    </p>
+                    <p>
+                        Examples: <i>Phanerozoic, Paleozoic, Holocene</i>
+                    </p>
+                    <p>
+                        <b>Subtypes:</b>
+                        <ul class="list-inline">
+                            <li><a href="/search?q=&fq=types:'geology_age'">Age</a></li>
+                            <li><a href="/search?q=&fq=types:'geology_eon'">Eon</a></li>
+                            <li><a href="/search?q=&fq=types:'geology_epoch'">Epoch</a></li>
+                            <li><a href="/search?q=&fq=types:'geology_era'">Era</a></li>
+                            <li><a href="/search?q=&fq=types:'geology_period'">Period</a></li>
+                            <li><a href="/search?q=&fq=types:'geology_supereon'">Supereon</a></li>
+                        </ul>
+                </dd>
+
+                <dt><a href="/search?q=&fq=types:'political'">Political / Historical</a></dt>
+                <dd>
+                    <p>
+                        Periods defined based on historical events that have been recorded and can be more
+                        or less precisely dated (such as reign years of a king, or control period of a
+                        kingdom, etc).
+                    </p>
+                    <p>
+                        Examples: <i>Roman, Republican, pre-Dynastic, Migration Period</i>
+                    </p>
+                </dd>
+
+                <dt><a href="/search?q=&fq=types:'cultural'">Cultural</a></dt>
+                <dd>
+                    <p>
+                        Are related to the existance (appearance/disappearance) of a specific culture or
+                        cultural group, regardless of the contemporary political, technological or material
+                        developments. Might be reflected in material culture and/or other cultural markers.
+                    </p>
+                    <p>
+                        Examples: <i>Mudéjar, Philistine, Pheonician, Italian</i>
+                    </p>
+                </dd>
+
+                <dt><a href="/search?q=&fq=types:'material_culture'">Material culture</a></dt>
+                <dd>
+                    <p>
+                        Artistic / stylistic periods defined based on art movement or the production of
+                        certain artifacts according to a specific style. The usual method for periodization
+                        of the distant prehistoric past is usually based ont his type of periods, in archeology
+                        for instance it relies on changes in material culture and technology, such as the
+                        Stone Age, Bronze Age and Iron Age and their sub-divisions that are based on different
+                        styles of material remains.
+                    </p>
+                    <p>
+                        Examples: <i>Paleolithic, Azilien, Bronze Age, Stone Age, Geometric</i>
+                    </p>
+                    <p>
+                        <b>Subtypes:</b>
+                        <ul class="list-inline">
+                            <li><a href="/search?q=&fq=types:'architecture'">Architecture</a></li>
+                            <li><a href="/search?q=&fq=types:'art'">Art</a></li>
+                            <li><a href="/search?q=&fq=types:'ceramic'">Ceramic</a></li>
+                            <li><a href="/search?q=&fq=types:'decorative_arts'">Decorative arts</a></li>
+                            <li><a href="/search?q=&fq=types:'fine_arts'">Fine arts</a></li>
+                            <li><a href="/search?q=&fq=types:'glass'">Glass</a></li>
+                            <li><a href="/search?q=&fq=types:'glass_vessels'">Glass vessels</a></li>
+                            <li><a href="/search?q=&fq=types:'glyptic'">Gylptic</a></li>
+                            <li><a href="/search?q=&fq=types:'lacquer'">Lacquer</a></li>
+                            <li><a href="/search?q=&fq=types:'metal_bowls'">Metal bowls</a></li>
+                            <li><a href="/search?q=&fq=types:'metal_ware'">Metal ware</a></li>
+                            <li><a href="/search?q=&fq=types:'painting'">Painting</a></li>
+                            <li><a href="/search?q=&fq=types:'photography'">Photography</a></li>
+                            <li><a href="/search?q=&fq=types:'porcelain'">Porcelain</a></li>
+                            <li><a href="/search?q=&fq=types:'pottery'">Pottery</a></li>
+                            <li><a href="/search?q=&fq=types:'printmaking'">Printmaking</a></li>
+                            <li><a href="/search?q=&fq=types:'rock_art'">Rock art</a></li>
+                            <li><a href="/search?q=&fq=types:'sculpture'">Sculpture</a></li>
+                            <li><a href="/search?q=&fq=types:'stone_tools'">Stone tools</a></li>
+                            <li><a href="/search?q=&fq=types:'textile'">Textile</a></li>
+                            <li><a href="/search?q=&fq=types:'wall_painting'">Wall painting</a></li>
+                        </ul>
+                    </p>
+                </dd>
+
+                <!--
+                <dt>Abbreviated deceny/century/millenium</dt>
+                <dd>
+                    <p>
+                        A reference to specific century/millenium without link to defined events.
+                    </p>
+                    <p>
+                        Examples: <i>1920s, 17th Century AD, 2nd Millemium BC</i>
+                    </p>
+                </dd>
+
+                <dt>Dates or date range</dt>
+                <dd>
+                    <p>
+                        Examples: <i>1723-1844 AD</i>
+                    </p>
+                </dd>
+
+                <dt>Chronological subdivision</dt>
+                <dd>
+                    <p>
+                        Subdivision of any type of periods to smaller entities, not necessarily linked with
+                        specific developments related to the defining criteria of the period.
+                    </p>
+                    <p>
+                        Examples: <i>Early modern period, MBIIa, Hallstatt A, Mittelprotokorinthisch, 1rst half of 17th c</i>
+                    </p>
+                </dd>
+                -->
 
         </div>
     </div>
