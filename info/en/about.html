@@ -3,25 +3,40 @@
         <div class="col-md-8 col-md-offset-2" style="margin-top:20px">
 
             <h1>About iDAI.chronontology</h1>
+            <p><b>iDAI.chronontology</b> (short form: <b>chronOntology</b>)<b> </b>is a web service that connects chronological terms with data links. Similarly to the iDAI.gazetteter, it serves as a standard data vocabulary for other information systems of the
+                DAI, and links those with other global time gazetteer systems. In addition, anyone can refer to the data in chronOntology and one could also add additional project-specific or research-specific data on request. ChronOntology is an internet
+                research tool for the Archaeology and <i>Altertumswissenschaft</i>, it is part of the iDAI.welt<b> </b>and is the periods gazetteer of the German Archaeological Institute (DAI).</p>
+            <p>The chronOntology project was funded from 2015 to 2017 by the German Research Foundation (DFG), and was developed by the two partner institutes: the German Archaeological Institute (DAI) and Institute for Spatial Information and Surveying
+                Technology (i3mainz). The long-term availability of the data is guaranteed by the DAI within the scope of the iDAI.welt.</p>
+            <h2>How to use</h2>
+            <p>ChronOntology is provided free of charge. Creating an account is optional. You can search for periods and use the permalinks to refer to the selected periods in your work. On request you can add your own periods to chronOntology.</p>
+            <p>In order to use chronOntology you will need a modern internet browser. Recent version of Firefox, Chrome and Safari are supported. Modern versions of the Internet Explorer and Edge should also work. The browser needs to accept cookies and
+                JavaScript. Normally these settings are active out of the box, but if you have problems displaying chronOntology in your browser please make sure these settings are in fact active.</p>
+            <p>The interface of chroOntology will be displayed in your preferred language if possible, with English as the default language. Since you see this text in English, your browser preference is either set to English or to another language for which no
+                translation of this page exists at this time. chroOntology uses the text encoding “Unicode (UTF-8)”. Your browser should recogonize this encoding automatically.</p>
 
-            <p>
-iDAI.chronontology (short form: chronOntology) is a web service
-that connects chronological terms with dating information.
-An internet research tool mainly for the Archaeology and Altertumswissenschaft,
-ChronOntology is part of the iDAI.welt and the period terms gazetteer of the German Archaeological Institute (DAI).
-Similarly to the
-<a href="https://gazetteer.dainst.org">iDAI.gazetteer</a>,
-it serves as a standard data vocabulary for other information systems of the DAI
-and links them with other global time gazetteer systems.
-In addition, anyone can refer to the data in chronOntology
-and on request add additional project-specific or research-specific data.
-            </p>
-            <p>
-The chronOntology project was funded from 2015 to 2018 by the German Research Foundation (DFG).
-The long-term availability of the data is guaranteed by the DAI within the scope of the iDAI.welt.
-            </p>
+            <h2>The Data Model</h2>
+            <p>ChronOntology does not aim to solve dating problems or to make any decisions about what is a good dating methodology. It is a tool to collect and link periods as found in publications or other sources It does not seek to define periods or assign
+                dates to them if these are not found in the original sources, but to collect and link informations as found in multiple sources.</p>
 
-            <h2>The data model</h2>
+            <p>ChronOntology hence provides periods with fixed IDs that other systems can refer to, and it is flexible enough to allow several versions of the same period (some very imprecise and some quite specific) as needed by the researches and projects
+                making use of our system.</p>
+
+            <p>An important aspect of the data model of chronOntolgy is that periods have in addition to their temporal extension an allocated geographical extension, they are space time volumes (STV). This is important to remember especially when it comes to
+                hierarchical relationships, as in some relationships the periods are bound geographically while in others that is not necessary. </p>
+
+            <p>Furthermore, the system accepts periods with missing or incomplete time or space specifications. This is mainly to allow an accurate reflection of the state of research. For instance, for cases in which a period name is assigned for a period that
+                is not yet well determined in time and/or space, or also to include sources where such information is not explicitly mentioned. Accordingly, every entry (every ID) is to represent a period as described in the provenance or source cited, and to
+                include the information available ONLY in that source. If any information is missing in the original source, or could not be deduced, the respective field it is left empty in chronOntology.</p>
+
+            <p>An important aspect of the data model of chronontology, is that besides the temporal and geographical extension of a period, it also requires a period type. Each period represents a specific span of time marked by specific character, events,
+                changes on earth. For instance, an era in geology denotes a clearly defined period of time of well-defined length, delimited by a start event and an end event; in social history, eras may denote a period of some monarch's reign; in arts, a
+                period is a span of time before and after which the practices (or fashions) change to a significant degree. So what defines a period can be quite varied and it is possible to have overlapping periods that occupy the same STV but are defined by
+                different disciplines. </p>
+            <p>Type then is the field where in simple terms the defining characteristic of the period is specified. We so far used 6 main types and several sub-types (for their definitions and examples click <a href="#period_types">here</a>).</p>
+
+            <p>Ideally, only one type should be chosen, but in cases where identifying one period type is not possible more than one can be selected. In case the defining characteristic of the period is not clear in the original source (is not stated and cannot
+                be deduced) the type “not_specified” can be used. However, this is best avoided as much as possible.</p>
 
             <h3><a class="anchor" id="period_types"></a>Period types</h3>
 
