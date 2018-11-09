@@ -4,25 +4,144 @@
 
             <h1>Über iDAI.chronontology</h1>
 
+            <p><b>iDAI.chronontology</b> (Kurzform: <b>ChronOntology</b>) ist ein Webservice, der Zeitbegriffe, also Epochen, Perioden und Ereignisse, mit Datierungen verbindet. Angesiedelt am Deutschen Archäologischen Institut (DAI), ist ChronOntology ein
+                kostenloses Werkzeug der Internetrecherche für die Archäologie(n) und die Klassische Altertumswissenschaft. Jeder kann auf die Daten in iDAI.chronontology verweisen und nach Absprache auch eigene Daten hinzufügen. ChronOntology ist ein Teil
+                der iDAI.welt und der zentrale Gazetteer für Zeitbegriffe am DAI. Analog zum iDAI.gazetteer dient er zum einen als Normdatenvokabular für sämtliche zeitbezogenen Informationen und Informationssysteme des DAI und soll diese zum anderen mit
+                den weltweiten Zeit-Gazetteer-Systemen verbinden. </p>
+            <p>Das ChronOntology-Projekt wurde von 2015 bis 2018 von der Deutschen Forschungsgemeinschaft (DFG) gefördert und wurde von zwei Partnerinstituten, dem Deutschem Archäologischen Institut (DAI) und dem Institut für Raumbezogene Informations&shy;
+                und Messtechnik (i3mainz), entwickelt. Die Langzeitverfügbarkeit der Daten wird durch das DAI im Rahmen der iDAI.welt garantiert.</p>
+
+            <h2>Benutzung</h2>
+
+            <p>Die Benutzung von ChronOntology ist kostenlos. Sie können nach Epochen suchen und die Permalinks verwenden, um sich auf die ausgewählten Epochen in Ihrem Projekt zu beziehen. Nach Absprache können Sie auch einen Benutzeraccount anlegen und
+                Ihre eigene Daten in ChronOntology hinzufügen. </p>
+            <p>Um ChronOntology benutzen zu können, brauchen Sie einen modernen Internet-Browser. Unterstützt werden insbesondere aktuelle Versionen von Firefox, Chrome und Safari. Moderne Versionen des Internet Explorer sowie Edge werden ebenfalls
+                unterstützt. In modernen Browsern sind bestimmte Einstellungen automatisch aktiv, die Sie für die Anzeige von Arachne benötigen: Zum einen müssen Sie „Cookies“ von Arachne akzeptieren, zum anderen muss „JavaScript“ aktiviert sein. Falls Ihr
+                Browser Probleme hat, ChronOntology anzuzeigen, prüfen Sie bitte, ob Cookies oder JavaScript tatsächlich aktiviert sind. </p>
+            <p>ChronOntology wird möglichst in der Sprache angezeigt, die in Ihrem Browser als bevorzugte Sprache eingetragen ist, in Ihrem Fall also deutsch. ChronOntology verwendet die Textkodierung „Unicode (UTF-8)“. Ihr Browser erkennt diese
+                Textkodierung normalerweise automatisch.</p>
+
+            <h2>Das Datenmodell</h2>
+
+            <p>ChronOntology ist ein Werkzeug zum Sammeln und Verknüpfen von Zeitbegriffen, wie sie in Publikationen oder anderen Quellen zu finden sind. ChronOntology versucht nicht, Zeiträume zu definieren oder ihnen Datumsangaben zuzuweisen, wenn diese
+                nicht in den ursprünglichen Quellen vorhanden sind. Es zielt darauf ab, Informationen aus mehreren Quellen zu sammeln und zu verknüpfen. Es zielt nicht darauf ab, Datierungsprobleme zu lösen oder Entscheidungen darüber zu treffen, was eine
+                gute Datierungsmethode ist. ChronOntology stellt daher Zeitbegriffe und die damit verknüpften Zeiträume mit festen IDs bereit, auf die sich andere Systeme beziehen können Das Datenmodell ist flexibel genug, um für einen Zeitbegriff mehrere
+                Zeiträume (von sehr ungenau bis sehr spezifisch) zuzulassen, die von den Forschern und Projekten, die das System verwenden, benötigt werden.</p>
+            <p>Ein wichtiger Aspekt des Datenmodells von ChronOntology besteht darin, dass Zeitbegriffe <i>Spacetime Volumes</i> (STV) sind, d.h. zusätzlich zu ihrer zeitlichen Ausdehnung eine geographische Ausdehnung haben. Darüber hinaus akzeptiert das
+                System Zeitbegriffe mit fehlenden oder unvollständigen Zeit- oder Ortsangaben. Dies dient hauptsächlich dazu, den Forschungsstand genau wiederzugeben. Zum Beispiel kann eine Epoche noch nicht genau in Zeit und/oder Raum festgelegt sein, oder
+                in den Quellen werden diese Informationen nicht explizit erwähnt. Dementsprechend soll jeder Eintrag eine Epoche darstellen wie in der zitierten Provenienz oder Quelle beschrieben, und nur die in dieser Quelle verfügbare Informationen
+                enthalten. Wenn Informationen in der Originalquelle fehlen oder nicht abgeleitet werden konnten, wird das entsprechende Feld in ChronOntology leer gelassen.</p>
+
+            <h3><a class="anchor" id="period_types"></a>Epochentypen</h3>
+
+            <p>Ein wichtiger Aspekt des ChronOntology-Datenmodells ist, dass es neben der zeitlichen und geographischen Ausdehnung einer Periode auch einen Periodentyp erfordert. Jede Periode steht für eine bestimmte Zeitspanne, die durch bestimmte
+                Merkmale, Ereignisse und Veränderungen auf der Erde gekennzeichnet ist. Zum Beispiel bezeichnet eine Ära in der Geologie einen klar definierten Zeitraum von genau definierter Länge, der durch ein Startereignis und ein Endereignis begrenzt
+                wird. In der Geschichte können Epochen die Herrschaft eines Monarchen bezeichnen. In der Kunst ist eine Epoche eine Zeitspanne, zu deren Beginn und Ende sich die Praktiken (oder Moden) erheblich ändern. Was also eine Periode definiert, kann
+                sehr unterschiedlich sein, und es ist möglich, dass sich Perioden als STVs überlappen, aber von verschiedenen Disziplinen definiert werden. Der Epochentyp ist dann das Feld, in dem auf standardisierte Weise das definierende Merkmal der
+                Periode angegeben wird. Bisher haben wir sechs Haupttypen und mehrere Untertypen verwendet (Definitionen und Beispiele finden Sie hier). Im Idealfall sollte nur ein Epochentyp ausgewählt werden, aber in Fällen, in denen die Identifizierung
+                eines Typs nicht möglich ist, kann mehr als einer ausgewählt werden. Ist das definierende Merkmal der Periode in der ursprünglichen Quelle nicht klar (wird nicht angegeben und kann nicht abgeleitet werden), kann “kein Typ“ ausgewählt werden.
+                Dies sollte jedoch möglichst vermieden werden.</p>
+
             <p>
-iDAI.chronontology (Kurzform: chronOntology) ist ein Webservice, 
-der Zeitbegriffe mit Datierungen verbindet. 
-ChronOntology ist ein kostenloses Werkzeug der Internetrecherche 
-insbesondere für die Archäologie(n) und die Klassische Altertumswissenschaft, 
-Teil der iDAI.welt und der zentrale Zeit-Gazetteer des Deutschen Archäologischen Instituts (DAI).
-Analog zum 
-<a href="https://gazetteer.dainst.org">iDAI.gazetteer</a>
-dient er zum einen als Normdatenvokabular 
-für sämtliche zeitbezogenen Informationen und Informationssysteme des DAI 
-und soll diese zum anderen mit den weltweiten Zeit-Gazetteer-Systemen verbinden. 
-Darüber hinaus kann jeder auf die Daten in iDAI.chronontology verweisen 
-und nach Absprache auch eigene Daten hinzufügen. 
+                Die ChronOntology-Epochentyp-Hierarchie umfasst die folgenden Typen:
             </p>
-            <p>
-Das chronOntology-Projekt wurde von 2015 bis 2018 
-von der Deutschen Forschungsgemeinschaft (DFG) gefördert. 
-Die Langzeitverfügbarkeit der Daten wird durch das DAI im Rahmen der iDAI.welt garantiert.
-            </p>
+            <dl class="dl-horizontal">
+
+                <dt><a href="/search?q=&fq=types:'not_specified'">Kein Typ</a></dt>
+                <dd>
+                    <p>
+                        A period type to be used when in the source, from where the period was taken,
+                        the defining charachteristics of the period are not clear.
+                    </p>
+                </dd>
+
+                <dt><a href="/search?q=&fq=types:'geological'">Geologisch</a></dt>
+                <dd>
+                    <p>
+                        Periods related to the system of chronological measurement that relates stratigraphy
+                        to time. These periods form elements of a hierarchy of divisions into which
+                        geologists have split the Earth's history.
+                    </p>
+                    <p>
+                        Examples: <i>Phanerozoic, Paleozoic, Holocene</i>
+                    </p>
+                    <p>
+                        <b>Subtypes:</b>
+                        <ul class="list-inline">
+                            <li><a href="/search?q=&fq=types:'age'">Alter</a></li>
+                            <li><a href="/search?q=&fq=types:'eon'">Äon</a></li>
+                            <li><a href="/search?q=&fq=types:'epoch'">Epoche</a></li>
+                            <li><a href="/search?q=&fq=types:'era'">Ära</a></li>
+                            <li><a href="/search?q=&fq=types:'period'">Periode</a></li>
+                            <li><a href="/search?q=&fq=types:'supereon'">Super-Äon</a></li>
+                        </ul>
+                </dd>
+
+                <dt><a href="/search?q=&fq=types:'political'">Politisch</a></dt>
+                <dd>
+                    <p>
+                        Periods defined based on historical events that have been recorded and can be more
+                        or less precisely dated (such as reign years of a king, or control period of a
+                        kingdom, etc).
+                    </p>
+                    <p>
+                        Examples: <i>Roman, Republican, pre-Dynastic, Migration Period</i>
+                    </p>
+                </dd>
+
+                <dt><a href="/search?q=&fq=types:'cultural'">Kulturell</a></dt>
+                <dd>
+                    <p>
+                        Are related to the existance (appearance/disappearance) of a specific culture or
+                        cultural group, regardless of the contemporary political, technological or material
+                        developments. Might be reflected in material culture and/or other cultural markers.
+                    </p>
+                    <p>
+                        Examples: <i>Mudéjar, Philistine, Pheonician, Italian</i>
+                    </p>
+                </dd>
+
+                <dt><a href="/search?q=&fq=types:'material_culture'">Materielle Kultur</a></dt>
+                <dd>
+                    <p>
+                        Artistic / stylistic periods defined based on art movement or the production of
+                        certain artifacts according to a specific style. The usual method for periodization
+                        of the distant prehistoric past is usually based ont his type of periods, in archeology
+                        for instance it relies on changes in material culture and technology, such as the
+                        Stone Age, Bronze Age and Iron Age and their sub-divisions that are based on different
+                        styles of material remains.
+                    </p>
+                    <p>
+                        Examples: <i>Paleolithic, Azilien, Bronze Age, Stone Age, Geometric</i>
+                    </p>
+                    <p>
+                        <b>Subtypes:</b>
+                        <ul class="list-inline">
+                            <li><a href="/search?q=&fq=types:'architecture'">Architecture</a></li>
+                            <li><a href="/search?q=&fq=types:'art'">Art</a></li>
+                            <li><a href="/search?q=&fq=types:'ceramic'">Ceramic</a></li>
+                            <li><a href="/search?q=&fq=types:'decorative_arts'">Decorative arts</a></li>
+                            <li><a href="/search?q=&fq=types:'fine_arts'">Fine arts</a></li>
+                            <li><a href="/search?q=&fq=types:'glass'">Glass</a></li>
+                            <li><a href="/search?q=&fq=types:'glass_vessels'">Glass vessels</a></li>
+                            <li><a href="/search?q=&fq=types:'glyptic'">Gylptic</a></li>
+                            <li><a href="/search?q=&fq=types:'lacquer'">Lacquer</a></li>
+                            <li><a href="/search?q=&fq=types:'metal_bowls'">Metal bowls</a></li>
+                            <li><a href="/search?q=&fq=types:'metal_ware'">Metal ware</a></li>
+                            <li><a href="/search?q=&fq=types:'painting'">Painting</a></li>
+                            <li><a href="/search?q=&fq=types:'photography'">Photography</a></li>
+                            <li><a href="/search?q=&fq=types:'porcelain'">Porcelain</a></li>
+                            <li><a href="/search?q=&fq=types:'pottery'">Pottery</a></li>
+                            <li><a href="/search?q=&fq=types:'printmaking'">Printmaking</a></li>
+                            <li><a href="/search?q=&fq=types:'rock_art'">Rock art</a></li>
+                            <li><a href="/search?q=&fq=types:'sculpture'">Sculpture</a></li>
+                            <li><a href="/search?q=&fq=types:'stone_tools'">Stone tools</a></li>
+                            <li><a href="/search?q=&fq=types:'textile'">Textile</a></li>
+                            <li><a href="/search?q=&fq=types:'wall_painting'">Wall painting</a></li>
+                        </ul>
+                    </p>
+                </dd>
+
 
         </div>
     </div>
