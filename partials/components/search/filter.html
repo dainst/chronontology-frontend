@@ -1,6 +1,9 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<b>{{"period_" + $ctrl.facette | transl8}}</b>
+        <a ng-if="$ctrl.facette == 'types'" href="/info/about#period_types">
+            <span class="glyphicon glyphicon-info-sign"></span>
+        </a>
 	</div>
 	<div class="list-group">
 		<a class="list-group-item"
