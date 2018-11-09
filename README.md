@@ -1,4 +1,4 @@
-# chronOntology (Frontend)
+# ChronOntology (Frontend)
 
 ## Prerequisites
 
@@ -7,7 +7,7 @@ The following components need to be installed:
 
 ## Installation of Dependencies
 
-Install development and production dependencies with the following commands within your chronOntology-frontend directory
+Install development and production dependencies with the following commands within your ChronOntology frontend directory
 
 ```
 npm install
@@ -47,4 +47,4 @@ Build the application by running
 npm run build
 ```
 
-After building, chronOntology-frontend lies inside the dist directory.
+After building, the ChronOntology frontend lies inside the dist directory.
