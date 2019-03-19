@@ -1,7 +1,7 @@
 var gulp = require('gulp');
 var del = require('del');
 var runSequence = require('run-sequence');
-var browserSync = require('browser-sync');
+var browserSync = require('browser-sync').create();
 var url = require('url');
 var proxy = require('proxy-middleware');
 var modRewrite = require('connect-modrewrite');
@@ -52,7 +52,6 @@ var jsDeps = [
     paths.lib + 'angulartics/dist/angulartics.min.js',
     paths.lib + 'angulartics-piwik/dist/angulartics-piwik.min.js',
     paths.lib + 'angular-cookies/angular-cookies.min.js',
-    paths.lib + 'angular-ui-tree/dist/angular-ui-tree.min.js',
     paths.lib + 'angular-md5/angular-md5.js',
     paths.lib + 'idai-components/dist/idai-components.js',
     paths.lib + 'idai-cookie-notice/idai-cookie-notice.js',
@@ -78,13 +77,13 @@ gulp.task('compile-css', function () {
 });
 
 // minify css files in build dir
-gulp.task('minify-css', ['compile-css'], function () {
+gulp.task('minify-css', gulp.series('compile-css', function () {
 
     return gulp.src('dist/css/*.css')
         .pipe(minifyCss())
         .pipe(concat(pkg.name + '.min.css'))
         .pipe(gulp.dest('dist/css'));
-});
+}));
 
 // concatenates and minifies all dependecies into a single file in build dir
 gulp.task('concat-deps', function () {
@@ -121,20 +120,20 @@ gulp.task('html2js', function () {
 });
 
 // minifies and concatenates js files in build dir
-gulp.task('minify-js', ['concat-js', 'html2js'], function () {
+gulp.task('minify-js', gulp.series('concat-js', 'html2js', function () {
     var gutil = require('gulp-util');
     return gulp.src([paths.build + 'js/' + pkg.name + '.js',
-        paths.build + pkg.name + '-tpls.js'])
+        paths.build + 'js/' + pkg.name + '-tpls.js'])
         .pipe(concat(pkg.name + '.js'))
         .pipe(gulp.dest(paths.build + 'js'))
         .pipe(uglify())
         .on('error', function (err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
         .pipe(concat(pkg.name + '.min.js'))
         .pipe(gulp.dest(paths.build + 'js'));
-});
+}));
 
 // converts html partials to js files so they can be concatenated
-gulp.task('html2js-widgets', function () {
+gulp.task('html2js-widgets', function (done) {
 
     widgets.forEach(function(widget) {
         gulp.src('js/widgets/' + widget + '/*.html', { base: 'js/widgets/'})
@@ -146,6 +145,7 @@ gulp.task('html2js-widgets', function () {
             }))
             .pipe(gulp.dest(paths.build + 'js/widgets'));
     });
+    done();
 });
 
 // minifies and concatenates js files in build dir
@@ -186,64 +186,59 @@ gulp.task('copy-partials', function () {
         .pipe(gulp.dest(paths.build + '/partials'));
 });
 
-gulp.task('copy-resources', ['copy-fonts', 'copy-imgs', 'copy-index',
-    'copy-info', 'copy-pages', 'copy-config', 'copy-partials']);
-
 // copy index.html to dist and set version
 gulp.task('copy-index', function () {
 
     var buildNo = "SNAPSHOT";
     if (argv.build) buildNo = argv.build;
     var versionString = pkg.version + " (build #" + buildNo + ")";
-    gulp.src(['index.html'])
+    return gulp.src(['index.html'])
         .pipe(replace(/version="[^"]*"/g, 'version="v' + versionString + '"'))
         .pipe(replace(/build=BUILD_NO/g, 'build=' + buildNo))
         .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('copy-info', function () {
-
     return gulp.src('info/**/*', {base: 'info'})
         .pipe(gulp.dest(paths.build + '/info'));
 });
 
 gulp.task('copy-pages', function () {
-
     return gulp.src('pages/**/*', {base: 'pages'})
         .pipe(gulp.dest(paths.build + '/pages'));
 });
 
 gulp.task('copy-config', function () {
-
     return gulp.src('config/**/*', {base: 'config'})
         .pipe(gulp.dest(paths.build + '/config'));
 });
 
-gulp.task('build-app', [
+gulp.task('copy-resources', gulp.series('copy-fonts', 'copy-imgs', 'copy-index',
+    'copy-info', 'copy-pages', 'copy-config', 'copy-partials'));
+
+gulp.task('build-app', gulp.series(
     'minify-css',
     'concat-deps',
     'minify-js',
     'copy-resources'
-]);
+));
 
-gulp.task('build-widgets', [
+gulp.task('build-widgets', gulp.series(
     'html2js-widgets',
     'concat-widgets'
-]);
+));
 
-gulp.task('build', [
+gulp.task('build', gulp.series(
     'build-app',
     'build-widgets'
-]);
+));
 
-// clean
 gulp.task('clean', function () {
-
     return del(paths.build + '/**/*');
 });
 
 // runs the development server and sets up browser reloading
-gulp.task('server', ['build'], function () {
+gulp.task('server', gulp.series('build', function() {
 
     var dataProxyOptions = url.parse(cfg.dataUri);
     dataProxyOptions.route = '/data';
@@ -251,7 +246,7 @@ gulp.task('server', ['build'], function () {
     var spiProxyOptions = url.parse(cfg.spiUri);
     spiProxyOptions.route = '/spi';
 
-    browserSync({
+    browserSync.init({
         server: {
             baseDir: 'dist',
             middleware: [
@@ -264,14 +259,14 @@ gulp.task('server', ['build'], function () {
         port: 8085
     });
 
-    gulp.watch('scss/**/*.scss', ['compile-css']);
-    gulp.watch('js/**/*.js', ['minify-js']);
-    gulp.watch('pages/**/*.html', ['copy-pages']);
-    gulp.watch('partials/**/*.html', ['copy-partials']);
-    gulp.watch('index.html', ['copy-index']);
+    gulp.watch('scss/**/*.scss', gulp.series('compile-css'));
+    gulp.watch('js/**/*.js', gulp.series('minify-js'));
+    gulp.watch('pages/**/*.html', gulp.series('copy-pages'));
+    gulp.watch('partials/**/*.html', gulp.series('copy-partials'));
+    gulp.watch('index.html', gulp.series('copy-index'));
 
     gulp.watch(['index.html', 'partials/**/*.html', 'js/**/*.js'], reload);
-});
+}));
 
 gulp.task('default', function () {
     runSequence('clean', 'build');
