@@ -149,12 +149,8 @@
 
 	<span ng-if="$ctrl.period.zenonID && $ctrl.period.zenonTitle">
         <dt>Source</dt>
-        <dd class="preserve-linebreaks">
-        	{{ $ctrl.period.zenonTitle }}
-        	<br>
-			<a ng-href="{{ $ctrl.period.zenonID }}" target="_blank">
-				Zenon-Link <span class="glyphicon glyphicon-new-window"></span>
-			</a>
+        <dd class="preserve-linebreaks">{{ $ctrl.period.zenonTitle }}
+			<a ng-href="{{ $ctrl.period.zenonID }}" target="_blank">Zenon-Link <span class="glyphicon glyphicon-new-window"></span></a>
         </dd>
         <br>
     </span>
