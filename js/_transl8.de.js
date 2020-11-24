@@ -155,6 +155,7 @@ transl8['de'] = {
 "value_types_glyptic": "Glyptik",
 "value_types_historical": "historisch",
 "value_types_iron": "iron",
+"value_types_iron_age": "iron age",
 "value_types_lacquer": "Lack",
 "value_types_lithic": "lithic",
 "value_types_material_culture": "materielle Kultur",
