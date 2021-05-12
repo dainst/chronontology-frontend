@@ -137,6 +137,7 @@ transl8['de'] = {
 "value_provenance_periodo": "PeriodO",
 "value_provenance_SPP2143": "SPP2143",
 "value_types_age": "Alter (Geologie)",
+"value_types_archaeobotanical": "archäobotanisch",
 "value_types_architecture": "Architektur",
 "value_types_art": "Kunst",
 "value_types_burial": "Begräbnis",
