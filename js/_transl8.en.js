@@ -135,7 +135,7 @@ transl8['en'] = {
 "value_provenance_Chronontology": "chronOntology",
 "value_provenance_Landesarchäologen": "Verband der Landesarchäologen",
 "value_provenance_periodo": "PeriodO",
-"value_provenance_SPP2143": "SPP2143",
+"value_provenance_SPP2143": "Entangled Africa",
 "value_types_age": "Age (geology)",
 "value_types_archaeobotanical": "archaeobotanical",
 "value_types_architecture": "architecture",
