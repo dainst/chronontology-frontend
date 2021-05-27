@@ -147,12 +147,17 @@
         </span>
     </span>
 
-	<span ng-if="$ctrl.period.zenonID && $ctrl.period.zenonTitle">
-        <dt>Source</dt>
-        <dd class="preserve-linebreaks">{{ $ctrl.period.zenonTitle }}
-			<a ng-href="{{ $ctrl.period.zenonID }}" target="_blank">Zenon-Link <span class="glyphicon glyphicon-new-window"></span></a>
-        </dd>
-        <br>
+    <span ng-if="$ctrl.period.references">
+        <dt>References</dt>
+	    <span ng-repeat="reference in $ctrl.period.references">
+	        <dd>
+    	    	{{ reference.reference }}
+        		<span ng-if="reference.zenonId">
+					<a ng-href="https://zenon.dainst.org/Record/{{ reference.zenonId }}" target="_blank">Zenon <span class="glyphicon glyphicon-new-window"></span></a>
+				</span>
+    	    </dd>
+        	<br>
+   		</span>
     </span>
 </dl>
 
