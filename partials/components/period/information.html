@@ -149,11 +149,11 @@
 
     <span ng-if="$ctrl.period.references">
         <dt>References</dt>
-	    <span ng-repeat="reference in $ctrl.period.references">
+	    <span ng-repeat="ref in $ctrl.period.references">
 	        <dd>
-    	    	{{ reference.reference }}
-        		<span ng-if="reference.zenonId">
-					<a ng-href="https://zenon.dainst.org/Record/{{ reference.zenonId }}" target="_blank">Zenon <span class="glyphicon glyphicon-new-window"></span></a>
+    	    	{{ ref.reference }}
+        		<span ng-if="ref.zenonId">
+					<a ng-href="https://zenon.dainst.org/Record/{{ ref.zenonId }}" target="_blank">Zenon <span class="glyphicon glyphicon-new-window"></span></a>
 				</span>
     	    </dd>
         	<br>
