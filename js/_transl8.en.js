@@ -143,6 +143,7 @@ transl8['en'] = {
 "value_types_burial": "burial",
 "value_types_ceramic": "ceramic",
 "value_types_chronological_subdivision": "chronological subdivision",
+"value_types_climatic": "climatic",
 "value_types_collection": "period list",
 "value_types_cultural": "cultural",
 "value_types_decorative_arts": "decorative arts",

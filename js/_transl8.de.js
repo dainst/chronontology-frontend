@@ -143,6 +143,7 @@ transl8['de'] = {
 "value_types_burial": "Begräbnis",
 "value_types_ceramic": "Keramik (ceramic)",
 "value_types_chronological_subdivision": "chronologische Unterteilung",
+"value_types_climatic": "klimatisch",
 "value_types_collection": "Epochenliste",
 "value_types_cultural": "kulturell",
 "value_types_decorative_arts": "dekorative Kunst",
