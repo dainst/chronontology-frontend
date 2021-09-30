@@ -35,10 +35,11 @@
 			</span>
 		</span>
 		<span ng-if="timespan[boundary].notBefore">
-			({{ "temporal_notBefore" | transl8 }} {{ timespan[boundary].notBefore }})
+			{{ "temporal_notBefore" | transl8 }} {{ timespan[boundary].notBefore | transl8Year }}
 		</span>
+		<span ng-if="timespan[boundary].notBefore"> / </span>
 		<span ng-if="timespan[boundary].notAfter">
-			({{ "temporal_notAfter" | transl8 }} {{ timespan[boundary].notAfter }})
+			{{ "temporal_notAfter" | transl8 }} {{ timespan[boundary].notAfter | transl8Year }}
 		</span>
 		<br>
 	</span>
@@ -51,10 +52,6 @@
 		<br>
 	</span>
 	<dd ng-repeat="timespan in hasTimespan">
-		<span ng-if="timespan.timeOriginal">
-			<i>{{ "ui_original_text" | transl8 }}</i>: {{ timespan.timeOriginal }}
-			<br>
-		</span>
 		<span ng-repeat="boundary in ['begin', 'end']" ng-include src="'/intervalBoundary'"></span>
 		<span ng-if="timespan.calendar"><i>{{ "temporal_calendar" | transl8 }}</i>: {{ timespan.calendar }}<br></span>
 		<span ng-if="timespan.sourceOriginal"><i>{{ "ui_source" | transl8 }}</i>: {{ timespan.sourceOriginal }}<br></span>
@@ -64,6 +61,9 @@
 			<ul>
 				<li ng-repeat="periodId in timespan.derivedFrom" ng-include src="'/periodLink'"/>
 			</ul>
+		</span>
+		<span ng-if="timespan.timeOriginal">
+			<i>{{ "ui_original_text" | transl8 }}</i>: {{ timespan.timeOriginal }}
 		</span>
 	</dd>
 	<br>
