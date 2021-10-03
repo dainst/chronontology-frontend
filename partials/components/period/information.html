@@ -164,7 +164,7 @@
 <dl class="dl-horizontal">
 
 	<span ng-if="$ctrl.hasRelationsInResource($ctrl.period)">
-    	<h5>{{ "ui_relations" | transl8 }}</h5>
+    	<h4>{{ "ui_relations" | transl8 }}</h4>
 		<span ng-repeat="relation in $ctrl.internalRelationTypes" ng-include src="'/explicitRelations'"></span>
 		<span ng-repeat="relation in $ctrl.allenRelationTypes" ng-include src="'/explicitRelations'"></span>
 	</span>
