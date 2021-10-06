@@ -170,14 +170,22 @@ gulp.task('concat-widgets', function () {
 gulp.task('copy-fonts', function () {
 
     var bsFontPath = paths.lib + 'bootstrap-sass/assets/fonts/';
-    return gulp.src(bsFontPath + '**/*', {base: bsFontPath})
+    var componentsFontPath = paths.lib + 'idai-components/fonts/';
+    return gulp.src([
+            bsFontPath + '**/*',
+            componentsFontPath + '**/*'
+        ])
         .pipe(gulp.dest(paths.build + '/fonts'));
 });
 
 gulp.task('copy-imgs', function () {
-
-    return gulp.src('img/**/*', {base: 'img'})
-        .pipe(gulp.dest(paths.build + '/img'));
+    
+    var componentsFontPath = paths.lib + 'idai-components/img/';
+    return gulp.src([
+        'img/**/*',
+        componentsFontPath + '**/*'
+    ])
+    .pipe(gulp.dest(paths.build + '/img'));
 });
 
 gulp.task('copy-partials', function () {
