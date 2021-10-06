@@ -6,11 +6,11 @@ var url = require('url');
 var proxy = require('proxy-middleware');
 var modRewrite = require('connect-modrewrite');
 var reload = browserSync.reload;
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('node-sass'));
 var concat = require('gulp-concat');
 var sort = require('gulp-sort');
 var addSrc = require('gulp-add-src');
-var minifyCss = require('gulp-minify-css');
+var cleanCss = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
 var argv = require('yargs').argv;
 var ngHtml2Js = require("gulp-ng-html2js");
@@ -80,7 +80,7 @@ gulp.task('compile-css', function () {
 gulp.task('minify-css', gulp.series('compile-css', function () {
 
     return gulp.src('dist/css/*.css')
-        .pipe(minifyCss())
+        .pipe(cleanCss())
         .pipe(concat(pkg.name + '.min.css'))
         .pipe(gulp.dest('dist/css'));
 }));
