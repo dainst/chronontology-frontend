@@ -70,7 +70,7 @@
     "karma-ng-html2js-preprocessor": "1.0.0",
     "karma-phantomjs-launcher": "1.0.4",
     "morgan": "^1.9.1",
-    "node-sass": "^6.0.1",
+    "node-sass": "^7.0.0",
     "passport": "~0.3.2",
     "passport-http": "~0.3.0",
     "phantomjs-prebuilt": "^2.1.16",
