@@ -90,8 +90,9 @@ angular.module('chronontology', [
         { key: "example_query_geological_time_scale", q: "*&fq=tags:'geological_time_scale'" },
         { key: "example_query_roman_chronology", q: "*&fq=tags:'roman_chronology'" }
     ]
-}).constant('componentsSettings', {
-    transl8Uri: 'https://arachne.dainst.org/transl8/translation/jsonp?application=chronontology_frontend&application=shared&lang={LANG}',
+})
+.constant('transl8map', transl8)
+.constant('componentsSettings', {
     mailTo: 'idai.chronontology@dainst.org',
     dataProtectionPolicyUri: 'http://www.dainst.org/datenschutz'
 }).run(['$rootScope', function($rootScope) {
