@@ -45,7 +45,7 @@
   "devDependencies": {
     "bootstrap-sass": "~3.4.1",
     "browser-sync": "^2.27.10",
-    "chromedriver": "^93.0.0",
+    "chromedriver": "^101.0.0",
     "connect-modrewrite": "~0.10.2",
     "del": "~2.2.0",
     "express": "^4.16.4",
@@ -74,13 +74,12 @@
     "passport": "~0.6.0",
     "passport-http": "~0.3.0",
     "phantomjs-prebuilt": "^2.1.16",
-    "protractor": "^5.4.4",
+    "protractor": "^7.0.0",
     "protractor-console-plugin": "0.1.1",
     "proxy-middleware": "0.15.0",
     "rimraf": "2.6.1",
     "run-sequence": "~1.2.1",
     "url": "0.11.0",
-    "webdriver-manager": "^12.1.1",
     "yargs": "~17.6.2"
   }
 }
