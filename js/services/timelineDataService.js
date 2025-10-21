@@ -211,7 +211,7 @@ var TimelineDataService = function($filter) {
 
         if (period.successor && period.successor in periodsMap && period.id !== period.successor) {
             var successor = periodsMap[period.successor];
-            if (successor.periodGroup.periodsCount === 1) {
+            if (successor.periodGroup && successor.periodGroup.periodsCount === 1) {
                 periodGroups.splice(periodGroups.indexOf(successor.periodGroup), 1);
                 setPeriodGroup(successor, period.periodGroup, period.groupRow, period.level);
                 addSuccessorToGroup(successor, periodsMap, periodGroups);
